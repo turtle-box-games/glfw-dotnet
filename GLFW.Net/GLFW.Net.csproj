@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Native\GLFW.Constants.cs" />
     <Compile Include="Native\GLFW.Context.cs" />
+    <Compile Include="Native\GLFW.Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
