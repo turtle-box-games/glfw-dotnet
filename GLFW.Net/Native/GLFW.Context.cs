@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace GLFW.Net.Native
 {
@@ -7,10 +8,10 @@ namespace GLFW.Net.Native
         public delegate void GlProc();
 
         [DllImport(DllName)]
-        public static extern void glfwMakeContextCurrent(GLFWwindow window);
+        public static extern void glfwMakeContextCurrent(IntPtr window);
 
         [DllImport(DllName)]
-        public static extern GLFWwindow glfwGetCurrentContext();
+        public static extern IntPtr glfwGetCurrentContext();
 
         [DllImport(DllName)]
         public static extern void glfwSwapInterval(int interval);
