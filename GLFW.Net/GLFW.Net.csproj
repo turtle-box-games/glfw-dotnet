@@ -44,6 +44,7 @@
     <Compile Include="Native\GLFW.Init.cs" />
     <Compile Include="Native\GLFW.Input.cs" />
     <Compile Include="Native\GLFW.Monitor.cs" />
+    <Compile Include="Native\GLFW.Window.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
