@@ -42,6 +42,7 @@
     <Compile Include="Native\GLFW.Context.cs" />
     <Compile Include="Native\GLFW.Error.cs" />
     <Compile Include="Native\GLFW.Init.cs" />
+    <Compile Include="Native\GLFW.Input.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
