@@ -14,6 +14,21 @@ namespace GLFW.Net.Native
         /// <param name="event">One of <see cref="Connected"/> or <see cref="Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
         public delegate void JoystickHandler(int joy, int @event);
+
+        [DllImport(DllName, EntryPoint = "glfwJoystickPresent")]
+        public static extern int JoystickPresent(int joy);
+
+        [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes")]
+        public static extern float[] GetJoystickAxes(int joy, out int count);
+
+        [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons")]
+        public static extern byte[] GetJoystickButtons(int joy, out int count);
+
+        [DllImport(DllName, EntryPoint = "glfwGetJoystickName")]
+        public static extern string GetJoystickName(int joy);
+
+        [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback")]
+        public static extern JoystickHandler SetJoystickCallback(JoystickHandler callback);
         
         #endregion
         
@@ -48,6 +63,23 @@ namespace GLFW.Net.Native
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetCharModsCallback"/>
         public delegate void CharacterModifierHandler(IntPtr window, uint codepoint, int mods);
+
+        [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
+        [return: MarshalAs(UnmanagedType.LPStr)]
+        public static extern string GetKeyName(int key, int scancode);
+
+        [DllImport(DllName, EntryPoint = "glfwGetKey")]
+        public static extern int GetKey(IntPtr window, int key);
+
+        [DllImport(DllName, EntryPoint = "glfwSetKeyCallback")]
+        public static extern KeyHandler SetKeyCallback(IntPtr window, KeyHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCharCallback")]
+        public static extern CharacterHandler SetCharCallback(IntPtr window, CharacterHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCharModsCallback")]
+        public static extern CharacterModifierHandler SetCharModsCallback(IntPtr window,
+            CharacterModifierHandler callback);
         
         #endregion
 
@@ -100,6 +132,66 @@ namespace GLFW.Net.Native
         public delegate void DropHandler(IntPtr window, int count,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 1)] string[] paths);
 
+        [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
+        public static extern int GetMouseButton(IntPtr window, int button);
+
+        [DllImport(DllName, EntryPoint = "glfwGetCursorPos")]
+        public static extern void GetCursorPos(IntPtr window, out double xpos, out double ypos);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCursorPos")]
+        public static extern void SetCursorPos(IntPtr window, double xpos, double ypos);
+
+        [DllImport(DllName, EntryPoint = "glfwCreateCursor")]
+        public static extern IntPtr CreateCursor(IntPtr image, int xhot, int yhot);
+
+        [DllImport(DllName, EntryPoint = "glfwCreateStandardCursor")]
+        public static extern IntPtr CreateStandardCursor(int shape);
+
+        [DllImport(DllName, EntryPoint = "glfwDestroyCursor")]
+        public static extern void DestroyCursor(IntPtr cursor);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCursor")]
+        public static extern void SetCursor(IntPtr window, IntPtr cursor);
+
+        [DllImport(DllName, EntryPoint = "glfwSetMouseButtonCallback")]
+        public static extern MouseButtonHandler SetMouseButtonCallback(IntPtr window, MouseButtonHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCursorPosCallback")]
+        public static extern CursorPositionHandler SetCursorPosCallback(IntPtr window, CursorPositionHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetCursorEnterCallback")]
+        public static extern CursorEnterHandler SetCursorEnterCallback(IntPtr window, CursorEnterHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetScrollCallback")]
+        public static extern ScrollHandler SetScrollCallback(IntPtr window, ScrollHandler callback);
+
+        [DllImport(DllName, EntryPoint = "glfwSetDropCallback")]
+        public static extern DropHandler SetDropCallback(IntPtr window, DropHandler callback);
+
         #endregion
+
+        [DllImport(DllName, EntryPoint = "glfwGetInputMode")]
+        public static extern int GetInputMode(IntPtr window, int mode);
+
+        [DllImport(DllName, EntryPoint = "glfwSetInputMode")]
+        public static extern void SetInputMode(IntPtr window, int mode, int value);
+
+        [DllImport(DllName, EntryPoint = "glfwSetClipboardString")]
+        public static extern void SetClipboardString(IntPtr window, string @string);
+
+        [DllImport(DllName, EntryPoint = "glfwGetClipboardString")]
+        public static extern string GetClipboardString(IntPtr window);
+
+        [DllImport(DllName, EntryPoint = "glfwGetTime")]
+        public static extern double GetTime();
+
+        [DllImport(DllName, EntryPoint = "glfwSetTime")]
+        public static extern void SetTime(double time);
+
+        [DllImport(DllName, EntryPoint = "glfwGetTimerValue")]
+        public static extern ulong GetTimerValue();
+
+        [DllImport(DllName, EntryPoint = "glfwGetTimerFrequency")]
+        public static extern ulong GetTimerFrequency();
     }
 }
