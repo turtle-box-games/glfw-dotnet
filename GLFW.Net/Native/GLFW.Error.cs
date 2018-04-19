@@ -4,6 +4,8 @@ namespace GLFW.Net.Native
 {
     internal static partial class GLFW
     {
+        #region Error Codes
+        
         /// <summary>
         /// GLFW has not been initialized.
         /// <para>This occurs if a GLFW function was called
@@ -109,6 +111,8 @@ namespace GLFW.Net.Native
         /// <remarks>Application programmer error.
         /// Fix the offending call.</remarks>
         public const int NoWindowContext = 0x0001000A;
+        
+        #endregion
         
         /// <summary>
         /// The function signature for error callbacks.
