@@ -13,7 +13,7 @@ namespace GLFW.Net.Native
         /// <param name="joy">The joystick that was connected or disconnected.</param>
         /// <param name="event">One of <see cref="Connected"/> or <see cref="Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
-        public delegate void JoystickHandler(int joy, int @event);
+        public delegate void JoystickCallback(int joy, int @event);
 
         [DllImport(DllName, EntryPoint = "glfwJoystickPresent")]
         public static extern int JoystickPresent(int joy);
@@ -28,7 +28,7 @@ namespace GLFW.Net.Native
         public static extern string GetJoystickName(int joy);
 
         [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback")]
-        public static extern JoystickHandler SetJoystickCallback(JoystickHandler callback);
+        public static extern JoystickCallback SetJoystickCallback(JoystickCallback cbfun);
         
         #endregion
         
@@ -43,7 +43,7 @@ namespace GLFW.Net.Native
         /// <param name="action"><see cref="Press"/>, <see cref="Release"/>, or <see cref="Repeat"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        public delegate void KeyHandler(IntPtr window, int key, int scancode, int action, int mods);
+        public delegate void KeyCallback(IntPtr window, int key, int scancode, int action, int mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -51,7 +51,7 @@ namespace GLFW.Net.Native
         /// <param name="window">The window that received the event.</param>
         /// <param name="codepoint">The Unicode code point of the character.</param>
         /// <seealso cref="SetCharCallback"/>
-        public delegate void CharacterHandler(IntPtr window, uint codepoint);
+        public delegate void CharacterCallback(IntPtr window, uint codepoint);
 
         /// <summary>
         /// The function signature for Unicode character with modifiers callbacks.
@@ -62,7 +62,7 @@ namespace GLFW.Net.Native
         /// <param name="codepoint">The Unicode code point of the character. </param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetCharModsCallback"/>
-        public delegate void CharacterModifierHandler(IntPtr window, uint codepoint, int mods);
+        public delegate void CharacterModifierCallback(IntPtr window, uint codepoint, int mods);
 
         [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
         [return: MarshalAs(UnmanagedType.LPStr)]
@@ -72,14 +72,14 @@ namespace GLFW.Net.Native
         public static extern int GetKey(IntPtr window, int key);
 
         [DllImport(DllName, EntryPoint = "glfwSetKeyCallback")]
-        public static extern KeyHandler SetKeyCallback(IntPtr window, KeyHandler callback);
+        public static extern KeyCallback SetKeyCallback(IntPtr window, KeyCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetCharCallback")]
-        public static extern CharacterHandler SetCharCallback(IntPtr window, CharacterHandler callback);
+        public static extern CharacterCallback SetCharCallback(IntPtr window, CharacterCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetCharModsCallback")]
-        public static extern CharacterModifierHandler SetCharModsCallback(IntPtr window,
-            CharacterModifierHandler callback);
+        public static extern CharacterModifierCallback SetCharModsCallback(IntPtr window,
+            CharacterModifierCallback cbfun);
         
         #endregion
 
@@ -93,7 +93,7 @@ namespace GLFW.Net.Native
         /// <param name="action">One of <see cref="Press"/> or <see cref="Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
-        public delegate void MouseButtonHandler(IntPtr window, int button, int action, int mods);
+        public delegate void MouseButtonCallback(IntPtr window, int button, int action, int mods);
 
         /// <summary>
         /// The function signature for cursor position callbacks.
@@ -102,7 +102,7 @@ namespace GLFW.Net.Native
         /// <param name="xpos">The new cursor x-coordinate, relative to the left edge of the client area.</param>
         /// <param name="ypos">The new cursor y-coordinate, relative to the top edge of the client area.</param>
         /// <seealso cref="SetCursorPosCallback"/>
-        public delegate void CursorPositionHandler(IntPtr window, double xpos, double ypos);
+        public delegate void CursorPositionCallback(IntPtr window, double xpos, double ypos);
 
         /// <summary>
         /// The function signature for cursor enter/leave callbacks.
@@ -111,7 +111,7 @@ namespace GLFW.Net.Native
         /// <param name="entered"><see cref="True"/> if the cursor entered the window's client area,
         /// or <see cref="False"/> if it left it.</param>
         /// <seealso cref="SetCursorEnterCallback"/>
-        public delegate void CursorEnterHandler(IntPtr window, int entered);
+        public delegate void CursorEnterCallback(IntPtr window, int entered);
 
         /// <summary>
         /// The function signature for scroll callbacks.
@@ -120,7 +120,7 @@ namespace GLFW.Net.Native
         /// <param name="xoffset">The scroll offset along the x-axis.</param>
         /// <param name="yoffset">The scroll offset along the y-axis.</param>
         /// <seealso cref="SetScrollCallback"/>
-        public delegate void ScrollHandler(IntPtr window, double xoffset, double yoffset);
+        public delegate void ScrollCallback(IntPtr window, double xoffset, double yoffset);
 
         /// <summary>
         /// The function signature for file drop callbacks.
@@ -129,7 +129,7 @@ namespace GLFW.Net.Native
         /// <param name="count">The number of dropped files.</param>
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
-        public delegate void DropHandler(IntPtr window, int count,
+        public delegate void DropCallback(IntPtr window, int count,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 1)] string[] paths);
 
         [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
@@ -154,19 +154,19 @@ namespace GLFW.Net.Native
         public static extern void SetCursor(IntPtr window, IntPtr cursor);
 
         [DllImport(DllName, EntryPoint = "glfwSetMouseButtonCallback")]
-        public static extern MouseButtonHandler SetMouseButtonCallback(IntPtr window, MouseButtonHandler callback);
+        public static extern MouseButtonCallback SetMouseButtonCallback(IntPtr window, MouseButtonCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetCursorPosCallback")]
-        public static extern CursorPositionHandler SetCursorPosCallback(IntPtr window, CursorPositionHandler callback);
+        public static extern CursorPositionCallback SetCursorPosCallback(IntPtr window, CursorPositionCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetCursorEnterCallback")]
-        public static extern CursorEnterHandler SetCursorEnterCallback(IntPtr window, CursorEnterHandler callback);
+        public static extern CursorEnterCallback SetCursorEnterCallback(IntPtr window, CursorEnterCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetScrollCallback")]
-        public static extern ScrollHandler SetScrollCallback(IntPtr window, ScrollHandler callback);
+        public static extern ScrollCallback SetScrollCallback(IntPtr window, ScrollCallback cbfun);
 
         [DllImport(DllName, EntryPoint = "glfwSetDropCallback")]
-        public static extern DropHandler SetDropCallback(IntPtr window, DropHandler callback);
+        public static extern DropCallback SetDropCallback(IntPtr window, DropCallback cbfun);
 
         #endregion
 

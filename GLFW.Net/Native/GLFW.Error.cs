@@ -120,7 +120,7 @@ namespace GLFW.Net.Native
         /// <param name="errorCode">An error code.</param>
         /// <param name="description">A UTF-8 encoded string describing the error.</param>
         /// <seealso cref="SetErrorCallback"/>
-        public delegate void ErrorHandler(int errorCode, [MarshalAs(UnmanagedType.LPStr)] string description);
+        public delegate void ErrorCallback(int errorCode, [MarshalAs(UnmanagedType.LPStr)] string description);
 
         /// <summary>
         /// Sets the error callback.
@@ -138,6 +138,6 @@ namespace GLFW.Net.Native
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern ErrorHandler SetErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] ErrorHandler callback);
+        public static extern ErrorCallback SetErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);
     }
 }
