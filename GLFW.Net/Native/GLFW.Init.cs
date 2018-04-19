@@ -9,7 +9,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="errorCode">An error code.</param>
         /// <param name="description">A UTF-8 encoded string describing the error.</param>
-        /// <seealso cref="GLFW.glfwSetErrorCallback"/>
+        /// <seealso cref="SetErrorCallback"/>
         public delegate void ErrorHandler(int errorCode, [MarshalAs(UnmanagedType.LPStr)] string description);
 
         /// <summary>
@@ -18,8 +18,8 @@ namespace GLFW.Net.Native
         /// Before most GLFW functions can be used, GLFW must be initialized,
         /// and before an application terminates GLFW should be terminated
         /// in order to free any resources allocated during or after initialization.</para>
-        /// <para>If this function fails, it calls <see cref="glfwTerminate"/> before returning.
-        /// If it succeeds, you should call <see cref="glfwTerminate"/> before the application exits.</para>
+        /// <para>If this function fails, it calls <see cref="Terminate"/> before returning.
+        /// If it succeeds, you should call <see cref="Terminate"/> before the application exits.</para>
         /// <para>Additional calls to this function after successful initialization
         /// but before termination will return <see cref="True"/> immediately.</para>
         /// <para>Possible errors include <see cref="PlatformError"/>.</para>
@@ -28,29 +28,29 @@ namespace GLFW.Net.Native
         /// <remarks>OS X: This function will change the current directory of the application
         /// to the <c>Contents/Resources</c> subdirectory of the application's bundle, if present.
         /// This can be disabled with a compile-time option.</remarks>
-        /// <see cref="glfwTerminate"/>
-        [DllImport(DllName)]
-        public static extern int glfwInit();
+        /// <see cref="Terminate"/>
+        [DllImport(DllName, EntryPoint = "glfwInit")]
+        public static extern int Init();
 
         /// <summary>
         /// Terminates the GLFW library.
         /// <para>This function destroys all remaining windows and cursors,
         /// restores any modified gamma ramps and frees any other allocated resources.
-        /// Once this function is called, you must again call <see cref="glfwInit"/> successfully
+        /// Once this function is called, you must again call <see cref="Init"/> successfully
         /// before you will be able to use most GLFW functions.</para>
         /// <para>If GLFW has been successfully initialized,
         /// this function should be called before the application exits.
         /// If initialization fails, there is no need to call this function,
-        /// as it is called by <see cref="glfwInit"/> before it returns failure.</para>
+        /// as it is called by <see cref="Init"/> before it returns failure.</para>
         /// <para>Possible errors include <see cref="PlatformError"/>.</para>
         /// </summary>
-        /// <remarks>This function may be called before <see cref="glfwInit"/>.
+        /// <remarks>This function may be called before <see cref="Init"/>.
         /// <para>Warning: The contexts of any remaining windows
         /// must not be current on any other thread when this function is called.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
-        /// <seealso cref="glfwInit"/>
-        [DllImport(DllName)]
-        public static extern void glfwTerminate();
+        /// <seealso cref="Init"/>
+        [DllImport(DllName, EntryPoint = "glfwTerminate")]
+        public static extern void Terminate();
 
         /// <summary>
         /// Retrieves the version of the GLFW library.
@@ -61,10 +61,10 @@ namespace GLFW.Net.Native
         /// <param name="major">Where to store the major version number.</param>
         /// <param name="minor">Where to store the minor version number.</param>
         /// <param name="rev">Where to store the revision number.</param>
-        /// <remarks>This function may be called before <see cref="glfwInit"/>.</remarks>
-        /// <seealso cref="glfwGetVersionString"/>
-        [DllImport(DllName)]
-        public static extern void glfwGetVersion(out int major, out int minor, out int rev);
+        /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
+        /// <seealso cref="GetVersionString"/>
+        [DllImport(DllName, EntryPoint = "glfwGetVersion")]
+        public static extern void GetVersion(out int major, out int minor, out int rev);
 
         /// <summary>
         /// Returns a string describing the compile-time configuration.
@@ -74,11 +74,11 @@ namespace GLFW.Net.Native
         /// queried with <c>glGetString</c>.</para>
         /// </summary>
         /// <returns>The ASCII encoded GLFW version string.</returns>
-        /// <remarks>This function may be called before <see cref="glfwInit"/>.</remarks>
-        /// <seealso cref="glfwGetVersion"/>
-        [DllImport(DllName)]
+        /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
+        /// <seealso cref="GetVersion"/>
+        [DllImport(DllName, EntryPoint = "glfwGetVersionString")]
         [return: MarshalAs(UnmanagedType.LPStr)]
-        public static extern string glfwGetVersionString();
+        public static extern string GetVersionString();
 
         /// <summary>
         /// Sets the error callback.
@@ -93,9 +93,9 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback, or <c>null</c> if no callback was set.</returns>
-        /// <remarks>This function may be called before <see cref="glfwInit"/>.</remarks>
-        [DllImport(DllName)]
+        /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
+        [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern ErrorHandler glfwSetErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] ErrorHandler callback);
+        public static extern ErrorHandler SetErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] ErrorHandler callback);
     }
 }
