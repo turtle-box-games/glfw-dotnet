@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace GLFW.Net.Native
 {
@@ -96,7 +97,8 @@ namespace GLFW.Net.Native
         /// <param name="count">The number of dropped files.</param>
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
-        public delegate void DropHandler(IntPtr window, int count, string[] paths);
+        public delegate void DropHandler(IntPtr window, int count,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 1)] string[] paths);
 
         #endregion
     }
