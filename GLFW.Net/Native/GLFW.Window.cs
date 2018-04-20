@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace GLFW.Net.Native
 {
@@ -65,86 +66,138 @@ namespace GLFW.Net.Native
         /// <seealso cref="SetFrameBufferSizeCallback"/>
         public delegate void FrameBufferSizeCallback(IntPtr window, int width, int height);
 
+        [DllImport(DllName, EntryPoint = "glfwDefaultWindowHints")]
         public static extern void DefaultWindowHints();
 
+        [DllImport(DllName, EntryPoint = "glfwWindowHint")]
         public static extern void WindowHint(int hint, int value);
 
-        public static extern IntPtr CreateWindow(int width, int height, string title, IntPtr monitor, IntPtr share);
+        [DllImport(DllName, EntryPoint = "glfwCreateWindow")]
+        public static extern IntPtr CreateWindow(int width, int height, [MarshalAs(UnmanagedType.LPStr)] string title, IntPtr monitor, IntPtr share);
 
+        [DllImport(DllName, EntryPoint = "glfwDestroyWindow")]
         public static extern void DestroyWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwWindowShouldClose")]
         public static extern int WindowShouldClose(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowShouldClose")]
         public static extern void SetWindowShouldClose(IntPtr window, int value);
 
-        public static extern void SetWindowTitle(IntPtr window, string title);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowTitle")]
+        public static extern void SetWindowTitle(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string title);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowIcon")]
         public static extern void SetWindowIcon(IntPtr window, int count, IntPtr images);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowPos")]
         public static extern void GetWindowPos(IntPtr window, out int xpos, out int ypos);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowPos")]
         public static extern void SetWindowPos(IntPtr window, int xpos, int ypos);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowSize")]
         public static extern void GetWindowSize(IntPtr window, out int width, out int height);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowSizeLimits")]
         public static extern void SetWindowSizeLimits(IntPtr window, int minWidth, int minHeight, int maxWidth,
             int maxHeight);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowAspectRation")]
         public static extern void SetWindowAspectRation(IntPtr window, int numer, int denom);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowSize")]
         public static extern void SetWindowSize(IntPtr window, int width, int height);
 
+        [DllImport(DllName, EntryPoint = "glfwGetFramebufferSize")]
         public static extern void GetFramebufferSize(IntPtr window, out int width, out int height);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowFrameSize")]
         public static extern void GetWindowFrameSize(IntPtr window, out int left, out int top, out int right,
             out int bottom);
 
+        [DllImport(DllName, EntryPoint = "glfwIconifyWindow")]
         public static extern void IconifyWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwRestoreWindow")]
         public static extern void RestoreWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwMaximizeWindow")]
         public static extern void MaximizeWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwShowWindow")]
         public static extern void ShowWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwHideWindow")]
         public static extern void HideWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwFocusWindow")]
         public static extern void FocusWindow(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowMonitor")]
         public static extern IntPtr GetWindowMonitor(IntPtr window);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowMonitor")]
         public static extern void SetWindowMonitor(IntPtr window, IntPtr monitor, int xpos, int ypos, int width,
             int height, int refreshRate);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowAttrib")]
         public static extern int GetWindowAttrib(IntPtr window, int attrib);
 
+        [DllImport(DllName, EntryPoint = "glfwSetWindowUserPointer")]
         public static extern void SetWindowUserPointer(IntPtr window, IntPtr pointer);
 
+        [DllImport(DllName, EntryPoint = "glfwGetWindowUserPointer")]
         public static extern IntPtr GetWindowUserPointer(IntPtr window);
 
-        public static extern WindowPosCallback SetWindowPosCallback(IntPtr window, WindowPosCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowPosCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowPosCallback SetWindowPosCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowPosCallback cbfun);
 
-        public static extern WindowSizeCallback SetWindowSizeCallback(IntPtr window, WindowSizeCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowSizeCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowSizeCallback SetWindowSizeCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowSizeCallback cbfun);
 
-        public static extern WindowCloseCallback SetWindowCloseCallback(IntPtr window, WindowCloseCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowCloseCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowCloseCallback SetWindowCloseCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowCloseCallback cbfun);
 
-        public static extern WindowRefreshCallback SetWindowRefreshCallback(IntPtr window, WindowRefreshCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowRefreshCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowRefreshCallback SetWindowRefreshCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowRefreshCallback cbfun);
 
-        public static extern WindowFocusCallback SetWindowFocusCallback(IntPtr window, WindowFocusCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowFocusCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowFocusCallback SetWindowFocusCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowFocusCallback cbfun);
 
-        public static extern WindowIconifyCallback SetWindowIconifyCallback(IntPtr window, WindowIconifyCallback cbfun);
+        [DllImport(DllName, EntryPoint = "glfwSetWindowIconifyCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
+        public static extern WindowIconifyCallback SetWindowIconifyCallback(IntPtr window,
+            [MarshalAs(UnmanagedType.FunctionPtr)] WindowIconifyCallback cbfun);
 
+        [DllImport(DllName, EntryPoint = "glfwSetFrameBufferSizeCallback")]
+        [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern FrameBufferSizeCallback SetFrameBufferSizeCallback(IntPtr window,
-            FrameBufferSizeCallback cbfun);
+            [MarshalAs(UnmanagedType.FunctionPtr)] FrameBufferSizeCallback cbfun);
 
+        [DllImport(DllName, EntryPoint = "glfwPollEvents")]
         public static extern void PollEvents();
 
+        [DllImport(DllName, EntryPoint = "glfwWaitEvents")]
         public static extern void WaitEvents();
 
+        [DllImport(DllName, EntryPoint = "glfwWaitEventsTimeout")]
         public static extern void WaitEventsTimeout(double timeout);
 
+        [DllImport(DllName, EntryPoint = "glfwPostEmptyEvent")]
         public static extern void PostEmptyEvent();
 
+        [DllImport(DllName, EntryPoint = "glfwSwapBuffers")]
         public static extern void SwapBuffers(IntPtr window);
     }
 }
