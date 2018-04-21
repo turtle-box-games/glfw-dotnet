@@ -246,16 +246,15 @@
         
         /// <summary>
         /// Specifies which OpenGL profile to create the context for.
-        /// Possible values are one of <see cref="OpenGLCoreProfile"/> or <see cref="OpenGLCompatProfile"/>,
-        /// or <see cref="OpenGLAnyProfile"/> to not request a specific profile.
-        /// If requesting an OpenGL version below 3.2, <see cref="OpenGLAnyProfile"/> must be used.
+        /// Possible values are listed in <see cref="OpenGLProfile"/>.
+        /// If requesting an OpenGL version below 3.2, <see cref="OpenGLProfile.Any"/> must be used.
         /// If OpenGL ES is requested, this hint is ignored.
         /// </summary>
         OpenGLProfile = 0x00022008,
         
         /// <summary>
         /// Specifies the robustness strategy to be used by the context.
-        /// Possible values are listed in <see cref="Robustness"/>
+        /// Possible values are listed in <see cref="Robustness"/>.
         /// </summary>
         ContextRobustness = 0x00022005,
         
