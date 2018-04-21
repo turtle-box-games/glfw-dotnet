@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseBehavior.cs" />
     <Compile Include="Robustness.cs" />
+    <Compile Include="Utf8Marshal.cs" />
     <Compile Include="WindowAttribute.cs" />
     <Compile Include="WindowHint.cs" />
   </ItemGroup>
