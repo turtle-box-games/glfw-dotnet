@@ -255,8 +255,7 @@
         
         /// <summary>
         /// Specifies the robustness strategy to be used by the context.
-        /// This can be one of <see cref="NoResetNotification"/> or <see cref="LoseContextOnReset"/>,
-        /// or <see cref="NoRobustness"/> to not request a robustness strategy.
+        /// Possible values are listed in <see cref="Robustness"/>
         /// </summary>
         ContextRobustness = 0x00022005,
         
