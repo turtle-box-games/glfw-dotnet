@@ -11,10 +11,10 @@ namespace GLFW.Net
         /// The function signature for joystick configuration callbacks.
         /// </summary>
         /// <param name="joy">The joystick that was connected or disconnected.</param>
-        /// <param name="event">One of <see cref="InputEvent.Connected"/>
-        /// or <see cref="InputEvent.Disconnected"/>.</param>
+        /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
+        /// or <see cref="DeviceEvent.Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
-        public delegate void JoystickCallback(int joy, InputEvent @event);
+        public delegate void JoystickCallback(int joy, DeviceEvent @event);
 
         /// <summary>
         /// Returns whether the specified joystick is present.
@@ -562,7 +562,7 @@ namespace GLFW.Net
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetInputMode"/>
         [DllImport(DllName, EntryPoint = "glfwSetInputMode")]
-        public static extern void SetInputMode(IntPtr window, int mode, int value);
+        public static extern void SetInputMode(IntPtr window, InputMode mode, int value);
 
         /// <summary>
         /// Sets the clipboard to the specified string.

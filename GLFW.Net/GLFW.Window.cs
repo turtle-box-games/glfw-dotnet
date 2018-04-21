@@ -148,7 +148,7 @@ namespace GLFW.Net
         /// <para>This function must not be called from a callback.</para>
         /// <para>Windows: Window creation will fail
         /// if the Microsoft GDI software OpenGL implementation is the only one available.</para>
-        /// <para>Windows: If the executable has an icon resource named <see cref="Icon"/>,
+        /// <para>Windows: If the executable has an icon resource named <c>Icon</c>,
         /// it will be set as the initial icon for the window.
         /// If no such icon is present, the <c>IDI_WINLOGO</c> icon will be used instead.
         /// To set a different icon, see <see cref="SetWindowIcon"/>.</para>

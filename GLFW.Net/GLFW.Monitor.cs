@@ -9,7 +9,8 @@ namespace GLFW.Net
         /// The function signature for monitor configuration callbacks.
         /// </summary>
         /// <param name="monitor">The monitor that was connected or disconnected.</param>
-        /// <param name="event">One of <see cref="Connected"/> or <see cref="Disconnected"/></param>
+        /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
+        /// or <see cref="DeviceEvent.Disconnected"/></param>
         /// <seealso cref="SetMonitorCallback"/>
         public delegate void MonitorCallback(IntPtr monitor, int @event);
 

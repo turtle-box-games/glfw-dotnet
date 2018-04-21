@@ -1,6 +1,6 @@
 ﻿namespace GLFW.Net
 {
-    public enum InputEvent
+    public enum DeviceEvent
     {
         Connected = 0x00040001,
         

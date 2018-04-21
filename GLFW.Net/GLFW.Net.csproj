@@ -50,7 +50,7 @@
     <Compile Include="GLFW.Input.cs" />
     <Compile Include="GLFW.Monitor.cs" />
     <Compile Include="GLFW.Window.cs" />
-    <Compile Include="InputEvent.cs" />
+    <Compile Include="DeviceEvent.cs" />
     <Compile Include="InputMode.cs" />
     <Compile Include="KeyAction.cs" />
     <Compile Include="ModifierKey.cs" />
