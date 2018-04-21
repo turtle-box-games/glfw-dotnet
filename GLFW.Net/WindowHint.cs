@@ -21,13 +21,13 @@
         /// The window will still be resizable using the <see cref="GLFW.SetWindowSize"/> function.
         /// This hint is ignored for full screen windows.
         /// </summary>
-        Resizable = 0x00020003,
+        Resizable = WindowAttribute.Resizable,
         
         /// <summary>
         /// Specifies whether the windowed mode window will be initially visible.
         /// This hint is ignored for full screen windows.
         /// </summary>
-        Visible = 0x00020004,
+        Visible = WindowAttribute.Visible,
         
         /// <summary>
         /// Specifies whether the windowed mode window will have window decorations
@@ -35,13 +35,13 @@
         /// An undecorated window may still allow the user to generate close events on some platforms.
         /// This hint is ignored for full screen windows.
         /// </summary>
-        Decorated = 0x00020005,
+        Decorated = WindowAttribute.Decorated,
         
         /// <summary>
         /// Specifies whether the windowed mode window will be given input focus when created.
         /// This hint is ignored for full screen and initially hidden windows.
         /// </summary>
-        Focused = 0x00020001,
+        Focused = WindowAttribute.Focused,
         
         /// <summary>
         /// Specifies whether the full screen window will automatically iconify
@@ -57,13 +57,13 @@
         /// and cannot be used to implement proper full screen windows.
         /// This hint is ignored for full screen windows.
         /// </summary>
-        Floating = 0x00020007,
+        Floating = WindowAttribute.Floating,
         
         /// <summary>
         /// Specifies whether the windowed mode window will be maximized when created.
         /// This hint is ignored for full screen windows.
         /// </summary>
-        Maximized = 0x00020008,
+        Maximized = WindowAttribute.Maximized,
         
         /// <summary>
         /// Specifies the desired bit depth for the red channel of the default framebuffer.

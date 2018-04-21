@@ -550,7 +550,7 @@ namespace GLFW.Net
         /// However, this function should not fail as long as it is passed valid arguments
         /// and the library has been initialized.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwGetWindowAttrib")]
-        public static extern int GetWindowAttrib(IntPtr window, int attrib);
+        public static extern int GetWindowAttrib(IntPtr window, WindowAttribute attrib);
 
         /// <summary>
         /// Sets the user pointer of the specified window.

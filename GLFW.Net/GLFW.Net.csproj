@@ -49,6 +49,7 @@
     <Compile Include="ModifierKey.cs" />
     <Compile Include="MouseButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowAttribute.cs" />
     <Compile Include="WindowHint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
