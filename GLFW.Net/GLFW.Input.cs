@@ -156,7 +156,7 @@ namespace GLFW.Net
         /// <para>This function returns the last state reported for the specified key to the specified window.
         /// The returned state is one of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.
         /// The higher-level action <see cref="KeyAction.Repeat"/> is only reported to the key callback.</para>
-        /// <para>If the <see cref="StickyKeys"/> input mode is enabled,
+        /// <para>If the <see cref="InputMode.StickyKeys"/> input mode is enabled,
         /// this function returns <see cref="KeyAction.Press"/> the first time you call it for a key that was pressed,
         /// even if that key has already been released.</para>
         /// <para>The key functions deal with physical keys,
@@ -304,7 +304,7 @@ namespace GLFW.Net
         /// Returns the last reported state of a mouse button for the specified window.
         /// <para>This function returns the last state reported for the specified mouse button to the specified window.
         /// The returned state is one of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</para>
-        /// <para>If the <see cref="StickyMouseButtons"/> input mode is enabled,
+        /// <para>If the <see cref="InputMode.StickyMouseButtons"/> input mode is enabled,
         /// this function returns <see cref="ButtonAction.Press"/> the first time you call it
         /// for a mouse button that was pressed, even if that mouse button has already been released.</para>
         /// </summary>
@@ -320,7 +320,7 @@ namespace GLFW.Net
         /// Retrieves the position of the cursor relative to the client area of the window.
         /// <para>This function returns the position of the cursor, in screen coordinates,
         /// relative to the upper-left corner of the client area of the specified window.</para>
-        /// <para>If the cursor is disabled (with <see cref="CursorDisabled"/>)then the cursor position
+        /// <para>If the cursor is disabled (with <see cref="CursorMode.Disabled"/>)then the cursor position
         /// is unbounded and limited only by the minimum and maximum values of a double.</para>
         /// <para>The coordinate can be converted to their integer equivalents with the <c>floor</c> function.
         /// Casting directly to an integer type works for positive coordinates, but fails for negative ones.</para>
@@ -345,11 +345,10 @@ namespace GLFW.Net
         /// The window must have input focus.
         /// If the window does not have input focus when this function is called, it fails silently.</para>
         /// <para>Do not use this function to implement things like camera controls.
-        /// GLFW already provides the <see cref="CursorDisabled"/> cursor mode that hides the cursor,
+        /// GLFW already provides the <see cref="CursorMode.Disabled"/> cursor mode that hides the cursor,
         /// transparently re-centers it and provides unconstrained cursor motion.
         /// See <see cref="SetInputMode"/> for more information.</para>
-        /// <para>If the cursor mode is <see cref="CursorDisabled"/>
-        /// then the cursor position is unconstrained
+        /// <para>If the cursor mode is <see cref="CursorMode.Disabled"/> then the cursor position is unconstrained
         /// and limited only by the minimum and maximum values of a double.</para>
         /// </summary>
         /// <param name="window">The desired window.</param>
@@ -415,7 +414,8 @@ namespace GLFW.Net
         /// Sets the cursor for the window.
         /// <para>This function sets the cursor image to be used
         /// when the cursor is over the client area of the specified window.
-        /// The set cursor will only be visible when the cursor mode of the window is <see cref="CursorNormal"/>.</para>
+        /// The set cursor will only be visible
+        /// when the cursor mode of the window is <see cref="CursorMode.Normal"/>.</para>
         /// <para>On some platforms, the set cursor may not be visible unless the window also has input focus.</para>
         /// </summary>
         /// <param name="window">The window to set the cursor for.</param>
@@ -519,35 +519,31 @@ namespace GLFW.Net
         /// Returns the value of an input option for the specified window.
         /// </summary>
         /// <param name="window">The window to query.</param>
-        /// <param name="mode">One of
-        /// <see cref="Cursor"/>, <see cref="StickyKeys"/> or <see cref="StickyMouseButtons"/>.</param>
+        /// <param name="mode">One of <see cref="InputMode.Cursor"/>, <see cref="InputMode.StickyKeys"/>,
+        /// or <see cref="InputMode.StickyMouseButtons"/>.</param>
         /// <returns>Value of the input option
         /// for the specified <paramref name="window"/> and <paramref name="mode"/>.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         /// <seealso cref="SetInputMode"/>
         [DllImport(DllName, EntryPoint = "glfwGetInputMode")]
-        public static extern int GetInputMode(IntPtr window, int mode);
+        public static extern int GetInputMode(IntPtr window, InputMode mode);
 
         /// <summary>
         /// Sets an input option for the specified window.
         /// <para>This function sets an input mode option for the specified window.
-        /// The mode must be one of
-        /// <see cref="Cursor"/>, <see cref="StickyKeys"/> or <see cref="StickyMouseButtons"/>.</para>
-        /// <para>If the mode is <see cref="Cursor"/>, the value must be one of the following cursor modes:
-        /// <see cref="CursorNormal"/> makes the cursor visible and behaving normally.
-        /// <see cref="CursorHidden"/> makes the cursor invisible when it is over the client area of the window
-        /// but does not restrict the cursor from leaving.
-        /// <see cref="CursorDisabled"/> hides and grabs the cursor, providing virtual and unlimited cursor movement.
-        /// This is useful for implementing for example 3D camera controls.</para>
-        /// <para>If the mode is <see cref="StickyKeys"/>,
+        /// The mode must be one of <see cref="InputMode.Cursor"/>, <see cref="InputMode.StickyKeys"/>
+        /// or <see cref="InputMode.StickyMouseButtons"/>.</para>
+        /// <para>If the mode is <see cref="InputMode.Cursor"/>,
+        /// the value must be one of <see cref="CursorMode"/>.</para>
+        /// <para>If the mode is <see cref="InputMode.StickyKeys"/>,
         /// the value must be either <see cref="True"/> to enable sticky keys, or <see cref="False"/> to disable it.
         /// If sticky keys are enabled,
         /// a key press will ensure that <see cref="GetKey"/> returns <see cref="KeyAction.Press"/>
         /// the next time it is called even if the key had been released before the call.
         /// This is useful when you are only interested in whether keys have been pressed
         /// but not when or in which order.</para>
-        /// <para>If the mode is <see cref="StickyMouseButtons"/>,
+        /// <para>If the mode is <see cref="InputMode.StickyMouseButtons"/>,
         /// the value must be either <see cref="True"/> to enable sticky mouse buttons,
         /// or <see cref="False"/> to disable it.
         /// If sticky mouse buttons are enabled,
@@ -557,8 +553,8 @@ namespace GLFW.Net
         /// but not when or in which order.</para>
         /// </summary>
         /// <param name="window">The window whose input mode to set.</param>
-        /// <param name="mode">One of
-        /// <see cref="Cursor"/>, <see cref="StickyKeys"/>, or <see cref="StickyMouseButtons"/>.</param>
+        /// <param name="mode">One of <see cref="InputMode.Cursor"/>, <see cref="InputMode.StickyKeys"/>,
+        /// or <see cref="InputMode.StickyMouseButtons"/>.</param>
         /// <param name="value">The new value of the specified input mode.</param>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,

@@ -41,6 +41,7 @@
     <Compile Include="ButtonAction.cs" />
     <Compile Include="ClientApi.cs" />
     <Compile Include="ContextApi.cs" />
+    <Compile Include="CursorMode.cs" />
     <Compile Include="ErrorCode.cs" />
     <Compile Include="GLFW.Constants.cs" />
     <Compile Include="GLFW.Context.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="GLFW.Input.cs" />
     <Compile Include="GLFW.Monitor.cs" />
     <Compile Include="GLFW.Window.cs" />
+    <Compile Include="InputMode.cs" />
     <Compile Include="KeyAction.cs" />
     <Compile Include="ModifierKey.cs" />
     <Compile Include="MouseButton.cs" />
