@@ -90,7 +90,7 @@ namespace GLFW.Net.Native
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         /// <seealso cref="DefaultWindowHints"/>
         [DllImport(DllName, EntryPoint = "glfwWindowHint")]
-        public static extern void WindowHint(int hint, int value);
+        public static extern void WindowHint(WindowHint hint, int value);
 
         /// <summary>
         /// Creates a window and its associated context.
@@ -173,7 +173,8 @@ namespace GLFW.Net.Native
         /// position or other attributes directly after window creation.</para></remarks>
         /// <seealso cref="DestroyWindow"/>
         [DllImport(DllName, EntryPoint = "glfwCreateWindow")]
-        public static extern IntPtr CreateWindow(int width, int height, [MarshalAs(UnmanagedType.LPStr)] string title, IntPtr monitor, IntPtr share);
+        public static extern IntPtr CreateWindow(int width, int height, [MarshalAs(UnmanagedType.LPStr)] string title,
+            IntPtr monitor, IntPtr share);
 
         /// <summary>
         /// Destroys the specified window and its context.
