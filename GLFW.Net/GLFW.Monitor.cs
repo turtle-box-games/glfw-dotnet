@@ -82,8 +82,7 @@ namespace GLFW.Net
         /// <returns>The UTF-8 encoded name of the monitor, or <c>null</c> if an error occurred.</returns>
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorName")]
-        [return: MarshalAs(UnmanagedType.LPUTF8Str)]
-        public static extern string GetMonitorName(IntPtr monitor);
+        public static extern IntPtr GetMonitorName(IntPtr monitor);
 
         /// <summary>
         /// Sets the monitor configuration callback.

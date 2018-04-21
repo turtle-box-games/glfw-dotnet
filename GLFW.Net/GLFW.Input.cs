@@ -81,8 +81,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickName")]
-        [return: MarshalAs(UnmanagedType.LPUTF8Str)]
-        public static extern string GetJoystickName(int joy);
+        public static extern IntPtr GetJoystickName(int joy);
 
         /// <summary>
         /// Sets the joystick configuration callback.
@@ -150,8 +149,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
-        [return: MarshalAs(UnmanagedType.LPStr)]
-        public static extern string GetKeyName(Key key, int scancode);
+        public static extern IntPtr GetKeyName(Key key, int scancode);
 
         /// <summary>
         /// Returns the last reported state of a keyboard key for the specified window.
@@ -590,8 +588,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetClipboardString")]
-        [return: MarshalAs(UnmanagedType.LPUTF8Str)]
-        public static extern string GetClipboardString(IntPtr window);
+        public static extern IntPtr GetClipboardString(IntPtr window);
 
         /// <summary>
         /// Returns the value of the GLFW timer.

@@ -69,7 +69,6 @@ namespace GLFW.Net
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         /// <seealso cref="GetVersion"/>
         [DllImport(DllName, EntryPoint = "glfwGetVersionString")]
-        [return: MarshalAs(UnmanagedType.LPStr)]
-        public static extern string GetVersionString();
+        public static extern IntPtr GetVersionString();
     }
 }
