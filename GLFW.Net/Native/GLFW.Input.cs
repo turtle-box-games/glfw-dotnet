@@ -21,7 +21,8 @@ namespace GLFW.Net.Native
         /// <param name="joy">The joystick to query.</param>
         /// <returns><see cref="True"/> if the joystick is present, or <see cref="False"/> otherwise.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwJoystickPresent")]
         public static extern int JoystickPresent(int joy);
 
@@ -39,7 +40,8 @@ namespace GLFW.Net.Native
         /// <returns>An array of axis values,
         /// or <c>null</c> if the joystick is not present or an error occurred.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes")]
         public static extern float[] GetJoystickAxes(int joy, out int count);
 
@@ -57,7 +59,8 @@ namespace GLFW.Net.Native
         /// <returns>An array of button states,
         /// or <c>null</c> if the joystick is not present or an error occurred.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons")]
         public static extern byte[] GetJoystickButtons(int joy, out int count);
 
@@ -71,7 +74,8 @@ namespace GLFW.Net.Native
         /// <returns>The UTF-8 encoded name of the joystick,
         /// or <c>null</c> if the joystick is not present or an error occurred.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickName")]
         [return: MarshalAs(UnmanagedType.LPStr)]
         public static extern string GetJoystickName(int joy);
@@ -85,7 +89,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern JoystickCallback SetJoystickCallback(
@@ -139,7 +143,8 @@ namespace GLFW.Net.Native
         /// <param name="key">The key to query, or <see cref="KeyUnknown"/>.</param>
         /// <param name="scancode">The scancode of the key to query.</param>
         /// <returns>The localized name of the key, or <c>null</c>.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
         [return: MarshalAs(UnmanagedType.LPStr)]
         public static extern string GetKeyName(int key, int scancode);
@@ -162,7 +167,8 @@ namespace GLFW.Net.Native
         /// <param name="key">The desired keyboard key.
         /// <see cref="KeyUnknown"/> is not a valid key for this function.</param>
         /// <returns>One of <see cref="Press"/> or <see cref="Release"/>.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="InvalidEnum"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKey")]
         public static extern int GetKey(IntPtr window, int key);
 
@@ -188,7 +194,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new key callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetKeyCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern KeyCallback SetKeyCallback(IntPtr window,
@@ -212,7 +218,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetCharCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern CharacterCallback SetCharCallback(IntPtr window,
@@ -233,7 +239,7 @@ namespace GLFW.Net.Native
         /// <param name="window">The window whose callback to set.</param>
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback, or <c>null</c> if no callback was set or an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetCharModsCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern CharacterModifierCallback SetCharModsCallback(IntPtr window,
@@ -302,7 +308,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The desired window.</param>
         /// <param name="button">The desired mouse button.</param>
         /// <returns>One of <see cref="Press"/> or <see cref="Release"/>.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="InvalidEnum"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
         public static extern int GetMouseButton(IntPtr window, int button);
 
@@ -321,7 +328,7 @@ namespace GLFW.Net.Native
         /// <param name="xpos">Where to store the cursor x-coordinate, relative to the left edge of the client area.</param>
         /// <param name="ypos">Where to store the cursor y-coordinate, relative to the top edge of the client area.</param>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="SetCursorPos"/>
         [DllImport(DllName, EntryPoint = "glfwGetCursorPos")]
         public static extern void GetCursorPos(IntPtr window, out double xpos, out double ypos);
@@ -343,7 +350,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The desired window.</param>
         /// <param name="xpos">The desired x-coordinate, relative to the left edge of the client area.</param>
         /// <param name="ypos">The desired y-coordinate, relative to the top edge of the client area.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetCursorPos"/>
         [DllImport(DllName, EntryPoint = "glfwSetCursorPos")]
         public static extern void SetCursorPos(IntPtr window, double xpos, double ypos);
@@ -362,7 +370,8 @@ namespace GLFW.Net.Native
         /// <param name="xhot">The desired x-coordinate, in pixels, of the cursor hotspot.</param>
         /// <param name="yhot">The desired y-coordinate, in pixels, of the cursor hotspot. </param>
         /// <returns>The handle of the created cursor, or <c>null</c> if an error occurred.</returns>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="DestroyCursor"/>
         /// <seealso cref="CreateStandardCursor"/>
@@ -377,7 +386,8 @@ namespace GLFW.Net.Native
         /// <param name="shape">One of the standard shapes.</param>
         /// <returns>A new cursor ready to use or <c>null</c> if an error occurred.</returns>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="CreateCursor"/>
         [DllImport(DllName, EntryPoint = "glfwCreateStandardCursor")]
@@ -390,7 +400,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="cursor">The cursor object to destroy.</param>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="CreateCursor"/>
         [DllImport(DllName, EntryPoint = "glfwDestroyCursor")]
@@ -405,7 +415,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window to set the cursor for.</param>
         /// <param name="cursor">The cursor to set, or <c>null</c> to switch back to the default arrow cursor.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetCursor")]
         public static extern void SetCursor(IntPtr window, IntPtr cursor);
 
@@ -423,7 +434,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetMouseButtonCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern MouseButtonCallback SetMouseButtonCallback(IntPtr window,
@@ -440,7 +451,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetCursorPosCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern CursorPositionCallback SetCursorPosCallback(IntPtr window,
@@ -455,7 +466,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetCursorEnterCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern CursorEnterCallback SetCursorEnterCallback(IntPtr window,
@@ -473,7 +484,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new scroll callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetScrollCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern ScrollCallback SetScrollCallback(IntPtr window,
@@ -491,7 +502,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new file drop callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetDropCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern DropCallback SetDropCallback(IntPtr window,
@@ -566,7 +577,7 @@ namespace GLFW.Net.Native
         /// <para>This function returns the contents of the system clipboard,
         /// if it contains or is convertible to a UTF-8 encoded string.
         /// If the clipboard is empty or if its contents cannot be converted,
-        /// <c>null</c> is returned and a <see cref="FormatUnavailable"/> error is generated.</para>
+        /// <c>null</c> is returned and a <see cref="ErrorCode.FormatUnavailable"/> error is generated.</para>
         /// </summary>
         /// <param name="window">The window that will request the clipboard contents.</param>
         /// <returns>The contents of the clipboard as a UTF-8 encoded string,
