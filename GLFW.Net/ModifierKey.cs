@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GLFW.Net.Native
+namespace GLFW.Net
 {
     /// <summary>
     /// Keyboard keys that can be held down to modify behavior of the key press.

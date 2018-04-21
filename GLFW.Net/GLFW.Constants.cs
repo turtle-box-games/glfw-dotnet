@@ -1,4 +1,4 @@
-﻿namespace GLFW.Net.Native
+﻿namespace GLFW.Net
 {
     internal static partial class GLFW
     {

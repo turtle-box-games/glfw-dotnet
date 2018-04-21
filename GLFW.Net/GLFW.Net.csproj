@@ -38,18 +38,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Native\ErrorCode.cs" />
-    <Compile Include="Native\GLFW.Constants.cs" />
-    <Compile Include="Native\GLFW.Context.cs" />
-    <Compile Include="Native\GLFW.Error.cs" />
-    <Compile Include="Native\GLFW.Init.cs" />
-    <Compile Include="Native\GLFW.Input.cs" />
-    <Compile Include="Native\GLFW.Monitor.cs" />
-    <Compile Include="Native\GLFW.Window.cs" />
-    <Compile Include="Native\ModifierKey.cs" />
-    <Compile Include="Native\MouseButton.cs" />
-    <Compile Include="Native\WindowHint.cs" />
+    <Compile Include="ErrorCode.cs" />
+    <Compile Include="GLFW.Constants.cs" />
+    <Compile Include="GLFW.Context.cs" />
+    <Compile Include="GLFW.Error.cs" />
+    <Compile Include="GLFW.Init.cs" />
+    <Compile Include="GLFW.Input.cs" />
+    <Compile Include="GLFW.Monitor.cs" />
+    <Compile Include="GLFW.Window.cs" />
+    <Compile Include="ModifierKey.cs" />
+    <Compile Include="MouseButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowHint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

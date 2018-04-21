@@ -1,4 +1,4 @@
-﻿namespace GLFW.Net.Native
+﻿namespace GLFW.Net
 {
     /// <summary>
     /// Error codes that can be returned from GLFW.

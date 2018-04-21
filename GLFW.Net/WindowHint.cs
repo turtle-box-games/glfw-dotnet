@@ -1,4 +1,4 @@
-﻿namespace GLFW.Net.Native
+﻿namespace GLFW.Net
 {
     /// <summary>
     /// Window creation hints that can alter behavior.

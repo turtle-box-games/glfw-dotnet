@@ -1,4 +1,4 @@
-﻿namespace GLFW.Net.Native
+﻿namespace GLFW.Net
 {
     /// <summary>
     /// Values for the mouse buttons.
