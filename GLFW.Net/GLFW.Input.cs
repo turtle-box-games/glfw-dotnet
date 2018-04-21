@@ -396,7 +396,7 @@ namespace GLFW.Net
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="CreateCursor"/>
         [DllImport(DllName, EntryPoint = "glfwCreateStandardCursor")]
-        public static extern IntPtr CreateStandardCursor(int shape);
+        public static extern IntPtr CreateStandardCursor(CursorShape shape);
 
         /// <summary>
         /// Destroys a cursor.

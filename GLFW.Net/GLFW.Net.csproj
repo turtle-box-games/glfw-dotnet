@@ -42,6 +42,7 @@
     <Compile Include="ClientApi.cs" />
     <Compile Include="ContextApi.cs" />
     <Compile Include="CursorMode.cs" />
+    <Compile Include="CursorShape.cs" />
     <Compile Include="ErrorCode.cs" />
     <Compile Include="GLFW.Constants.cs" />
     <Compile Include="GLFW.Context.cs" />
