@@ -257,7 +257,7 @@ namespace GLFW.Net.Native
         /// <param name="action">One of <see cref="Press"/> or <see cref="Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
-        public delegate void MouseButtonCallback(IntPtr window, int button, int action, ModifierKey mods);
+        public delegate void MouseButtonCallback(IntPtr window, MouseButton button, int action, ModifierKey mods);
 
         /// <summary>
         /// The function signature for cursor position callbacks.
@@ -311,7 +311,7 @@ namespace GLFW.Net.Native
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
-        public static extern int GetMouseButton(IntPtr window, int button);
+        public static extern int GetMouseButton(IntPtr window, MouseButton button);
 
         /// <summary>
         /// Retrieves the position of the cursor relative to the client area of the window.

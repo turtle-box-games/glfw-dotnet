@@ -47,6 +47,7 @@
     <Compile Include="Native\GLFW.Monitor.cs" />
     <Compile Include="Native\GLFW.Window.cs" />
     <Compile Include="Native\ModifierKey.cs" />
+    <Compile Include="Native\MouseButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
