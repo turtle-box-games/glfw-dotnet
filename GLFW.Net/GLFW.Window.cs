@@ -121,7 +121,7 @@ namespace GLFW.Net
         /// If the window has an OpenGL or OpenGL ES context, it will be unaffected.</para>
         /// <para>By default, newly created windows use the placement recommended by the window system.
         /// To create the window at a specific position,
-        /// make it initially invisible using the <see cref="Visible"/> window hint,
+        /// make it initially invisible using the <see cref="WindowHint.Visible"/> window hint,
         /// set its position and then show it.</para>
         /// <para>As long as at least one full screen window is not iconified,
         /// the screensaver is prohibited from starting.</para>
@@ -479,7 +479,7 @@ namespace GLFW.Net
         /// <para>This function brings the specified window to front and sets input focus.
         /// The window should already be visible and not iconified.</para>
         /// <para>By default, both windowed and full screen mode windows are focused when initially created.
-        /// Set the <see cref="Focused"/> to disable this behavior.</para>
+        /// Set the <see cref="WindowHint.Focused"/> window hint to disable this behavior.</para>
         /// <para>Do not use this function to steal focus from other applications
         /// unless you are certain that is what the user wants.
         /// Focus stealing can be extremely disruptive.</para>

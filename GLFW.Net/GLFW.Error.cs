@@ -28,6 +28,7 @@ namespace GLFW.Net
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern ErrorCallback SetErrorCallback([MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);
+        public static extern ErrorCallback SetErrorCallback(
+            [MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);
     }
 }

@@ -325,8 +325,10 @@ namespace GLFW.Net
         /// If an error occurs, all non-<c>null</c> position arguments will be set to zero.</para>
         /// </summary>
         /// <param name="window">The desired window.</param>
-        /// <param name="xpos">Where to store the cursor x-coordinate, relative to the left edge of the client area.</param>
-        /// <param name="ypos">Where to store the cursor y-coordinate, relative to the top edge of the client area.</param>
+        /// <param name="xpos">Where to store the cursor x-coordinate,
+        /// relative to the left edge of the client area.</param>
+        /// <param name="ypos">Where to store the cursor y-coordinate,
+        /// relative to the top edge of the client area.</param>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="SetCursorPos"/>

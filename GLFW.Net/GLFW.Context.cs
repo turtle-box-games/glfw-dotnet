@@ -13,13 +13,14 @@ namespace GLFW.Net
 
         /// <summary>
         /// Makes the context of the specified window current for the calling thread.
-        /// <para>This function makes the OpenGL or OpenGL ES context of the specified window current on the calling thread.
+        /// <para>This function makes the OpenGL or OpenGL ES context
+        /// f the specified window current on the calling thread.
         /// A context can only be made current on a single thread at a time
         /// and each thread can have only a single current context at a time.</para>
         /// <para>By default, making a context non-current implicitly forces a pipeline flush.
         /// On machines that support <c>GL_KHR_context_flush_control</c>,
         /// you can control whether a context performs this flush
-        /// by setting the <see cref="ContextReleaseBehavior"/> window hint.</para>
+        /// by setting the <see cref="WindowHint.ContextReleaseBehavior"/> window hint.</para>
         /// <para>The specified window must have an OpenGL or OpenGL ES context.
         /// Specifying a window without a context will generate a <see cref="ErrorCode.NoWindowContext"/> error.</para>
         /// <para>Possible errors include
