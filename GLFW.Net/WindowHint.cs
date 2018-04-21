@@ -262,8 +262,7 @@
         
         /// <summary>
         /// Specifies the release behavior to be used by the context.
-        /// Possible values are one of <see cref="AnyReleaseBehavior"/>, <see cref="ReleaseBehaviorFlush"/>,
-        /// or <see cref="ReleaseBehaviorNone"/>.
+        /// Possible values are listed in <see cref="ReleaseBehavior"/>.
         /// </summary>
         ContextReleaseBehavior = 0x00022009,
         
