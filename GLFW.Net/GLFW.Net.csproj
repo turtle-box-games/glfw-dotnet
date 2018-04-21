@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonAction.cs" />
     <Compile Include="ClientApi.cs" />
     <Compile Include="ContextApi.cs" />
     <Compile Include="ErrorCode.cs" />

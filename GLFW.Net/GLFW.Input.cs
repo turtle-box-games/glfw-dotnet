@@ -48,7 +48,8 @@ namespace GLFW.Net
         /// <summary>
         /// Returns the state of all buttons of the specified joystick.
         /// <para>This function returns the state of all buttons of the specified joystick.
-        /// Each element in the array is either <see cref="Press"/> or <see cref="Release"/>.</para>
+        /// Each element in the array is either
+        /// <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</para>
         /// <para>Querying a joystick slot with no device present is not an error,
         /// but will cause this function to return <c>null</c>.
         /// Call <see cref="JoystickPresent"/> to check device presence.</para>
@@ -62,7 +63,8 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons")]
-        public static extern byte[] GetJoystickButtons(int joy, out int count);
+        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 1)]
+        public static extern ButtonAction[] GetJoystickButtons(int joy, out int count);
 
         /// <summary>
         /// Returns the name of the specified joystick.
@@ -254,10 +256,11 @@ namespace GLFW.Net
         /// </summary>
         /// <param name="window">The window that received the event.</param>
         /// <param name="button">The mouse button that was pressed or released.</param>
-        /// <param name="action">One of <see cref="Press"/> or <see cref="Release"/>.</param>
+        /// <param name="action">One of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
-        public delegate void MouseButtonCallback(IntPtr window, MouseButton button, int action, ModifierKey mods);
+        public delegate void MouseButtonCallback(IntPtr window, MouseButton button, ButtonAction action,
+            ModifierKey mods);
 
         /// <summary>
         /// The function signature for cursor position callbacks.
@@ -300,18 +303,18 @@ namespace GLFW.Net
         /// <summary>
         /// Returns the last reported state of a mouse button for the specified window.
         /// <para>This function returns the last state reported for the specified mouse button to the specified window.
-        /// The returned state is one of <see cref="Press"/> or <see cref="Release"/>.</para>
+        /// The returned state is one of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</para>
         /// <para>If the <see cref="StickyMouseButtons"/> input mode is enabled,
-        /// this function returns <see cref="Press"/> the first time you call it for a mouse button that was pressed,
-        /// even if that mouse button has already been released.</para>
+        /// this function returns <see cref="ButtonAction.Press"/> the first time you call it
+        /// for a mouse button that was pressed, even if that mouse button has already been released.</para>
         /// </summary>
         /// <param name="window">The desired window.</param>
         /// <param name="button">The desired mouse button.</param>
-        /// <returns>One of <see cref="Press"/> or <see cref="Release"/>.</returns>
+        /// <returns>One of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
-        public static extern int GetMouseButton(IntPtr window, MouseButton button);
+        public static extern ButtonAction GetMouseButton(IntPtr window, MouseButton button);
 
         /// <summary>
         /// Retrieves the position of the cursor relative to the client area of the window.
@@ -548,7 +551,7 @@ namespace GLFW.Net
         /// the value must be either <see cref="True"/> to enable sticky mouse buttons,
         /// or <see cref="False"/> to disable it.
         /// If sticky mouse buttons are enabled,
-        /// a mouse button press will ensure that <see cref="GetMouseButton"/> returns <see cref="Press"/>
+        /// a mouse button press will ensure that <see cref="GetMouseButton"/> returns <see cref="ButtonAction.Press"/>
         /// the next time it is called even if the mouse button had been released before the call.
         /// This is useful when you are only interested in whether mouse buttons have been pressed
         /// but not when or in which order.</para>
