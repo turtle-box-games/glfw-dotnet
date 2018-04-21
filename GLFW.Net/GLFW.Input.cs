@@ -112,7 +112,7 @@ namespace GLFW.Net
         /// <param name="action">One of <see cref="KeyAction"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        public delegate void KeyCallback(IntPtr window, int key, int scancode, KeyAction action, ModifierKey mods);
+        public delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyAction action, ModifierKey mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -137,21 +137,21 @@ namespace GLFW.Net
         /// Returns the localized name of the specified printable key.
         /// <para>This function returns the localized name of the specified printable key.
         /// This is intended for displaying key bindings to the user.</para>
-        /// <para>If the key is <see cref="KeyUnknown"/>, the scancode is used instead,
+        /// <para>If the key is <see cref="Key.Unknown"/>, the scancode is used instead,
         /// otherwise the scancode is ignored.
-        /// If a non-printable key or (if the key is <see cref="KeyUnknown"/>)
+        /// If a non-printable key or (if the key is <see cref="Key.Unknown"/>)
         /// a scancode that maps to a non-printable key is specified, this function returns <c>null</c>.</para>
         /// <para>This behavior allows you to pass in the arguments
         /// passed to the <see cref="KeyCallback"/> without modification.</para>
         /// </summary>
-        /// <param name="key">The key to query, or <see cref="KeyUnknown"/>.</param>
+        /// <param name="key">The key to query, or <see cref="Key.Unknown"/>.</param>
         /// <param name="scancode">The scancode of the key to query.</param>
         /// <returns>The localized name of the key, or <c>null</c>.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
         [return: MarshalAs(UnmanagedType.LPStr)]
-        public static extern string GetKeyName(int key, int scancode);
+        public static extern string GetKeyName(Key key, int scancode);
 
         /// <summary>
         /// Returns the last reported state of a keyboard key for the specified window.
@@ -169,12 +169,12 @@ namespace GLFW.Net
         /// </summary>
         /// <param name="window">The desired window.</param>
         /// <param name="key">The desired keyboard key.
-        /// <see cref="KeyUnknown"/> is not a valid key for this function.</param>
+        /// <see cref="Key.Unknown"/> is not a valid key for this function.</param>
         /// <returns>One of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKey")]
-        public static extern KeyAction GetKey(IntPtr window, int key);
+        public static extern KeyAction GetKey(IntPtr window, Key key);
 
         /// <summary>
         /// Sets the key callback.
@@ -190,7 +190,7 @@ namespace GLFW.Net
         /// i.e. after the window focus callback has been called.</para>
         /// <para>The scancode of a key is specific to that platform or sometimes even to that machine.
         /// Scancodes are intended to allow users to bind keys that don't have a GLFW key token.
-        /// Such keys have key set to <see cref="KeyUnknown"/>,
+        /// Such keys have key set to <see cref="Key.Unknown"/>,
         /// their state is not saved and so it cannot be queried with <see cref="GetKey"/>.</para>
         /// <para>Sometimes GLFW needs to generate synthetic key events, in which case the scancode may be zero.</para>
         /// </summary>
