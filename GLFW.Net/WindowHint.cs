@@ -160,7 +160,7 @@
         
         /// <summary>
         /// Specifies which client API to create the context for.
-        /// Possible values are <see cref="OpenGLApi"/>, <see cref="OpenGLESApi"/>, and <see cref="NoApi"/>.
+        /// Possible values are listed in <see cref="ClientApi"/>.
         /// This is a hard constraint.
         /// </summary>
         ClientApi = 0x00022001,

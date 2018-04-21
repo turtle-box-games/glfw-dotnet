@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientApi.cs" />
     <Compile Include="ErrorCode.cs" />
     <Compile Include="GLFW.Constants.cs" />
     <Compile Include="GLFW.Context.cs" />
