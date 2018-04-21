@@ -167,7 +167,7 @@
         
         /// <summary>
         /// Specifies which context creation API to use to create the context.
-        /// Possible values are <see cref="NativeContextApi"/> and <see cref="EGLContextApi"/>.
+        /// Possible values are listed in <see cref="ContextApi"/>.
         /// This is a hard constraint.
         /// If no client API is requested, this hint is ignored.
         /// </summary>
