@@ -11,9 +11,10 @@ namespace GLFW.Net
         /// The function signature for joystick configuration callbacks.
         /// </summary>
         /// <param name="joy">The joystick that was connected or disconnected.</param>
-        /// <param name="event">One of <see cref="Connected"/> or <see cref="Disconnected"/>.</param>
+        /// <param name="event">One of <see cref="InputEvent.Connected"/>
+        /// or <see cref="InputEvent.Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
-        public delegate void JoystickCallback(int joy, int @event);
+        public delegate void JoystickCallback(int joy, InputEvent @event);
 
         /// <summary>
         /// Returns whether the specified joystick is present.
