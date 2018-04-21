@@ -132,7 +132,7 @@
         
         /// <summary>
         /// Specifies the desired refresh rate for full screen windows.
-        /// If set to <see cref="DontCare"/>, the highest available refresh rate will be used.
+        /// If set to <see cref="GLFW.DontCare"/>, the highest available refresh rate will be used.
         /// This hint is ignored for windowed mode windows.
         /// </summary>
         RefreshRate = 0x0002100F,
