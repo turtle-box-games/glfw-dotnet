@@ -173,8 +173,8 @@ namespace GLFW.Net
         /// position or other attributes directly after window creation.</para></remarks>
         /// <seealso cref="DestroyWindow"/>
         [DllImport(DllName, EntryPoint = "glfwCreateWindow")]
-        public static extern IntPtr CreateWindow(int width, int height, [MarshalAs(UnmanagedType.LPStr)] string title,
-            IntPtr monitor, IntPtr share);
+        public static extern IntPtr CreateWindow(int width, int height,
+            [MarshalAs(UnmanagedType.LPUTF8Str)] string title, IntPtr monitor, IntPtr share);
 
         /// <summary>
         /// Destroys the specified window and its context.
@@ -224,7 +224,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>OS X: The window title will not be updated until the next time you process events.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowTitle")]
-        public static extern void SetWindowTitle(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string title);
+        public static extern void SetWindowTitle(IntPtr window, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
         /// <summary>
         /// Sets the icon for the specified window.

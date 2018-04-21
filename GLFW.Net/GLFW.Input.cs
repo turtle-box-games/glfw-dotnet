@@ -44,6 +44,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes")]
+        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.R4, SizeParamIndex = 1)]
         public static extern float[] GetJoystickAxes(int joy, out int count);
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickName")]
-        [return: MarshalAs(UnmanagedType.LPStr)]
+        [return: MarshalAs(UnmanagedType.LPUTF8Str)]
         public static extern string GetJoystickName(int joy);
 
         /// <summary>
@@ -298,7 +299,7 @@ namespace GLFW.Net
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
         public delegate void DropCallback(IntPtr window, int count,
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 1)]
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str, SizeParamIndex = 1)]
             string[] paths);
 
         /// <summary>
@@ -573,7 +574,8 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetClipboardString"/>
         [DllImport(DllName, EntryPoint = "glfwSetClipboardString")]
-        public static extern void SetClipboardString(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string @string);
+        public static extern void
+            SetClipboardString(IntPtr window, [MarshalAs(UnmanagedType.LPUTF8Str)] string @string);
 
         /// <summary>
         /// Returns the contents of the clipboard as a string.
@@ -588,7 +590,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetClipboardString")]
-        [return: MarshalAs(UnmanagedType.LPStr)]
+        [return: MarshalAs(UnmanagedType.LPUTF8Str)]
         public static extern string GetClipboardString(IntPtr window);
 
         /// <summary>
