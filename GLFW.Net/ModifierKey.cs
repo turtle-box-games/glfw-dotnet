@@ -9,6 +9,11 @@ namespace GLFW.Net
     public enum ModifierKey
     {
         /// <summary>
+        /// No modifier keys are being held down.
+        /// </summary>
+        None = 0x0000,
+        
+        /// <summary>
         /// If this bit is set one or more Shift keys were held down.
         /// </summary>
         Shift = 0x0001,
