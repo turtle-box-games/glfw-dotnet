@@ -48,6 +48,7 @@
     <Compile Include="GLFW.Input.cs" />
     <Compile Include="GLFW.Monitor.cs" />
     <Compile Include="GLFW.Window.cs" />
+    <Compile Include="KeyAction.cs" />
     <Compile Include="ModifierKey.cs" />
     <Compile Include="MouseButton.cs" />
     <Compile Include="OpenGLProfile.cs" />

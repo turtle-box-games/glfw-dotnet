@@ -105,10 +105,10 @@ namespace GLFW.Net
         /// <param name="window">The window that received the event.</param>
         /// <param name="key">The keyboard key that was pressed or released.</param>
         /// <param name="scancode">The system-specific scancode of the key.</param>
-        /// <param name="action"><see cref="Press"/>, <see cref="Release"/>, or <see cref="Repeat"/>.</param>
+        /// <param name="action">One of <see cref="KeyAction"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        public delegate void KeyCallback(IntPtr window, int key, int scancode, int action, ModifierKey mods);
+        public delegate void KeyCallback(IntPtr window, int key, int scancode, KeyAction action, ModifierKey mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -152,10 +152,10 @@ namespace GLFW.Net
         /// <summary>
         /// Returns the last reported state of a keyboard key for the specified window.
         /// <para>This function returns the last state reported for the specified key to the specified window.
-        /// The returned state is one of <see cref="Press"/> or <see cref="Release"/>.
-        /// The higher-level action <see cref="Repeat"/> is only reported to the key callback.</para>
+        /// The returned state is one of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.
+        /// The higher-level action <see cref="KeyAction.Repeat"/> is only reported to the key callback.</para>
         /// <para>If the <see cref="StickyKeys"/> input mode is enabled,
-        /// this function returns <see cref="Press"/> the first time you call it for a key that was pressed,
+        /// this function returns <see cref="KeyAction.Press"/> the first time you call it for a key that was pressed,
         /// even if that key has already been released.</para>
         /// <para>The key functions deal with physical keys,
         /// with key tokens named after their use on the standard US keyboard layout.
@@ -166,11 +166,11 @@ namespace GLFW.Net
         /// <param name="window">The desired window.</param>
         /// <param name="key">The desired keyboard key.
         /// <see cref="KeyUnknown"/> is not a valid key for this function.</param>
-        /// <returns>One of <see cref="Press"/> or <see cref="Release"/>.</returns>
+        /// <returns>One of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetKey")]
-        public static extern int GetKey(IntPtr window, int key);
+        public static extern KeyAction GetKey(IntPtr window, int key);
 
         /// <summary>
         /// Sets the key callback.
@@ -539,7 +539,8 @@ namespace GLFW.Net
         /// This is useful for implementing for example 3D camera controls.</para>
         /// <para>If the mode is <see cref="StickyKeys"/>,
         /// the value must be either <see cref="True"/> to enable sticky keys, or <see cref="False"/> to disable it.
-        /// If sticky keys are enabled, a key press will ensure that <see cref="GetKey"/> returns <see cref="Press"/>
+        /// If sticky keys are enabled,
+        /// a key press will ensure that <see cref="GetKey"/> returns <see cref="KeyAction.Press"/>
         /// the next time it is called even if the key had been released before the call.
         /// This is useful when you are only interested in whether keys have been pressed
         /// but not when or in which order.</para>
