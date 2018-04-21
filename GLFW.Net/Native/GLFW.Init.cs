@@ -14,7 +14,7 @@ namespace GLFW.Net.Native
         /// If it succeeds, you should call <see cref="Terminate"/> before the application exits.</para>
         /// <para>Additional calls to this function after successful initialization
         /// but before termination will return <see cref="True"/> immediately.</para>
-        /// <para>Possible errors include <see cref="PlatformError"/>.</para>
+        /// <para>Possible errors include <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <returns><see cref="True"/> if successful, or <see cref="False"/> if an error occurred.</returns>
         /// <remarks>OS X: This function will change the current directory of the application
@@ -34,7 +34,7 @@ namespace GLFW.Net.Native
         /// this function should be called before the application exits.
         /// If initialization fails, there is no need to call this function,
         /// as it is called by <see cref="Init"/> before it returns failure.</para>
-        /// <para>Possible errors include <see cref="PlatformError"/>.</para>
+        /// <para>Possible errors include <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <remarks>This function may be called before <see cref="Init"/>.
         /// <para>Warning: The contexts of any remaining windows

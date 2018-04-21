@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Native\ErrorCode.cs" />
     <Compile Include="Native\GLFW.Constants.cs" />
     <Compile Include="Native\GLFW.Context.cs" />
     <Compile Include="Native\GLFW.Error.cs" />

@@ -21,9 +21,10 @@ namespace GLFW.Net.Native
         /// you can control whether a context performs this flush
         /// by setting the <see cref="ContextReleaseBehavior"/> window hint.</para>
         /// <para>The specified window must have an OpenGL or OpenGL ES context.
-        /// Specifying a window without a context will generate a <see cref="NoWindowContext"/> error.</para>
+        /// Specifying a window without a context will generate a <see cref="ErrorCode.NoWindowContext"/> error.</para>
         /// <para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="NoWindowContext"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoWindowContext"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <param name="window">The window whose context to make current,
         /// or <c>null</c> to detach the current context.</param>
@@ -35,7 +36,7 @@ namespace GLFW.Net.Native
         /// Returns the window whose context is current on the calling thread.
         /// <para>This function returns the window
         /// whose OpenGL or OpenGL ES context is current on the calling thread.</para>
-        /// <para>Possible errors include <see cref="NotInitialized"/>.</para>
+        /// <para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
         /// </summary>
         /// <returns>The window whose context is current,
         /// or <c>null</c> if no window's context is current.</returns>
@@ -55,11 +56,13 @@ namespace GLFW.Net.Native
         /// You can check for the presence of these extensions using <see cref="ExtensionSupported"/>.
         /// For more information about swap tearing, see the extension specifications.</para>
         /// <para>A context must be current on the calling thread.
-        /// Calling this function without a current context will cause a <see cref="NoCurrentContext"/> error.</para>
+        /// Calling this function without a current context
+        /// will cause a <see cref="ErrorCode.NoCurrentContext"/> error.</para>
         /// <para>This function does not apply to Vulkan.
         /// If you are rendering with Vulkan, see the present mode of your swapchain instead.</para>
         /// <para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="NoCurrentContext"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoCurrentContext"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <param name="interval">The minimum number of screen updates to wait for
         /// until the buffers are swapped by <see cref="SwapBuffers"/>.</param>
@@ -82,7 +85,8 @@ namespace GLFW.Net.Native
         /// is supported by the current OpenGL or OpenGL ES context.
         /// It searches both for client API extension and context creation API extensions.</para>
         /// <para>A context must be current on the calling thread.
-        /// Calling this function without a current context will cause a <see cref="NoCurrentContext"/> error.</para>
+        /// Calling this function without a current context
+        /// will cause a <see cref="ErrorCode.NoCurrentContext"/> error.</para>
         /// <para>As this functions retrieves and searches one or more extension strings each call,
         /// it is recommended that you cache its results if it is going to be used frequently.
         /// The extension strings will not change during the lifetime of a context,
@@ -92,8 +96,8 @@ namespace GLFW.Net.Native
         /// <c>vkEnumerateInstanceExtensionProperties</c>
         /// and <c>vkEnumerateDeviceExtensionProperties</c> instead.</para>
         /// <para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="NoCurrentContext"/>,
-        /// <see cref="InvalidValue"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoCurrentContext"/>,
+        /// <see cref="ErrorCode.InvalidValue"/>, and <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <param name="extension">The ASCII encoded name of the extension.</param>
         /// <returns><see cref="True"/> if the extension is available, or <see cref="False"/> otherwise.</returns>
@@ -106,12 +110,14 @@ namespace GLFW.Net.Native
         /// <para>This function returns the address of the specified OpenGL or OpenGL ES core or extension function,
         /// if it is supported by the current context.</para>
         /// <para>A context must be current on the calling thread.
-        /// Calling this function without a current context will cause a <see cref="NoCurrentContext"/> error.</para>
+        /// Calling this function without a current context
+        /// will cause a <see cref="ErrorCode.NoCurrentContext"/> error.</para>
         /// <para>This function does not apply to Vulkan.
         /// If you are rendering with Vulkan, see <see cref="GetInstanceProcAddress"/>,
         /// <c>vkGetInstanceProcAddr</c> and <c>vkGetDeviceProcAddr</c> instead.</para>
         /// <para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="NoCurrentContext"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoCurrentContext"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <param name="procName">The ASCII encoded name of the function.</param>
         /// <returns>The address of the function, or <c>null</c> if an error occurred.</returns>

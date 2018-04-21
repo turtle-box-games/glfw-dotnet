@@ -508,7 +508,7 @@ namespace GLFW.Net.Native
         /// <returns>Value of the input option
         /// for the specified <paramref name="window"/> and <paramref name="mode"/>.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/> and <see cref="InvalidEnum"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         /// <seealso cref="SetInputMode"/>
         [DllImport(DllName, EntryPoint = "glfwGetInputMode")]
         public static extern int GetInputMode(IntPtr window, int mode);
@@ -544,7 +544,8 @@ namespace GLFW.Net.Native
         /// <see cref="Cursor"/>, <see cref="StickyKeys"/>, or <see cref="StickyMouseButtons"/>.</param>
         /// <param name="value">The new value of the specified input mode.</param>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/> and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetInputMode"/>
         [DllImport(DllName, EntryPoint = "glfwSetInputMode")]
         public static extern void SetInputMode(IntPtr window, int mode, int value);
@@ -554,7 +555,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window that will own the clipboard contents.</param>
         /// <param name="string">A UTF-8 encoded string.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetClipboardString"/>
         [DllImport(DllName, EntryPoint = "glfwSetClipboardString")]
         public static extern void SetClipboardString(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string @string);
@@ -570,7 +572,7 @@ namespace GLFW.Net.Native
         /// <returns>The contents of the clipboard as a UTF-8 encoded string,
         /// or <c>null</c> if an error occurred.</returns>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetClipboardString")]
         [return: MarshalAs(UnmanagedType.LPStr)]
         public static extern string GetClipboardString(IntPtr window);
@@ -585,7 +587,7 @@ namespace GLFW.Net.Native
         /// It uses the highest-resolution monotonic time source on each supported platform.</para>
         /// </summary>
         /// <returns>The current value, in seconds, or zero if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetTime")]
         public static extern double GetTime();
 
@@ -597,7 +599,8 @@ namespace GLFW.Net.Native
         /// which is approximately 584.5 years.</para>
         /// </summary>
         /// <param name="time">The new value, in seconds.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="InvalidValue"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidValue"/>.</para>
         /// <para>The upper limit of the timer is calculated as <c>floor((2^64 - 1) / 10^9)</c>
         /// and is due to implementations storing nanoseconds in 64 bits.
         /// The limit may be increased in the future.</para></remarks>
@@ -611,7 +614,7 @@ namespace GLFW.Net.Native
         /// To get the frequency, call <see cref="GetTimerFrequency"/>.</para>
         /// </summary>
         /// <returns>The value of the timer, or zero if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetTimerFrequency"/>
         [DllImport(DllName, EntryPoint = "glfwGetTimerValue")]
         public static extern ulong GetTimerValue();
@@ -620,7 +623,7 @@ namespace GLFW.Net.Native
         /// Returns the frequency, in Hz, of the raw timer.
         /// </summary>
         /// <returns>The frequency of the timer, in Hz, or zero if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetTimerValue"/>
         [DllImport(DllName, EntryPoint = "glfwGetTimerFrequency")]
         public static extern ulong GetTimerFrequency();

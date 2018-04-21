@@ -23,7 +23,7 @@ namespace GLFW.Net.Native
         /// This is set to zero if an error occurred.</param>
         /// <returns>An array of monitor handles,
         /// or <c>null</c> if no monitors were found or if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetPrimaryMonitor"/>
         [DllImport(DllName, EntryPoint = "glfwGetMonitors")]
         [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 0)]
@@ -35,7 +35,7 @@ namespace GLFW.Net.Native
         /// This is usually the monitor where elements like the task bar or global menu bar are located.</para>
         /// </summary>
         /// <returns>The primary monitor, or <c>null</c> if no monitors were found or if an error occurred.</returns>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/>.</para>
+        /// <remarks><para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
         /// <para>The primary monitor is always first in the array
         /// returned by <see cref="GetMonitors"/>.</para></remarks>
         /// <seealso cref="GetMonitors"/>
@@ -50,7 +50,8 @@ namespace GLFW.Net.Native
         /// <param name="monitor">The monitor to query.</param>
         /// <param name="xpos">Where to store the monitor x-coordinate.</param>
         /// <param name="ypos">Where to store the monitor y-coordinate.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorPos")]
         public static extern void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos);
 
@@ -64,7 +65,7 @@ namespace GLFW.Net.Native
         /// <param name="monitor">The monitor to query.</param>
         /// <param name="widthMM">Where to store the width, in millimetres, of the monitor's display area.</param>
         /// <param name="heightMM">	Where to store the height, in millimetres, of the monitor's display area.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/>.</para>
+        /// <remarks><para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
         /// <para>Windows: calculates the returned physical size from the current resolution and system DPI
         /// instead of querying the monitor EDID data.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorPhysicalSize")]
@@ -78,7 +79,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="monitor">The monitor to query.</param>
         /// <returns>The UTF-8 encoded name of the monitor, or <c>null</c> if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorName")]
         [return: MarshalAs(UnmanagedType.LPStr)]
         public static extern string GetMonitorName(IntPtr monitor);
@@ -91,7 +92,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetMonitorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern MonitorCallback SetMonitorCallback(
@@ -108,7 +109,8 @@ namespace GLFW.Net.Native
         /// <param name="count">Where to store the number of video modes in the returned array.
         /// This is set to zero if an error occurred.</param>
         /// <returns>An array of video modes, or <c>null</c> if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetVideoMode"/>
         [DllImport(DllName, EntryPoint = "glfwGetVideoModes")]
         [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 1)]
@@ -122,7 +124,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="monitor">The monitor to query.</param>
         /// <returns>The current mode of the monitor, or <c>null</c> if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetVideoModes"/>
         [DllImport(DllName, EntryPoint = "glfwGetVideoMode")]
         public static extern IntPtr GetVideoMode(IntPtr monitor);
@@ -136,7 +139,8 @@ namespace GLFW.Net.Native
         /// <param name="monitor">The monitor whose gamma ramp to set.</param>
         /// <param name="gamma">The desired exponent.</param>
         /// <remarks>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidValue"/>, and <see cref="PlatformError"/>.</remarks>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetGamma")]
         public static extern void SetGamma(IntPtr monitor, float gamma);
 
@@ -145,7 +149,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="monitor">The monitor to query.</param>
         /// <returns>The current gamma ramp, or <c>null</c> if an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetGammaRamp")]
         public static extern IntPtr GetGammaRamp(IntPtr monitor);
 
@@ -157,7 +162,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="monitor">The monitor whose gamma ramp to set.</param>
         /// <param name="ramp">The gamma ramp to use.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>Gamma ramp sizes other than 256 are not supported by all platforms or graphics hardware.</para>
         /// <para>Windows: The gamma ramp size must be 256.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwSetGammaRamp")]

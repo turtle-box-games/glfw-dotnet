@@ -69,7 +69,7 @@ namespace GLFW.Net.Native
         /// <summary>
         /// Resets all window hints to their default values.
         /// </summary>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="WindowHint"/>
         [DllImport(DllName, EntryPoint = "glfwDefaultWindowHints")]
         public static extern void DefaultWindowHints();
@@ -86,7 +86,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="hint">The window hint to set.</param>
         /// <param name="value">The new value of the window hint.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="InvalidEnum"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
         /// <seealso cref="DefaultWindowHints"/>
         [DllImport(DllName, EntryPoint = "glfwWindowHint")]
         public static extern void WindowHint(int hint, int value);
@@ -139,9 +140,11 @@ namespace GLFW.Net.Native
         /// <param name="share">The window whose context to share resources with,
         /// or <c>null</c> to not share resources.</param>
         /// <returns>The handle of the created window, or <c>null</c> if an error occurred.</returns>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>,
-        /// <see cref="InvalidValue"/>, <see cref="ApiUnavailable"/>, <see cref="VersionUnavailable"/>,
-        /// <see cref="FormatUnavailable"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// <see cref="ErrorCode.InvalidValue"/>, <see cref="ErrorCode.ApiUnavailable"/>,
+        /// <see cref="ErrorCode.VersionUnavailable"/>, <see cref="ErrorCode.FormatUnavailable"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para>
         /// <para>Windows: Window creation will fail
         /// if the Microsoft GDI software OpenGL implementation is the only one available.</para>
@@ -180,7 +183,8 @@ namespace GLFW.Net.Native
         /// it is detached before being destroyed.</para>
         /// </summary>
         /// <param name="window">The window to destroy.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>The context of the specified window must not be current on any other thread
         /// when this function is called.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
@@ -193,7 +197,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window to query.</param>
         /// <returns>The value of the close flag.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwWindowShouldClose")]
         public static extern int WindowShouldClose(IntPtr window);
 
@@ -205,7 +209,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window whose flag to change.</param>
         /// <param name="value">The new value.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowShouldClose")]
         public static extern void SetWindowShouldClose(IntPtr window, int value);
 
@@ -215,7 +219,8 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window whose title to change.</param>
         /// <param name="title">The UTF-8 encoded window title.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>OS X: The window title will not be updated until the next time you process events.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowTitle")]
         public static extern void SetWindowTitle(IntPtr window, [MarshalAs(UnmanagedType.LPStr)] string title);
@@ -235,7 +240,8 @@ namespace GLFW.Net.Native
         /// or zero to revert to the default window icon.</param>
         /// <param name="images">The images to create the icon from.
         /// This is ignored if count is zero.</param>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>OS X: The GLFW window has no icon, as it is not a document window, so this function does nothing.
         /// The dock icon will be the same as the application bundle's icon.
         /// For more information on bundles,
@@ -253,7 +259,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The window to query.</param>
         /// <param name="xpos">Where to store the x-coordinate of the upper-left corner of the client area.</param>
         /// <param name="ypos">Where to store the y-coordinate of the upper-left corner of the client area.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="SetWindowPos"/>
         [DllImport(DllName, EntryPoint = "glfwGetWindowPos")]
         public static extern void GetWindowPos(IntPtr window, out int xpos, out int ypos);
@@ -271,7 +278,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The window to query.</param>
         /// <param name="xpos">The x-coordinate of the upper-left corner of the client area.</param>
         /// <param name="ypos">The y-coordinate of the upper-left corner of the client area.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetWindowPos"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowPos")]
         public static extern void SetWindowPos(IntPtr window, int xpos, int ypos);
@@ -286,7 +294,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The window whose size to retrieve.</param>
         /// <param name="width">Where to store the width, in screen coordinates, of the client area.</param>
         /// <param name="height">Where to store the height, in screen coordinates, of the client area.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="SetWindowSize"/>
         [DllImport(DllName, EntryPoint = "glfwGetWindowSize")]
         public static extern void GetWindowSize(IntPtr window, out int width, out int height);
@@ -304,7 +313,8 @@ namespace GLFW.Net.Native
         /// <param name="maxHeight">The maximum height, in screen coordinates, of the client area,
         /// or <see cref="DontCare"/>.</param>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidValue"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
         /// <seealso cref="SetWindowAspectRatio"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowSizeLimits")]
@@ -328,7 +338,8 @@ namespace GLFW.Net.Native
         /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="DontCare"/>.</param>
         /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="DontCare"/>.</param>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidValue"/> and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
         /// <seealso cref="SetWindowSizeLimits"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowAspectRatio")]
@@ -347,7 +358,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The window to resize.</param>
         /// <param name="width">The desired width, in screen coordinates, of the window client area.</param>
         /// <param name="height">The desired height, in screen coordinates, of the window client area.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetWindowSize"/>
         /// <seealso cref="SetWindowMonitor"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowSize")]
@@ -362,7 +374,8 @@ namespace GLFW.Net.Native
         /// <param name="window">The window whose framebuffer to query.</param>
         /// <param name="width">Where to store the width, in pixels, of the framebuffer.</param>
         /// <param name="height">Where to store the height, in pixels, of the framebuffer.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="SetFrameBufferSizeCallback"/>
         [DllImport(DllName, EntryPoint = "glfwGetFramebufferSize")]
         public static extern void GetFramebufferSize(IntPtr window, out int width, out int height);
@@ -386,7 +399,8 @@ namespace GLFW.Net.Native
         /// of the right edge of the window frame</param>
         /// <param name="bottom">Where to store the size, in screen coordinates,
         /// of the bottom edge of the window frame</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetWindowFrameSize")]
         public static extern void GetWindowFrameSize(IntPtr window, out int left, out int top, out int right,
             out int bottom);
@@ -399,7 +413,8 @@ namespace GLFW.Net.Native
         /// the original monitor resolution is restored until the window is restored.</para>
         /// </summary>
         /// <param name="window">The window to iconify.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="RestoreWindow"/>
         /// <seealso cref="MaximizeWindow"/>
         [DllImport(DllName, EntryPoint = "glfwIconifyWindow")]
@@ -413,7 +428,8 @@ namespace GLFW.Net.Native
         /// the resolution chosen for the window is restored on the selected monitor.</para>
         /// </summary>
         /// <param name="window">The window to restore.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="IconifyWindow"/>
         /// <seealso cref="MaximizeWindow"/>
         [DllImport(DllName, EntryPoint = "glfwRestoreWindow")]
@@ -426,7 +442,8 @@ namespace GLFW.Net.Native
         /// <para>If the specified window is a full screen window, this function does nothing.</para>
         /// </summary>
         /// <param name="window">The window to maximize.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="IconifyWindow"/>
         /// <seealso cref="RestoreWindow"/>
         [DllImport(DllName, EntryPoint = "glfwMaximizeWindow")]
@@ -438,7 +455,8 @@ namespace GLFW.Net.Native
         /// If the window is already visible or is in full screen mode, this function does nothing.</para>
         /// </summary>
         /// <param name="window">The window to make visible.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="HideWindow"/>
         [DllImport(DllName, EntryPoint = "glfwShowWindow")]
         public static extern void ShowWindow(IntPtr window);
@@ -449,7 +467,8 @@ namespace GLFW.Net.Native
         /// If the window is already hidden or is in full screen mode, this function does nothing.</para>
         /// </summary>
         /// <param name="window">The window to hide.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="ShowWindow"/>
         [DllImport(DllName, EntryPoint = "glfwHideWindow")]
         public static extern void HideWindow(IntPtr window);
@@ -465,7 +484,8 @@ namespace GLFW.Net.Native
         /// Focus stealing can be extremely disruptive.</para>
         /// </summary>
         /// <param name="window">The window to give input focus.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwFocusWindow")]
         public static extern void FocusWindow(IntPtr window);
 
@@ -474,7 +494,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window to query.</param>
         /// <returns>The monitor, or <c>null</c> if the window is in windowed mode or an error occurred.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="SetWindowMonitor"/>
         [DllImport(DllName, EntryPoint = "glfwGetWindowMonitor")]
         public static extern IntPtr GetWindowMonitor(IntPtr window);
@@ -503,7 +523,8 @@ namespace GLFW.Net.Native
         /// <param name="height">The desired height, in screen coordinates, of the client area or video mode.</param>
         /// <param name="refreshRate">The desired refresh rate, in Hz, of the video mode,
         /// or <see cref="DontCare"/>.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetWindowMonitor"/>
         /// <seealso cref="SetWindowSize"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowMonitor")]
@@ -519,7 +540,8 @@ namespace GLFW.Net.Native
         /// <param name="attrib">The window attribute whose value to return.</param>
         /// <returns>The value of the attribute, or zero if an error occurred.</returns>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="InvalidEnum"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>Framebuffer related hints are not window attributes.
         /// See Framebuffer related attributes for more information.</para>
         /// <para>Zero is a valid value for many window and context related attributes
@@ -537,7 +559,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window whose pointer to set.</param>
         /// <param name="pointer">The new value.</param>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetWindowUserPointer"/>
         [DllImport(DllName, EntryPoint = "glfwSetWindowUserPointer")]
         public static extern void SetWindowUserPointer(IntPtr window, IntPtr pointer);
@@ -549,7 +571,7 @@ namespace GLFW.Net.Native
         /// </summary>
         /// <param name="window">The window whose pointer to return.</param>
         /// <returns>The existing user-defined pointer.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="SetWindowUserPointer"/>
         [DllImport(DllName, EntryPoint = "glfwGetWindowUserPointer")]
         public static extern IntPtr GetWindowUserPointer(IntPtr window);
@@ -565,7 +587,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowPosCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern WindowPosCallback SetWindowPosCallback(IntPtr window,
@@ -581,7 +603,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowSizeCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern WindowSizeCallback SetWindowSizeCallback(IntPtr window,
@@ -600,7 +622,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/>.</para>
+        /// <remarks><para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
         /// <para>OS X: Selecting Quit from the application menu
         /// will trigger the close callback for all windows.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowCloseCallback")]
@@ -621,7 +643,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowRefreshCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern WindowRefreshCallback SetWindowRefreshCallback(IntPtr window,
@@ -639,7 +661,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowFocusCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern WindowFocusCallback SetWindowFocusCallback(IntPtr window,
@@ -654,7 +676,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetWindowIconifyCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern WindowIconifyCallback SetWindowIconifyCallback(IntPtr window,
@@ -669,7 +691,7 @@ namespace GLFW.Net.Native
         /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/>.</remarks>
+        /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetFrameBufferSizeCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
         public static extern FrameBufferSizeCallback SetFrameBufferSizeCallback(IntPtr window,
@@ -691,7 +713,7 @@ namespace GLFW.Net.Native
         /// <para>Event processing is not required for joystick input to work.</para>
         /// </summary>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="WaitEvents"/>
         /// <seealso cref="WaitEventsTimeout"/>
@@ -720,7 +742,8 @@ namespace GLFW.Net.Native
         /// use your threading library of choice.</para>
         /// <para>Event processing is not required for joystick input to work.</para>
         /// </summary>
-        /// <remarks><para>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</para>
+        /// <remarks><para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="PollEvents"/>
         /// <seealso cref="WaitEventsTimeout"/>
@@ -766,7 +789,8 @@ namespace GLFW.Net.Native
         /// For synchronization of threads in applications that do not create windows,
         /// use your threading library of choice.</para>
         /// </summary>
-        /// <remarks>Possible errors include <see cref="NotInitialized"/> and <see cref="PlatformError"/>.</remarks>
+        /// <remarks>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="WaitEvents"/>
         /// <seealso cref="WaitEventsTimeout"/>
         [DllImport(DllName, EntryPoint = "glfwPostEmptyEvent")]
@@ -779,13 +803,14 @@ namespace GLFW.Net.Native
         /// If the swap interval is greater than zero,
         /// the GPU driver waits the specified number of screen updates before swapping the buffers.</para>
         /// <para>The specified window must have an OpenGL or OpenGL ES context.
-        /// Specifying a window without a context will generate a <see cref="NoWindowContext"/> error.</para>
+        /// Specifying a window without a context will generate a <see cref="ErrorCode.NoWindowContext"/> error.</para>
         /// <para>This function does not apply to Vulkan.
         /// If you are rendering with Vulkan, see <see cref="QueuePresentKHR"/> instead.</para>
         /// </summary>
         /// <param name="window">The window whose buffers to swap.</param>
         /// <remarks><para>Possible errors include
-        /// <see cref="NotInitialized"/>, <see cref="NoWindowContext"/>, and <see cref="PlatformError"/>.</para>
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoWindowContext"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
         /// <para>EGL: The context of the specified window must be current on the calling thread.</para></remarks>
         /// <seealso cref="SwapInterval"/>
         [DllImport(DllName, EntryPoint = "glfwSwapBuffers")]
