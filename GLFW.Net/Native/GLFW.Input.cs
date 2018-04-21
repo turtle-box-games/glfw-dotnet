@@ -104,7 +104,7 @@ namespace GLFW.Net.Native
         /// <param name="action"><see cref="Press"/>, <see cref="Release"/>, or <see cref="Repeat"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        public delegate void KeyCallback(IntPtr window, int key, int scancode, int action, int mods);
+        public delegate void KeyCallback(IntPtr window, int key, int scancode, int action, ModifierKey mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -123,7 +123,7 @@ namespace GLFW.Net.Native
         /// <param name="codepoint">The Unicode code point of the character. </param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetCharModsCallback"/>
-        public delegate void CharacterModifierCallback(IntPtr window, uint codepoint, int mods);
+        public delegate void CharacterModifierCallback(IntPtr window, uint codepoint, ModifierKey mods);
 
         /// <summary>
         /// Returns the localized name of the specified printable key.
@@ -251,7 +251,7 @@ namespace GLFW.Net.Native
         /// <param name="action">One of <see cref="Press"/> or <see cref="Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
-        public delegate void MouseButtonCallback(IntPtr window, int button, int action, int mods);
+        public delegate void MouseButtonCallback(IntPtr window, int button, int action, ModifierKey mods);
 
         /// <summary>
         /// The function signature for cursor position callbacks.
