@@ -44,8 +44,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes")]
-        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.R4, SizeParamIndex = 1)]
-        public static extern float[] GetJoystickAxes(int joy, out int count);
+        public static extern IntPtr GetJoystickAxes(int joy, out int count);
 
         /// <summary>
         /// Returns the state of all buttons of the specified joystick.
@@ -65,8 +64,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons")]
-        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 1)]
-        public static extern ButtonAction[] GetJoystickButtons(int joy, out int count);
+        public static extern IntPtr GetJoystickButtons(int joy, out int count);
 
         /// <summary>
         /// Returns the name of the specified joystick.

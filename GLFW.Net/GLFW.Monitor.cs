@@ -27,8 +27,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetPrimaryMonitor"/>
         [DllImport(DllName, EntryPoint = "glfwGetMonitors")]
-        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 0)]
-        public static extern IntPtr[] GetMonitors(out int count);
+        public static extern IntPtr GetMonitors(out int count);
 
         /// <summary>
         /// Returns the primary monitor.
@@ -113,8 +112,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetVideoMode"/>
         [DllImport(DllName, EntryPoint = "glfwGetVideoModes")]
-        [return: MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 1)]
-        public static extern IntPtr[] GetVideoModes(IntPtr monitor, out int count);
+        public static extern IntPtr GetVideoModes(IntPtr monitor, out int count);
 
         /// <summary>
         /// Returns the current mode of the specified monitor.
