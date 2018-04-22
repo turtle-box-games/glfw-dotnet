@@ -101,10 +101,11 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.InvalidValue"/>, and <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
         /// <param name="extension">The ASCII encoded name of the extension.</param>
-        /// <returns><see cref="True"/> if the extension is available, or <see cref="False"/> otherwise.</returns>
+        /// <returns><c>true</c> if the extension is available, or <c>false</c> otherwise.</returns>
         /// <seealso cref="GetProcAddress"/>
         [DllImport(DllName, EntryPoint = "glfwExtensionSupported")]
-        internal static extern int ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
 
         /// <summary>
         /// Returns the address of the specified function for the current context.

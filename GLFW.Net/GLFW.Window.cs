@@ -43,19 +43,19 @@ namespace GLFW.Net
         /// The function signature for window focus/defocus callbacks.
         /// </summary>
         /// <param name="window">The window that gained or lost input focus.</param>
-        /// <param name="focused"><see cref="True"/> if the window was given input focus,
-        /// or <see cref="False"/> if it lost it.</param>
+        /// <param name="focused"><c>true</c> if the window was given input focus,
+        /// or <c>false</c> if it lost it.</param>
         /// <seealso cref="SetWindowFocusCallback"/>
-        internal delegate void WindowFocusCallback(IntPtr window, int focused);
+        internal delegate void WindowFocusCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool focused);
         
         /// <summary>
         /// The function signature for window iconify/restore callbacks.
         /// </summary>
         /// <param name="window">The window that was iconified or restored.</param>
-        /// <param name="iconified"><see cref="True"/> if the window was iconified,
-        /// or <see cref="False"/> if it was restored.</param>
+        /// <param name="iconified"><c>true</c> if the window was iconified,
+        /// or <c>false</c> if it was restored.</param>
         /// <seealso cref="SetWindowIconifyCallback"/>
-        internal delegate void WindowIconifyCallback(IntPtr window, int iconified);
+        internal delegate void WindowIconifyCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool iconified);
         
         /// <summary>
         /// The function signature for framebuffer resize callbacks.

@@ -20,12 +20,13 @@ namespace GLFW.Net
         /// Returns whether the specified joystick is present.
         /// </summary>
         /// <param name="joy">The joystick to query.</param>
-        /// <returns><see cref="True"/> if the joystick is present, or <see cref="False"/> otherwise.</returns>
+        /// <returns><c>true</c> if the joystick is present, or <c>false</c> otherwise.</returns>
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwJoystickPresent")]
-        internal static extern int JoystickPresent(int joy);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool JoystickPresent(int joy);
 
         /// <summary>
         /// Returns the values of all axes of the specified joystick.
@@ -273,10 +274,10 @@ namespace GLFW.Net
         /// The function signature for cursor enter/leave callbacks.
         /// </summary>
         /// <param name="window">The window that received the event.</param>
-        /// <param name="entered"><see cref="True"/> if the cursor entered the window's client area,
-        /// or <see cref="False"/> if it left it.</param>
+        /// <param name="entered"><c>true</c> if the cursor entered the window's client area,
+        /// or <c>false</c> if it left it.</param>
         /// <seealso cref="SetCursorEnterCallback"/>
-        internal delegate void CursorEnterCallback(IntPtr window, int entered);
+        internal delegate void CursorEnterCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool entered);
 
         /// <summary>
         /// The function signature for scroll callbacks.
@@ -294,9 +295,7 @@ namespace GLFW.Net
         /// <param name="count">The number of dropped files.</param>
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
-        internal delegate void DropCallback(IntPtr window, int count,
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str, SizeParamIndex = 1)]
-            string[] paths);
+        internal delegate void DropCallback(IntPtr window, int count, IntPtr paths);
 
         /// <summary>
         /// Returns the last reported state of a mouse button for the specified window.

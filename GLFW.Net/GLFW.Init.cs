@@ -17,13 +17,14 @@ namespace GLFW.Net
         /// but before termination will return <see cref="True"/> immediately.</para>
         /// <para>Possible errors include <see cref="ErrorCode.PlatformError"/>.</para>
         /// </summary>
-        /// <returns><see cref="True"/> if successful, or <see cref="False"/> if an error occurred.</returns>
+        /// <returns><c>true</c> if successful, or <c>false</c> if an error occurred.</returns>
         /// <remarks>OS X: This function will change the current directory of the application
         /// to the <c>Contents/Resources</c> subdirectory of the application's bundle, if present.
         /// This can be disabled with a compile-time option.</remarks>
         /// <see cref="Terminate"/>
         [DllImport(DllName, EntryPoint = "glfwInit")]
-        internal static extern int Init();
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool Init();
 
         /// <summary>
         /// Terminates the GLFW library.

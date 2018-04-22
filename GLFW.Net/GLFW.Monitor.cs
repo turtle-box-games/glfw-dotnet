@@ -12,7 +12,7 @@ namespace GLFW.Net
         /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
         /// or <see cref="DeviceEvent.Disconnected"/></param>
         /// <seealso cref="SetMonitorCallback"/>
-        internal delegate void MonitorCallback(IntPtr monitor, int @event);
+        internal delegate void MonitorCallback(IntPtr monitor, DeviceEvent @event);
 
         /// <summary>
         /// Returns the currently connected monitors.
