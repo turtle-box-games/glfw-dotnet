@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace GLFW.Net
 {
-    internal static partial class GLFW
+    public static partial class GLFW
     {
         /// <summary>
         /// Initializes the GLFW library.
@@ -23,7 +23,7 @@ namespace GLFW.Net
         /// This can be disabled with a compile-time option.</remarks>
         /// <see cref="Terminate"/>
         [DllImport(DllName, EntryPoint = "glfwInit")]
-        public static extern int Init();
+        internal static extern int Init();
 
         /// <summary>
         /// Terminates the GLFW library.
@@ -43,7 +43,7 @@ namespace GLFW.Net
         /// <para>This function must not be called from a callback.</para></remarks>
         /// <seealso cref="Init"/>
         [DllImport(DllName, EntryPoint = "glfwTerminate")]
-        public static extern void Terminate();
+        internal static extern void Terminate();
 
         /// <summary>
         /// Retrieves the version of the GLFW library.
@@ -57,7 +57,7 @@ namespace GLFW.Net
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         /// <seealso cref="GetVersionString"/>
         [DllImport(DllName, EntryPoint = "glfwGetVersion")]
-        public static extern void GetVersion(out int major, out int minor, out int rev);
+        internal static extern void GetVersion(out int major, out int minor, out int rev);
 
         /// <summary>
         /// Returns a string describing the compile-time configuration.
@@ -70,6 +70,6 @@ namespace GLFW.Net
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         /// <seealso cref="GetVersion"/>
         [DllImport(DllName, EntryPoint = "glfwGetVersionString")]
-        public static extern IntPtr GetVersionString();
+        internal static extern IntPtr GetVersionString();
     }
 }

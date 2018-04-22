@@ -3,13 +3,13 @@ using System.Runtime.InteropServices;
 
 namespace GLFW.Net
 {
-    internal static partial class GLFW
+    public static partial class GLFW
     {
         /// <summary>
         /// Client API function pointer type.
         /// </summary>
         /// <seealso cref="GetProcAddress"/>
-        public delegate void Proc();
+        internal delegate void Proc();
 
         /// <summary>
         /// Makes the context of the specified window current for the calling thread.
@@ -31,7 +31,7 @@ namespace GLFW.Net
         /// or <c>null</c> to detach the current context.</param>
         /// <seealso cref="GetCurrentContext"/>
         [DllImport(DllName, EntryPoint = "glfwMakeContextCurrent")]
-        public static extern void MakeContextCurrent(IntPtr window);
+        internal static extern void MakeContextCurrent(IntPtr window);
 
         /// <summary>
         /// Returns the window whose context is current on the calling thread.
@@ -43,7 +43,7 @@ namespace GLFW.Net
         /// or <c>null</c> if no window's context is current.</returns>
         /// <seealso cref="MakeContextCurrent"/>
         [DllImport(DllName, EntryPoint = "glfwGetCurrentContext")]
-        public static extern IntPtr GetCurrentContext();
+        internal static extern IntPtr GetCurrentContext();
 
         /// <summary>
         /// Sets the swap interval for the current context.
@@ -78,7 +78,7 @@ namespace GLFW.Net
         /// </remarks>
         /// <seealso cref="SwapBuffers"/>
         [DllImport(DllName, EntryPoint = "glfwSwapInterval")]
-        public static extern void SwapInterval(int interval);
+        internal static extern void SwapInterval(int interval);
 
         /// <summary>
         /// Returns whether the specified extension is available.
@@ -104,7 +104,7 @@ namespace GLFW.Net
         /// <returns><see cref="True"/> if the extension is available, or <see cref="False"/> otherwise.</returns>
         /// <seealso cref="GetProcAddress"/>
         [DllImport(DllName, EntryPoint = "glfwExtensionSupported")]
-        public static extern int ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
+        internal static extern int ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
 
         /// <summary>
         /// Returns the address of the specified function for the current context.
@@ -131,6 +131,6 @@ namespace GLFW.Net
         /// <seealso cref="ExtensionSupported"/>
         [DllImport(DllName, EntryPoint = "glfwGetProcAddress")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern Proc GetProcAddress([MarshalAs(UnmanagedType.LPStr)] string procName);
+        internal static extern Proc GetProcAddress([MarshalAs(UnmanagedType.LPStr)] string procName);
     }
 }

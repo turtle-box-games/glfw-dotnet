@@ -1,8 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace GLFW.Net
 {
-    internal static partial class GLFW
+    public static partial class GLFW
     {        
         /// <summary>
         /// The function signature for error callbacks.
@@ -10,7 +11,7 @@ namespace GLFW.Net
         /// <param name="errorCode">An error code.</param>
         /// <param name="description">A UTF-8 encoded string describing the error.</param>
         /// <seealso cref="SetErrorCallback"/>
-        public delegate void ErrorCallback(ErrorCode errorCode, [MarshalAs(UnmanagedType.LPStr)] string description);
+        internal delegate void ErrorCallback(ErrorCode errorCode, IntPtr description);
 
         /// <summary>
         /// Sets the error callback.
@@ -28,7 +29,7 @@ namespace GLFW.Net
         /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern ErrorCallback SetErrorCallback(
+        internal static extern ErrorCallback SetErrorCallback(
             [MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);
     }
 }

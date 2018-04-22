@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace GLFW.Net
 {
-    internal static partial class GLFW
+    public static partial class GLFW
     {
         /// <summary>
         /// The function signature for monitor configuration callbacks.
@@ -12,7 +12,7 @@ namespace GLFW.Net
         /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
         /// or <see cref="DeviceEvent.Disconnected"/></param>
         /// <seealso cref="SetMonitorCallback"/>
-        public delegate void MonitorCallback(IntPtr monitor, int @event);
+        internal delegate void MonitorCallback(IntPtr monitor, int @event);
 
         /// <summary>
         /// Returns the currently connected monitors.
@@ -27,7 +27,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         /// <seealso cref="GetPrimaryMonitor"/>
         [DllImport(DllName, EntryPoint = "glfwGetMonitors")]
-        public static extern IntPtr GetMonitors(out int count);
+        internal static extern IntPtr GetMonitors(out int count);
 
         /// <summary>
         /// Returns the primary monitor.
@@ -40,7 +40,7 @@ namespace GLFW.Net
         /// returned by <see cref="GetMonitors"/>.</para></remarks>
         /// <seealso cref="GetMonitors"/>
         [DllImport(DllName, EntryPoint = "glfwGetPrimaryMonitor")]
-        public static extern IntPtr GetPrimaryMonitor();
+        internal static extern IntPtr GetPrimaryMonitor();
 
         /// <summary>
         /// Returns the position of the monitor's viewport on the virtual screen.
@@ -53,7 +53,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorPos")]
-        public static extern void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos);
+        internal static extern void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos);
 
         /// <summary>
         /// Returns the physical size of the monitor.
@@ -69,7 +69,7 @@ namespace GLFW.Net
         /// <para>Windows: calculates the returned physical size from the current resolution and system DPI
         /// instead of querying the monitor EDID data.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorPhysicalSize")]
-        public static extern void GetMonitorPhysicalSize(IntPtr monitor, out int widthMM, out int heightMM);
+        internal static extern void GetMonitorPhysicalSize(IntPtr monitor, out int widthMM, out int heightMM);
 
         /// <summary>
         /// Returns the name of the specified monitor.
@@ -81,7 +81,7 @@ namespace GLFW.Net
         /// <returns>The UTF-8 encoded name of the monitor, or <c>null</c> if an error occurred.</returns>
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetMonitorName")]
-        public static extern IntPtr GetMonitorName(IntPtr monitor);
+        internal static extern IntPtr GetMonitorName(IntPtr monitor);
 
         /// <summary>
         /// Sets the monitor configuration callback.
@@ -94,7 +94,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetMonitorCallback")]
         [return: MarshalAs(UnmanagedType.FunctionPtr)]
-        public static extern MonitorCallback SetMonitorCallback(
+        internal static extern MonitorCallback SetMonitorCallback(
             [MarshalAs(UnmanagedType.FunctionPtr)] MonitorCallback cbfun);
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetVideoMode"/>
         [DllImport(DllName, EntryPoint = "glfwGetVideoModes")]
-        public static extern IntPtr GetVideoModes(IntPtr monitor, out int count);
+        internal static extern IntPtr GetVideoModes(IntPtr monitor, out int count);
 
         /// <summary>
         /// Returns the current mode of the specified monitor.
@@ -126,7 +126,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         /// <seealso cref="GetVideoModes"/>
         [DllImport(DllName, EntryPoint = "glfwGetVideoMode")]
-        public static extern IntPtr GetVideoMode(IntPtr monitor);
+        internal static extern IntPtr GetVideoMode(IntPtr monitor);
 
         /// <summary>
         /// Generates a gamma ramp and sets it for the specified monitor.
@@ -140,7 +140,7 @@ namespace GLFW.Net
         /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
         /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwSetGamma")]
-        public static extern void SetGamma(IntPtr monitor, float gamma);
+        internal static extern void SetGamma(IntPtr monitor, float gamma);
 
         /// <summary>
         /// Returns the current gamma ramp for the specified monitor.
@@ -150,7 +150,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include
         /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
         [DllImport(DllName, EntryPoint = "glfwGetGammaRamp")]
-        public static extern IntPtr GetGammaRamp(IntPtr monitor);
+        internal static extern IntPtr GetGammaRamp(IntPtr monitor);
 
         /// <summary>
         /// Sets the current gamma ramp for the specified monitor.
@@ -165,6 +165,6 @@ namespace GLFW.Net
         /// <para>Gamma ramp sizes other than 256 are not supported by all platforms or graphics hardware.</para>
         /// <para>Windows: The gamma ramp size must be 256.</para></remarks>
         [DllImport(DllName, EntryPoint = "glfwSetGammaRamp")]
-        public static extern void SetGammaRamp(IntPtr monitor, IntPtr ramp);
+        internal static extern void SetGammaRamp(IntPtr monitor, IntPtr ramp);
     }
 }
