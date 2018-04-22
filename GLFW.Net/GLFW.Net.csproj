@@ -63,7 +63,7 @@
     <Compile Include="KeyAction.cs" />
     <Compile Include="ModifierKey.cs" />
     <Compile Include="MouseButton.cs" />
-    <Compile Include="NoCurrentContextGLFWExceptions.cs" />
+    <Compile Include="NoCurrentContextGLFWException.cs" />
     <Compile Include="NotInitializedGLFWException.cs" />
     <Compile Include="NoWindowContextGLFWException.cs" />
     <Compile Include="OpenGLProfile.cs" />

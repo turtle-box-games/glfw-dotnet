@@ -19,7 +19,7 @@ namespace GLFW.Net
             case ErrorCode.NotInitialized:
                 return new NotInitializedGLFWException(managedDescription);
             case ErrorCode.NoCurrentContext:
-                return new NoCurrentContextGLFWExceptions(managedDescription);
+                return new NoCurrentContextGLFWException(managedDescription);
             case ErrorCode.InvalidEnum:
                 return new InvalidEnumGLFWException(managedDescription);
             case ErrorCode.InvalidValue:

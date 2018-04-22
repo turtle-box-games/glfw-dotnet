@@ -8,10 +8,10 @@
     /// </summary>
     /// <remarks>Application programmer error.
     /// Ensure a context is current before calling functions that require a current context. </remarks>
-    public class NoCurrentContextGLFWExceptions : GLFWException
+    public class NoCurrentContextGLFWException : GLFWException
     {
         /// <inheritdoc cref="GLFWException"/>
-        public NoCurrentContextGLFWExceptions(string description)
+        public NoCurrentContextGLFWException(string description)
             : base(description)
         {
             // ...
