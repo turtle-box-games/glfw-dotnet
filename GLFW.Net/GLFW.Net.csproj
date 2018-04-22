@@ -48,6 +48,7 @@
     <Compile Include="FormatUnavailableGLFWException.cs" />
     <Compile Include="GLFW.Constants.cs" />
     <Compile Include="GLFW.Context.cs" />
+    <Compile Include="GLFW.cs" />
     <Compile Include="GLFW.Error.cs" />
     <Compile Include="GLFW.Init.cs" />
     <Compile Include="GLFW.Input.cs" />
