@@ -160,5 +160,23 @@ namespace GLFW.Net
         {
             CheckedCall(Terminate);
         }
+
+        /// <summary>
+        /// Current running version of GLFW.
+        /// </summary>
+        public static Version Version
+        {
+            get
+            {
+                int major, minor, rev;
+                GetVersion(out major, out minor, out rev);
+                return new Version(major, minor, rev);
+            }
+        }
+
+        /// <summary>
+        /// Current running version of GLFW formatted as a string.
+        /// </summary>
+        public static string VersionString => GetVersionString().FromNativeUtf8();
     }
 }
