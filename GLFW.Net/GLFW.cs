@@ -158,7 +158,7 @@ namespace GLFW.Net
         /// <seealso cref="Initialize"/>
         public static void Terminate()
         {
-            CheckedCall(Terminate);
+            CheckedCall(NativeTerminate);
         }
 
         /// <summary>
