@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace GLFW.Net
 {
@@ -21,17 +22,22 @@ namespace GLFW.Net
             get { throw new NotImplementedException(); }
         }
 
-        public object Position
+        public Point Position
         {
             get { throw new NotImplementedException(); }
         }
 
-        public object Size
+        public Size Size
         {
             get { throw new NotImplementedException(); }
         }
 
-        public object PhysicalSize
+        public Rectangle Bounds
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Size PhysicalSize
         {
             get { throw new NotImplementedException(); }
         }
