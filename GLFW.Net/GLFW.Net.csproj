@@ -62,6 +62,7 @@
     <Compile Include="Key.cs" />
     <Compile Include="KeyAction.cs" />
     <Compile Include="ModifierKey.cs" />
+    <Compile Include="Monitor.cs" />
     <Compile Include="MouseButton.cs" />
     <Compile Include="NoCurrentContextGLFWException.cs" />
     <Compile Include="NotInitializedGLFWException.cs" />
