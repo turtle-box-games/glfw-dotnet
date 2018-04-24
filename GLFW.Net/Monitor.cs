@@ -47,12 +47,12 @@ namespace GLFW.Net
             get { throw new NotImplementedException(); }
         }
 
-        public object[] VideoModes
+        public VideoMode[] VideoModes
         {
             get { throw new NotImplementedException(); }
         }
 
-        public object VideoMode
+        public VideoMode VideoMode
         {
             get { throw new NotImplementedException(); }
         }

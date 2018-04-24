@@ -42,6 +42,7 @@
     <Compile Include="ApiUnavailableGLFWException.cs" />
     <Compile Include="ButtonAction.cs" />
     <Compile Include="ClientApi.cs" />
+    <Compile Include="ColorDepth.cs" />
     <Compile Include="ContextApi.cs" />
     <Compile Include="CursorMode.cs" />
     <Compile Include="CursorShape.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Robustness.cs" />
     <Compile Include="Utf8Marshal.cs" />
     <Compile Include="VersionUnavailableGLFWException.cs" />
+    <Compile Include="VideoMode.cs" />
     <Compile Include="WindowAttribute.cs" />
     <Compile Include="WindowHint.cs" />
   </ItemGroup>
