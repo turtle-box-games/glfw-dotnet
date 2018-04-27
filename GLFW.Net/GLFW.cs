@@ -55,7 +55,7 @@ namespace GLFW.Net
             // ex will be set to an exception if a GLFW error occurred.
             // The previous callback is stored so that it can be reset later.
             GLFWException ex = null;
-            var prevCallback = SetErrorCallback((code, description) => ex = TranslateError(code, description));
+            var prevCallback = Internal.SetErrorCallback((code, description) => ex = TranslateError(code, description));
             T result;
             
             // Wrap the code that might throw an exception.
@@ -71,7 +71,7 @@ namespace GLFW.Net
             {
                 // Ensure that the previous error callback is reset.
                 // This allows nested calls to GLFW functions.
-                SetErrorCallback(prevCallback);
+                Internal.SetErrorCallback(prevCallback);
             }
 
             // Throw the translated exception if an error occurred.
@@ -94,7 +94,7 @@ namespace GLFW.Net
             // ex will be set to an exception if a GLFW error occurred.
             // The previous callback is stored so that it can be reset later.
             GLFWException ex = null;
-            var prevCallback = SetErrorCallback((code, description) => ex = TranslateError(code, description));
+            var prevCallback = Internal.SetErrorCallback((code, description) => ex = TranslateError(code, description));
             
             // Wrap the code that might throw an exception.
             try
@@ -109,7 +109,7 @@ namespace GLFW.Net
             {
                 // Ensure that the previous error callback is reset.
                 // This allows nested calls to GLFW functions.
-                SetErrorCallback(prevCallback);
+                Internal.SetErrorCallback(prevCallback);
             }
 
             // Throw the translated exception if an error occurred.
@@ -135,7 +135,7 @@ namespace GLFW.Net
         /// <seealso cref="Terminate"/>
         public static bool Initialize()
         {
-            return CheckedCall(Init);
+            return CheckedCall(Internal.Init);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace GLFW.Net
         /// <seealso cref="Initialize"/>
         public static void Terminate()
         {
-            CheckedCall(NativeTerminate);
+            CheckedCall(Internal.Terminate);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace GLFW.Net
             get
             {
                 int major, minor, rev;
-                GetVersion(out major, out minor, out rev);
+                Internal.GetVersion(out major, out minor, out rev);
                 return new Version(major, minor, rev);
             }
         }
@@ -177,6 +177,6 @@ namespace GLFW.Net
         /// <summary>
         /// Current running version of GLFW formatted as a string.
         /// </summary>
-        public static string VersionString => GetVersionString().FromNativeUtf8();
+        public static string VersionString => Internal.GetVersionString().FromNativeUtf8();
     }
 }
