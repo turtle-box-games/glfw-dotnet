@@ -13,8 +13,8 @@ namespace GLFW.Net
             /// Before most GLFW functions can be used, GLFW must be initialized,
             /// and before an application terminates GLFW should be terminated
             /// in order to free any resources allocated during or after initialization.</para>
-            /// <para>If this function fails, it calls <see cref="NativeTerminate"/> before returning.
-            /// If it succeeds, you should call <see cref="NativeTerminate"/> before the application exits.</para>
+            /// <para>If this function fails, it calls <see cref="Terminate"/> before returning.
+            /// If it succeeds, you should call <see cref="Terminate"/> before the application exits.</para>
             /// <para>Additional calls to this function after successful initialization
             /// but before termination will return <see cref="True"/> immediately.</para>
             /// <para>Possible errors include <see cref="ErrorCode.PlatformError"/>.</para>
@@ -23,7 +23,7 @@ namespace GLFW.Net
             /// <remarks>OS X: This function will change the current directory of the application
             /// to the <c>Contents/Resources</c> subdirectory of the application's bundle, if present.
             /// This can be disabled with a compile-time option.</remarks>
-            /// <see cref="NativeTerminate"/>
+            /// <see cref="Terminate"/>
             [DllImport(DllName, EntryPoint = "glfwInit")]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool Init();
