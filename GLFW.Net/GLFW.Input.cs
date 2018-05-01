@@ -142,7 +142,7 @@ namespace GLFW.Net
         /// measured in <c>1 / frequency</c> seconds.
         /// To get the frequency, call <see cref="GetTimerFrequency"/>.</para>
         /// </summary>
-        /// <returns>The value of the timer, or zero if an error occurred.</returns>
+        /// <returns>The value of the timer.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="GetTimerFrequency"/>
         internal static ulong GetTime()
