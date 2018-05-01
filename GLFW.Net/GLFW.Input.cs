@@ -76,6 +76,35 @@ namespace GLFW.Net
             CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.StickyMouseButtons, value));
         }
 
+        /// <summary>
+        /// Sets the clipboard to the specified string.
+        /// </summary>
+        /// <param name="window">The window that will own the clipboard contents.</param>
+        /// <param name="clip">String to place into the clipboard.</param>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <seealso cref="GetClipboardString"/>
+        internal static void SetClipboardString(IntPtr window, string clip)
+        {
+            var clipPointer = clip.ToNativeUtf8();
+            CheckedCall(() => Internal.SetClipboardString(window, clipPointer));
+        }
+
+        /// <summary>
+        /// Retrieves the contents of the clipboard.
+        /// </summary>
+        /// <param name="window">The window that will own the clipboard contents.</param>
+        /// <returns>Contents of the clipboard as a string.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <exception cref="FormatUnavailableGLFWException">The clipboard is empty
+        /// or the contents are in an unrecognized format.</exception>
+        /// <seealso cref="SetClipboardString"/>
+        internal static string GetClipboardString(IntPtr window)
+        {
+            return CheckedCall(() => Internal.GetClipboardString(window)).FromNativeUtf8();
+        }
+
         private static partial class Internal
         {
             /// <summary>
@@ -138,8 +167,7 @@ namespace GLFW.Net
             /// <seealso cref="GetClipboardString"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetClipboardString", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void
-                SetClipboardString(IntPtr window, [MarshalAs(UnmanagedType.LPUTF8Str)] string @string);
+            public static extern void SetClipboardString(IntPtr window, IntPtr @string);
 
             /// <summary>
             /// Returns the contents of the clipboard as a string.
