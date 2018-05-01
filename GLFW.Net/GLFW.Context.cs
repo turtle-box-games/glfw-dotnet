@@ -104,10 +104,18 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <exception cref="InvalidValueGLFWException">The <paramref name="extension"/> name
         /// can't be an empty string.</exception>
-        /// <seealso cref="GetProcAddress"/>
+        /// <seealso cref="GetProc"/>
         internal static bool ExtensionSupported(string extension)
         {
-            return CheckedCall(() => Internal.ExtensionSupported(extension));
+            var stringPointer = Marshal.StringToHGlobalAnsi(extension);
+            try
+            {
+                return CheckedCall(() => Internal.ExtensionSupported(stringPointer)) != Internal.False;
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(stringPointer);
+            }
         }
 
         /// <summary>
@@ -132,7 +140,16 @@ namespace GLFW.Net
         /// <seealso cref="ExtensionSupported"/>
         internal static Proc GetProc(string procName)
         {
-            return CheckedCall(() => Internal.GetProcAddress(procName));
+            var stringPointer = Marshal.StringToHGlobalAnsi(procName);
+            try
+            {
+                var procAddress = CheckedCall(() => Internal.GetProcAddress(stringPointer));
+                return procAddress == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<Proc>(procAddress);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(stringPointer);
+            }
         }
         
         private static partial class Internal
@@ -230,12 +247,11 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.InvalidValue"/>, and <see cref="ErrorCode.PlatformError"/>.</para>
             /// </summary>
             /// <param name="extension">The ASCII encoded name of the extension.</param>
-            /// <returns><c>true</c> if the extension is available, or <c>false</c> otherwise.</returns>
+            /// <returns><see cref="True"/> if the extension is available, or <see cref="False"/> otherwise.</returns>
             /// <seealso cref="GetProcAddress"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwExtensionSupported", CallingConvention = CallingConvention.Cdecl)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
+            public static extern int ExtensionSupported(IntPtr extension);
 
             /// <summary>
             /// Returns the address of the specified function for the current context.
@@ -262,8 +278,7 @@ namespace GLFW.Net
             /// <seealso cref="ExtensionSupported"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetProcAddress", CallingConvention = CallingConvention.Cdecl)]
-            [return: MarshalAs(UnmanagedType.FunctionPtr)]
-            public static extern Proc GetProcAddress([MarshalAs(UnmanagedType.LPStr)] string procName);
+            public static extern IntPtr GetProcAddress(IntPtr procName);
         }
     }
 }
