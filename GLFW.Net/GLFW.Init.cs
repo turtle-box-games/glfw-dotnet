@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace GLFW.Net
 {
@@ -24,6 +25,7 @@ namespace GLFW.Net
             /// to the <c>Contents/Resources</c> subdirectory of the application's bundle, if present.
             /// This can be disabled with a compile-time option.</remarks>
             /// <see cref="Terminate"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwInit")]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool Init();
@@ -45,6 +47,7 @@ namespace GLFW.Net
             /// must not be current on any other thread when this function is called.</para>
             /// <para>This function must not be called from a callback.</para></remarks>
             /// <seealso cref="Init"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwTerminate")]
             public static extern void Terminate();
 
@@ -59,6 +62,7 @@ namespace GLFW.Net
             /// <param name="rev">Where to store the revision number.</param>
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             /// <seealso cref="GetVersionString"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetVersion")]
             public static extern void GetVersion(out int major, out int minor, out int rev);
 
@@ -72,6 +76,7 @@ namespace GLFW.Net
             /// <returns>The ASCII encoded GLFW version string.</returns>
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             /// <seealso cref="GetVersion"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetVersionString")]
             public static extern IntPtr GetVersionString();
         }

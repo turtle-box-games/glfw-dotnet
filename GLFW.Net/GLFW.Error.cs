@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace GLFW.Net
 {
@@ -142,6 +143,7 @@ namespace GLFW.Net
             /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
             /// <returns>The previously set callback, or <c>null</c> if no callback was set.</returns>
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern ErrorCallback SetErrorCallback(

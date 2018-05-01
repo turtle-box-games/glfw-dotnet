@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace GLFW.Net
 {
@@ -28,6 +29,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no monitors were found or if an error occurred.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="GetPrimaryMonitor"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetMonitors")]
             public static extern IntPtr GetMonitors(out int count);
 
@@ -41,6 +43,7 @@ namespace GLFW.Net
             /// <para>The primary monitor is always first in the array
             /// returned by <see cref="GetMonitors"/>.</para></remarks>
             /// <seealso cref="GetMonitors"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetPrimaryMonitor")]
             public static extern IntPtr GetPrimaryMonitor();
 
@@ -54,6 +57,7 @@ namespace GLFW.Net
             /// <param name="ypos">Where to store the monitor y-coordinate.</param>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetMonitorPos")]
             public static extern void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos);
 
@@ -70,6 +74,7 @@ namespace GLFW.Net
             /// <remarks><para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
             /// <para>Windows: calculates the returned physical size from the current resolution and system DPI
             /// instead of querying the monitor EDID data.</para></remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetMonitorPhysicalSize")]
             public static extern void GetMonitorPhysicalSize(IntPtr monitor, out int widthMM, out int heightMM);
 
@@ -82,6 +87,7 @@ namespace GLFW.Net
             /// <param name="monitor">The monitor to query.</param>
             /// <returns>The UTF-8 encoded name of the monitor, or <c>null</c> if an error occurred.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetMonitorName")]
             public static extern IntPtr GetMonitorName(IntPtr monitor);
 
@@ -94,6 +100,7 @@ namespace GLFW.Net
             /// <returns>The previously set callback,
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetMonitorCallback")]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern MonitorCallback SetMonitorCallback(
@@ -113,6 +120,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetVideoMode"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetVideoModes")]
             public static extern IntPtr GetVideoModes(IntPtr monitor, out int count);
 
@@ -127,6 +135,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetVideoModes"/>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetVideoMode")]
             public static extern IntPtr GetVideoMode(IntPtr monitor);
 
@@ -141,6 +150,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetGamma")]
             public static extern void SetGamma(IntPtr monitor, float gamma);
 
@@ -151,6 +161,7 @@ namespace GLFW.Net
             /// <returns>The current gamma ramp, or <c>null</c> if an error occurred.</returns>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetGammaRamp")]
             public static extern IntPtr GetGammaRamp(IntPtr monitor);
 
@@ -166,6 +177,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
             /// <para>Gamma ramp sizes other than 256 are not supported by all platforms or graphics hardware.</para>
             /// <para>Windows: The gamma ramp size must be 256.</para></remarks>
+            [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetGammaRamp")]
             public static extern void SetGammaRamp(IntPtr monitor, IntPtr ramp);
         }
