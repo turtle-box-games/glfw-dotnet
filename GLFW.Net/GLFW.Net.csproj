@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiUnavailableGLFWException.cs" />
-    <Compile Include="ButtonAction.cs" />
+    <Compile Include="JoystickButtonState.cs" />
     <Compile Include="ClientApi.cs" />
     <Compile Include="ColorDepth.cs" />
     <Compile Include="ContextApi.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="ModifierKey.cs" />
     <Compile Include="Monitor.cs" />
     <Compile Include="MouseButton.cs" />
+    <Compile Include="MouseButtonState.cs" />
     <Compile Include="NoCurrentContextGLFWException.cs" />
     <Compile Include="NotInitializedGLFWException.cs" />
     <Compile Include="NoWindowContextGLFWException.cs" />

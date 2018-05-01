@@ -1,6 +1,6 @@
 ﻿namespace GLFW.Net
 {
-    public enum ButtonAction
+    public enum MouseButtonState
     {
         Release = 0,
         

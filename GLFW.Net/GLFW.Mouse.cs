@@ -13,10 +13,11 @@ namespace GLFW.Net
             /// </summary>
             /// <param name="window">The window that received the event.</param>
             /// <param name="button">The mouse button that was pressed or released.</param>
-            /// <param name="action">One of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</param>
+            /// <param name="state">One of <see cref="MouseButtonState.Press"/>
+            /// or <see cref="MouseButtonState.Release"/>.</param>
             /// <param name="mods">Bit field describing which modifier keys were held down.</param>
             /// <seealso cref="SetMouseButtonCallback"/>
-            public delegate void MouseButtonCallback(IntPtr window, MouseButton button, ButtonAction action,
+            public delegate void MouseButtonCallback(IntPtr window, MouseButton button, MouseButtonState state,
                 ModifierKey mods);
 
             /// <summary>
@@ -57,20 +58,23 @@ namespace GLFW.Net
 
             /// <summary>
             /// Returns the last reported state of a mouse button for the specified window.
-            /// <para>This function returns the last state reported for the specified mouse button to the specified window.
-            /// The returned state is one of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</para>
+            /// <para>This function returns the last state reported
+            /// for the specified mouse button to the specified window.
+            /// The returned state is one of <see cref="MouseButtonState.Press"/>
+            /// or <see cref="MouseButtonState.Release"/>.</para>
             /// <para>If the <see cref="InputMode.StickyMouseButtons"/> input mode is enabled,
-            /// this function returns <see cref="ButtonAction.Press"/> the first time you call it
+            /// this function returns <see cref="MouseButtonState.Press"/> the first time you call it
             /// for a mouse button that was pressed, even if that mouse button has already been released.</para>
             /// </summary>
             /// <param name="window">The desired window.</param>
             /// <param name="button">The desired mouse button.</param>
-            /// <returns>One of <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</returns>
+            /// <returns>One of <see cref="MouseButtonState.Press"/>
+            /// or <see cref="MouseButtonState.Release"/>.</returns>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetMouseButton", CallingConvention = CallingConvention.Cdecl)]
-            public static extern ButtonAction GetMouseButton(IntPtr window, MouseButton button);
+            public static extern MouseButtonState GetMouseButton(IntPtr window, MouseButton button);
 
             /// <summary>
             /// Retrieves the position of the cursor relative to the client area of the window.
@@ -126,7 +130,8 @@ namespace GLFW.Net
             /// <para>The pixels are 32-bit, little-endian, non-premultiplied RGBA, i.e. eight bits per channel.
             /// They are arranged canonically as packed sequential rows, starting from the top-left corner.</para>
             /// <para>The cursor hotspot is specified in pixels, relative to the upper-left corner of the cursor image.
-            /// Like all other coordinate systems in GLFW, the X-axis points to the right and the Y-axis points down.</para>
+            /// Like all other coordinate systems in GLFW,
+            /// the X-axis points to the right and the Y-axis points down.</para>
             /// </summary>
             /// <param name="image">The desired cursor image.</param>
             /// <param name="xhot">The desired x-coordinate, in pixels, of the cursor hotspot.</param>
@@ -177,10 +182,12 @@ namespace GLFW.Net
             /// when the cursor is over the client area of the specified window.
             /// The set cursor will only be visible
             /// when the cursor mode of the window is <see cref="CursorMode.Normal"/>.</para>
-            /// <para>On some platforms, the set cursor may not be visible unless the window also has input focus.</para>
+            /// <para>On some platforms,
+            /// the set cursor may not be visible unless the window also has input focus.</para>
             /// </summary>
             /// <param name="window">The window to set the cursor for.</param>
-            /// <param name="cursor">The cursor to set, or <c>null</c> to switch back to the default arrow cursor.</param>
+            /// <param name="cursor">The cursor to set,
+            /// or <c>null</c> to switch back to the default arrow cursor.</param>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
@@ -251,7 +258,8 @@ namespace GLFW.Net
             /// like that from a mouse wheel or a touchpad scrolling area.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new scroll callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new scroll callback,
+            /// or <c>null</c> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
@@ -270,7 +278,8 @@ namespace GLFW.Net
             /// If you wish to use them after the callback returns, you need to make a deep copy.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new file drop callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new file drop callback,
+            /// or <c>null</c> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>

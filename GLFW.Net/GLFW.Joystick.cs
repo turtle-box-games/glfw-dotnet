@@ -117,7 +117,7 @@ namespace GLFW.Net
             /// Returns the state of all buttons of the specified joystick.
             /// <para>This function returns the state of all buttons of the specified joystick.
             /// Each element in the array is either
-            /// <see cref="ButtonAction.Press"/> or <see cref="ButtonAction.Release"/>.</para>
+            /// <see cref="JoystickButtonState.Press"/> or <see cref="JoystickButtonState.Release"/>.</para>
             /// <para>Querying a joystick slot with no device present is not an error,
             /// but will cause this function to return <c>null</c>.
             /// Call <see cref="JoystickPresent"/> to check device presence.</para>

@@ -40,8 +40,8 @@ namespace GLFW.Net
             /// <para>If the mode is <see cref="InputMode.StickyMouseButtons"/>,
             /// the value must be either <see cref="True"/> to enable sticky mouse buttons,
             /// or <see cref="False"/> to disable it.
-            /// If sticky mouse buttons are enabled,
-            /// a mouse button press will ensure that <see cref="GetMouseButton"/> returns <see cref="ButtonAction.Press"/>
+            /// If sticky mouse buttons are enabled, a mouse button press will ensure that <see cref="GetMouseButton"/>
+            /// returns <see cref="MouseButtonState.Press"/>
             /// the next time it is called even if the mouse button had been released before the call.
             /// This is useful when you are only interested in whether mouse buttons have been pressed
             /// but not when or in which order.</para>
