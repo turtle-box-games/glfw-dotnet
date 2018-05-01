@@ -11,9 +11,13 @@ namespace GLFW.Net
         /// The string will be copied so that managed memory can take ownership of it.
         /// </summary>
         /// <param name="nativeString">Pointer to an unmanaged string containing the UTF-8 string.</param>
-        /// <returns>Managed string copied from unmanaged memory.</returns>
+        /// <returns>Managed string copied from unmanaged memory,
+        /// or <c>null</c> if <paramref name="nativeString"/> is <see cref="IntPtr.Zero"/>.</returns>
         public static string FromNativeUtf8(this IntPtr nativeString)
         {
+            if (nativeString == IntPtr.Zero)
+                return null;
+            
             // Find out how long the string is.
             // It will be null-terminated, so look for that.
             var length = 0;
@@ -33,9 +37,13 @@ namespace GLFW.Net
         /// The string will be copied and the GC will not cleanup the unmanaged copy.
         /// </summary>
         /// <param name="managedString">Managed string to copy to unmanaged memory.</param>
-        /// <returns>Pointer to an unmanaged string containing the UTF-8 string.</returns>
+        /// <returns>Pointer to an unmanaged string containing the UTF-8 string,
+        /// or <see cref="IntPtr.Zero"/> if <paramref name="managedString"/> is <c>null</c>.</returns>
         public static IntPtr ToNativeUtf8(this string managedString)
         {
+            if(managedString == null)
+                return IntPtr.Zero;
+            
             // Get the length of the string as it would appear in UTF-8 and allocate memory for that amount.
             var length = Encoding.UTF8.GetByteCount(managedString);
             var buffer = new byte[length + 1]; // +1 to leave space for the null-terminator.
