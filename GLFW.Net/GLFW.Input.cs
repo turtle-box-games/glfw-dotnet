@@ -28,7 +28,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwJoystickPresent")]
+            [DllImport(DllName, EntryPoint = "glfwJoystickPresent", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool JoystickPresent(int joy);
 
@@ -49,7 +49,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes")]
+            [DllImport(DllName, EntryPoint = "glfwGetJoystickAxes", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetJoystickAxes(int joy, out int count);
 
             /// <summary>
@@ -70,7 +70,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons")]
+            [DllImport(DllName, EntryPoint = "glfwGetJoystickButtons", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetJoystickButtons(int joy, out int count);
 
             /// <summary>
@@ -86,7 +86,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetJoystickName")]
+            [DllImport(DllName, EntryPoint = "glfwGetJoystickName", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetJoystickName(int joy);
 
             /// <summary>
@@ -100,7 +100,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern JoystickCallback SetJoystickCallback(
                 [MarshalAs(UnmanagedType.FunctionPtr)] JoystickCallback cbfun);
@@ -157,7 +157,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetKeyName")]
+            [DllImport(DllName, EntryPoint = "glfwGetKeyName", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetKeyName(Key key, int scancode);
 
             /// <summary>
@@ -181,7 +181,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetKey")]
+            [DllImport(DllName, EntryPoint = "glfwGetKey", CallingConvention = CallingConvention.Cdecl)]
             public static extern KeyAction GetKey(IntPtr window, Key key);
 
             /// <summary>
@@ -208,7 +208,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetKeyCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetKeyCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern KeyCallback SetKeyCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] KeyCallback cbfun);
@@ -233,7 +233,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCharCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetCharCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern CharacterCallback SetCharCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] CharacterCallback cbfun);
@@ -255,7 +255,7 @@ namespace GLFW.Net
             /// <returns>The previously set callback, or <c>null</c> if no callback was set or an error occurred.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCharModsCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetCharModsCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern CharacterModifierCallback SetCharModsCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] CharacterModifierCallback cbfun);
@@ -325,7 +325,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetMouseButton")]
+            [DllImport(DllName, EntryPoint = "glfwGetMouseButton", CallingConvention = CallingConvention.Cdecl)]
             public static extern ButtonAction GetMouseButton(IntPtr window, MouseButton button);
 
             /// <summary>
@@ -348,7 +348,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="SetCursorPos"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetCursorPos")]
+            [DllImport(DllName, EntryPoint = "glfwGetCursorPos", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetCursorPos(IntPtr window, out double xpos, out double ypos);
 
             /// <summary>
@@ -371,7 +371,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetCursorPos"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCursorPos")]
+            [DllImport(DllName, EntryPoint = "glfwSetCursorPos", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetCursorPos(IntPtr window, double xpos, double ypos);
 
             /// <summary>
@@ -394,7 +394,7 @@ namespace GLFW.Net
             /// <seealso cref="DestroyCursor"/>
             /// <seealso cref="CreateStandardCursor"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwCreateCursor")]
+            [DllImport(DllName, EntryPoint = "glfwCreateCursor", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr CreateCursor(IntPtr image, int xhot, int yhot);
 
             /// <summary>
@@ -410,7 +410,7 @@ namespace GLFW.Net
             /// <para>This function must not be called from a callback.</para></remarks>
             /// <seealso cref="CreateCursor"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwCreateStandardCursor")]
+            [DllImport(DllName, EntryPoint = "glfwCreateStandardCursor", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr CreateStandardCursor(CursorShape shape);
 
             /// <summary>
@@ -424,7 +424,7 @@ namespace GLFW.Net
             /// <para>This function must not be called from a callback.</para></remarks>
             /// <seealso cref="CreateCursor"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwDestroyCursor")]
+            [DllImport(DllName, EntryPoint = "glfwDestroyCursor", CallingConvention = CallingConvention.Cdecl)]
             public static extern void DestroyCursor(IntPtr cursor);
 
             /// <summary>
@@ -440,7 +440,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCursor")]
+            [DllImport(DllName, EntryPoint = "glfwSetCursor", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetCursor(IntPtr window, IntPtr cursor);
 
             /// <summary>
@@ -459,7 +459,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetMouseButtonCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetMouseButtonCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern MouseButtonCallback SetMouseButtonCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] MouseButtonCallback cbfun);
@@ -477,7 +477,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCursorPosCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetCursorPosCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern CursorPositionCallback SetCursorPosCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] CursorPositionCallback cbfun);
@@ -493,7 +493,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetCursorEnterCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetCursorEnterCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern CursorEnterCallback SetCursorEnterCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] CursorEnterCallback cbfun);
@@ -512,7 +512,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetScrollCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetScrollCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern ScrollCallback SetScrollCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] ScrollCallback cbfun);
@@ -531,7 +531,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetDropCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetDropCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern DropCallback SetDropCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] DropCallback cbfun);
@@ -550,7 +550,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             /// <seealso cref="SetInputMode"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetInputMode")]
+            [DllImport(DllName, EntryPoint = "glfwGetInputMode", CallingConvention = CallingConvention.Cdecl)]
             public static extern int GetInputMode(IntPtr window, InputMode mode);
 
             /// <summary>
@@ -585,7 +585,7 @@ namespace GLFW.Net
             /// and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetInputMode"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetInputMode")]
+            [DllImport(DllName, EntryPoint = "glfwSetInputMode", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetInputMode(IntPtr window, InputMode mode, int value);
 
             /// <summary>
@@ -597,7 +597,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetClipboardString"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetClipboardString")]
+            [DllImport(DllName, EntryPoint = "glfwSetClipboardString", CallingConvention = CallingConvention.Cdecl)]
             public static extern void
                 SetClipboardString(IntPtr window, [MarshalAs(UnmanagedType.LPUTF8Str)] string @string);
 
@@ -614,7 +614,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetClipboardString")]
+            [DllImport(DllName, EntryPoint = "glfwGetClipboardString", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetClipboardString(IntPtr window);
 
             /// <summary>
@@ -629,7 +629,7 @@ namespace GLFW.Net
             /// <returns>The current value, in seconds, or zero if an error occurred.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetTime")]
+            [DllImport(DllName, EntryPoint = "glfwGetTime", CallingConvention = CallingConvention.Cdecl)]
             public static extern double GetTime();
 
             /// <summary>
@@ -646,7 +646,7 @@ namespace GLFW.Net
             /// and is due to implementations storing nanoseconds in 64 bits.
             /// The limit may be increased in the future.</para></remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetTime")]
+            [DllImport(DllName, EntryPoint = "glfwSetTime", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetTime(double time);
 
             /// <summary>
@@ -659,7 +659,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="GetTimerFrequency"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetTimerValue")]
+            [DllImport(DllName, EntryPoint = "glfwGetTimerValue", CallingConvention = CallingConvention.Cdecl)]
             public static extern ulong GetTimerValue();
 
             /// <summary>
@@ -669,7 +669,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="GetTimerValue"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetTimerFrequency")]
+            [DllImport(DllName, EntryPoint = "glfwGetTimerFrequency", CallingConvention = CallingConvention.Cdecl)]
             public static extern ulong GetTimerFrequency();
         }
     }

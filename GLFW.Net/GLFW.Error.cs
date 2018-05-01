@@ -144,7 +144,7 @@ namespace GLFW.Net
             /// <returns>The previously set callback, or <c>null</c> if no callback was set.</returns>
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetErrorCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern ErrorCallback SetErrorCallback(
                 [MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);

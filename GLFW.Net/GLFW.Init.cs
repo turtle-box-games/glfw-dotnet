@@ -26,7 +26,7 @@ namespace GLFW.Net
             /// This can be disabled with a compile-time option.</remarks>
             /// <see cref="Terminate"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwInit")]
+            [DllImport(DllName, EntryPoint = "glfwInit", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool Init();
 
@@ -48,7 +48,7 @@ namespace GLFW.Net
             /// <para>This function must not be called from a callback.</para></remarks>
             /// <seealso cref="Init"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwTerminate")]
+            [DllImport(DllName, EntryPoint = "glfwTerminate", CallingConvention = CallingConvention.Cdecl)]
             public static extern void Terminate();
 
             /// <summary>
@@ -63,7 +63,7 @@ namespace GLFW.Net
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             /// <seealso cref="GetVersionString"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetVersion")]
+            [DllImport(DllName, EntryPoint = "glfwGetVersion", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetVersion(out int major, out int minor, out int rev);
 
             /// <summary>
@@ -77,7 +77,7 @@ namespace GLFW.Net
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             /// <seealso cref="GetVersion"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetVersionString")]
+            [DllImport(DllName, EntryPoint = "glfwGetVersionString", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetVersionString();
         }
     }

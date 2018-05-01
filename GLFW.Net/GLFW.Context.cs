@@ -157,7 +157,7 @@ namespace GLFW.Net
             /// or <c>null</c> to detach the current context.</param>
             /// <seealso cref="GetCurrentContext"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwMakeContextCurrent")]
+            [DllImport(DllName, EntryPoint = "glfwMakeContextCurrent", CallingConvention = CallingConvention.Cdecl)]
             public static extern void MakeContextCurrent(IntPtr window);
 
             /// <summary>
@@ -170,7 +170,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no window's context is current.</returns>
             /// <seealso cref="MakeContextCurrent"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetCurrentContext")]
+            [DllImport(DllName, EntryPoint = "glfwGetCurrentContext", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetCurrentContext();
 
             /// <summary>
@@ -206,7 +206,7 @@ namespace GLFW.Net
             /// </remarks>
             /// <seealso cref="SwapBuffers"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSwapInterval")]
+            [DllImport(DllName, EntryPoint = "glfwSwapInterval", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SwapInterval(int interval);
 
             /// <summary>
@@ -233,7 +233,7 @@ namespace GLFW.Net
             /// <returns><c>true</c> if the extension is available, or <c>false</c> otherwise.</returns>
             /// <seealso cref="GetProcAddress"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwExtensionSupported")]
+            [DllImport(DllName, EntryPoint = "glfwExtensionSupported", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool ExtensionSupported([MarshalAs(UnmanagedType.LPStr)] string extension);
 
@@ -261,7 +261,7 @@ namespace GLFW.Net
             /// </remarks>
             /// <seealso cref="ExtensionSupported"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetProcAddress")]
+            [DllImport(DllName, EntryPoint = "glfwGetProcAddress", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern Proc GetProcAddress([MarshalAs(UnmanagedType.LPStr)] string procName);
         }

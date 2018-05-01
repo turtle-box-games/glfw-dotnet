@@ -75,7 +75,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="WindowHint"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwDefaultWindowHints")]
+            [DllImport(DllName, EntryPoint = "glfwDefaultWindowHints", CallingConvention = CallingConvention.Cdecl)]
             public static extern void DefaultWindowHints();
 
             /// <summary>
@@ -94,7 +94,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             /// <seealso cref="DefaultWindowHints"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwWindowHint")]
+            [DllImport(DllName, EntryPoint = "glfwWindowHint", CallingConvention = CallingConvention.Cdecl)]
             public static extern void WindowHint(WindowHint hint, int value);
 
             /// <summary>
@@ -178,7 +178,7 @@ namespace GLFW.Net
             /// position or other attributes directly after window creation.</para></remarks>
             /// <seealso cref="DestroyWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwCreateWindow")]
+            [DllImport(DllName, EntryPoint = "glfwCreateWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr CreateWindow(int width, int height,
                 [MarshalAs(UnmanagedType.LPUTF8Str)] string title, IntPtr monitor, IntPtr share);
 
@@ -197,7 +197,7 @@ namespace GLFW.Net
             /// <para>This function must not be called from a callback.</para></remarks>
             /// <seealso cref="CreateWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwDestroyWindow")]
+            [DllImport(DllName, EntryPoint = "glfwDestroyWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void DestroyWindow(IntPtr window);
 
             /// <summary>
@@ -207,7 +207,7 @@ namespace GLFW.Net
             /// <returns>The value of the close flag.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwWindowShouldClose")]
+            [DllImport(DllName, EntryPoint = "glfwWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
             public static extern int WindowShouldClose(IntPtr window);
 
             /// <summary>
@@ -220,7 +220,7 @@ namespace GLFW.Net
             /// <param name="value">The new value.</param>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowShouldClose")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowShouldClose(IntPtr window, int value);
 
             /// <summary>
@@ -233,7 +233,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</para>
             /// <para>OS X: The window title will not be updated until the next time you process events.</para></remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowTitle")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowTitle(IntPtr window, [MarshalAs(UnmanagedType.LPUTF8Str)] string title);
 
             /// <summary>
@@ -258,7 +258,7 @@ namespace GLFW.Net
             /// For more information on bundles,
             /// see the Bundle Programming Guide in the Mac Developer Library.</para></remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowIcon")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowIcon", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowIcon(IntPtr window, int count,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct, SizeParamIndex = 1)]
                 IntPtr[] images);
@@ -275,7 +275,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="SetWindowPos"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowPos")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowPos", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetWindowPos(IntPtr window, out int xpos, out int ypos);
 
             /// <summary>
@@ -295,7 +295,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetWindowPos"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowPos")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowPos", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowPos(IntPtr window, int xpos, int ypos);
 
             /// <summary>
@@ -312,7 +312,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="SetWindowSize"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowSize")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowSize", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetWindowSize(IntPtr window, out int width, out int height);
 
             /// <summary>
@@ -333,7 +333,7 @@ namespace GLFW.Net
             /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
             /// <seealso cref="SetWindowAspectRatio"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowSizeLimits")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowSizeLimits", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowSizeLimits(IntPtr window, int minWidth, int minHeight, int maxWidth,
                 int maxHeight);
 
@@ -359,7 +359,7 @@ namespace GLFW.Net
             /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
             /// <seealso cref="SetWindowSizeLimits"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowAspectRatio")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowAspectRatio", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowAspectRatio(IntPtr window, int numer, int denom);
 
             /// <summary>
@@ -380,7 +380,7 @@ namespace GLFW.Net
             /// <seealso cref="GetWindowSize"/>
             /// <seealso cref="SetWindowMonitor"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowSize")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowSize", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowSize(IntPtr window, int width, int height);
 
             /// <summary>
@@ -396,7 +396,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="SetFrameBufferSizeCallback"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetFramebufferSize")]
+            [DllImport(DllName, EntryPoint = "glfwGetFramebufferSize", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetFramebufferSize(IntPtr window, out int width, out int height);
 
             /// <summary>
@@ -421,7 +421,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowFrameSize")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowFrameSize", CallingConvention = CallingConvention.Cdecl)]
             public static extern void GetWindowFrameSize(IntPtr window, out int left, out int top, out int right,
                 out int bottom);
 
@@ -438,7 +438,7 @@ namespace GLFW.Net
             /// <seealso cref="RestoreWindow"/>
             /// <seealso cref="MaximizeWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwIconifyWindow")]
+            [DllImport(DllName, EntryPoint = "glfwIconifyWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void IconifyWindow(IntPtr window);
 
             /// <summary>
@@ -454,7 +454,7 @@ namespace GLFW.Net
             /// <seealso cref="IconifyWindow"/>
             /// <seealso cref="MaximizeWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwRestoreWindow")]
+            [DllImport(DllName, EntryPoint = "glfwRestoreWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void RestoreWindow(IntPtr window);
 
             /// <summary>
@@ -469,7 +469,7 @@ namespace GLFW.Net
             /// <seealso cref="IconifyWindow"/>
             /// <seealso cref="RestoreWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwMaximizeWindow")]
+            [DllImport(DllName, EntryPoint = "glfwMaximizeWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void MaximizeWindow(IntPtr window);
 
             /// <summary>
@@ -482,7 +482,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="HideWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwShowWindow")]
+            [DllImport(DllName, EntryPoint = "glfwShowWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void ShowWindow(IntPtr window);
 
             /// <summary>
@@ -495,7 +495,7 @@ namespace GLFW.Net
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="ShowWindow"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwHideWindow")]
+            [DllImport(DllName, EntryPoint = "glfwHideWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void HideWindow(IntPtr window);
 
             /// <summary>
@@ -512,7 +512,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwFocusWindow")]
+            [DllImport(DllName, EntryPoint = "glfwFocusWindow", CallingConvention = CallingConvention.Cdecl)]
             public static extern void FocusWindow(IntPtr window);
 
             /// <summary>
@@ -523,7 +523,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="SetWindowMonitor"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowMonitor")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowMonitor", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetWindowMonitor(IntPtr window);
 
             /// <summary>
@@ -555,7 +555,7 @@ namespace GLFW.Net
             /// <seealso cref="GetWindowMonitor"/>
             /// <seealso cref="SetWindowSize"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowMonitor")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowMonitor", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowMonitor(IntPtr window, IntPtr monitor, int xpos, int ypos, int width,
                 int height, int refreshRate);
 
@@ -577,7 +577,7 @@ namespace GLFW.Net
             /// However, this function should not fail as long as it is passed valid arguments
             /// and the library has been initialized.</para></remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowAttrib")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowAttrib", CallingConvention = CallingConvention.Cdecl)]
             public static extern int GetWindowAttrib(IntPtr window, WindowAttribute attrib);
 
             /// <summary>
@@ -591,7 +591,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="GetWindowUserPointer"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowUserPointer")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowUserPointer", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SetWindowUserPointer(IntPtr window, IntPtr pointer);
 
             /// <summary>
@@ -604,7 +604,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="SetWindowUserPointer"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwGetWindowUserPointer")]
+            [DllImport(DllName, EntryPoint = "glfwGetWindowUserPointer", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr GetWindowUserPointer(IntPtr window);
 
             /// <summary>
@@ -620,7 +620,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowPosCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowPosCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowPosCallback SetWindowPosCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowPosCallback cbfun);
@@ -637,7 +637,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowSizeCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowSizeCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowSizeCallback SetWindowSizeCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowSizeCallback cbfun);
@@ -659,7 +659,7 @@ namespace GLFW.Net
             /// <para>OS X: Selecting Quit from the application menu
             /// will trigger the close callback for all windows.</para></remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowCloseCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowCloseCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowCloseCallback SetWindowCloseCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowCloseCallback cbfun);
@@ -679,7 +679,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowRefreshCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowRefreshCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowRefreshCallback SetWindowRefreshCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowRefreshCallback cbfun);
@@ -698,7 +698,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowFocusCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowFocusCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowFocusCallback SetWindowFocusCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowFocusCallback cbfun);
@@ -714,7 +714,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetWindowIconifyCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetWindowIconifyCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern WindowIconifyCallback SetWindowIconifyCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] WindowIconifyCallback cbfun);
@@ -730,7 +730,7 @@ namespace GLFW.Net
             /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSetFrameBufferSizeCallback")]
+            [DllImport(DllName, EntryPoint = "glfwSetFrameBufferSizeCallback", CallingConvention = CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.FunctionPtr)]
             public static extern FrameBufferSizeCallback SetFrameBufferSizeCallback(IntPtr window,
                 [MarshalAs(UnmanagedType.FunctionPtr)] FrameBufferSizeCallback cbfun);
@@ -756,7 +756,7 @@ namespace GLFW.Net
             /// <seealso cref="WaitEvents"/>
             /// <seealso cref="WaitEventsTimeout"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwPollEvents")]
+            [DllImport(DllName, EntryPoint = "glfwPollEvents", CallingConvention = CallingConvention.Cdecl)]
             public static extern void PollEvents();
 
             /// <summary>
@@ -787,7 +787,7 @@ namespace GLFW.Net
             /// <seealso cref="PollEvents"/>
             /// <seealso cref="WaitEventsTimeout"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwWaitEvents")]
+            [DllImport(DllName, EntryPoint = "glfwWaitEvents", CallingConvention = CallingConvention.Cdecl)]
             public static extern void WaitEvents();
 
             /// <summary>
@@ -819,7 +819,7 @@ namespace GLFW.Net
             /// <seealso cref="PollEvents"/>
             /// <seealso cref="WaitEvents"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwWaitEventsTimeout")]
+            [DllImport(DllName, EntryPoint = "glfwWaitEventsTimeout", CallingConvention = CallingConvention.Cdecl)]
             public static extern void WaitEventsTimeout(double timeout);
 
             /// <summary>
@@ -835,7 +835,7 @@ namespace GLFW.Net
             /// <seealso cref="WaitEvents"/>
             /// <seealso cref="WaitEventsTimeout"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwPostEmptyEvent")]
+            [DllImport(DllName, EntryPoint = "glfwPostEmptyEvent", CallingConvention = CallingConvention.Cdecl)]
             public static extern void PostEmptyEvent();
 
             /// <summary>
@@ -856,7 +856,7 @@ namespace GLFW.Net
             /// <para>EGL: The context of the specified window must be current on the calling thread.</para></remarks>
             /// <seealso cref="SwapInterval"/>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport(DllName, EntryPoint = "glfwSwapBuffers")]
+            [DllImport(DllName, EntryPoint = "glfwSwapBuffers", CallingConvention = CallingConvention.Cdecl)]
             public static extern void SwapBuffers(IntPtr window);
         }
     }
