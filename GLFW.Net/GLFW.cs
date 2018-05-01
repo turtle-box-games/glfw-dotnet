@@ -13,7 +13,7 @@ namespace GLFW.Net
         /// <para>If this function fails, it calls <see cref="Terminate"/> before returning.
         /// If it succeeds, you should call <see cref="Terminate"/> before the application exits.</para>
         /// <para>Additional calls to this function after successful initialization
-        /// but before termination will return <see cref="True"/> immediately.</para>
+        /// but before termination will return <c>true</c> immediately.</para>
         /// </summary>
         /// <returns><c>true</c> if the initialization finished successfully, <c>false</c> otherwise.</returns>
         /// <exception cref="PlatformErrorGLFWException">GLFW encounted a problem

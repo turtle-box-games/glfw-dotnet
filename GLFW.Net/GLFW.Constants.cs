@@ -2,10 +2,13 @@
 {
     public static partial class GLFW
     {
-        private const string DllName = "glfw3.dll";
+        private static partial class Internal
+        {
+            private const string DllName = "glfw3.dll";
 
-        private const int True = 1;
-        private const int False = 0;
-        private const int DontCare = -1;
+            public const int True = 1;
+            public const int False = 0;
+            public const int DontCare = -1;
+        }
     }
 }
