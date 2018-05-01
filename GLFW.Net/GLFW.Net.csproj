@@ -54,7 +54,10 @@
     <Compile Include="GLFW.Error.cs" />
     <Compile Include="GLFW.Init.cs" />
     <Compile Include="GLFW.Input.cs" />
+    <Compile Include="GLFW.Joystick.cs" />
+    <Compile Include="GLFW.Keyboard.cs" />
     <Compile Include="GLFW.Monitor.cs" />
+    <Compile Include="GLFW.Mouse.cs" />
     <Compile Include="GLFW.Window.cs" />
     <Compile Include="DeviceEvent.cs" />
     <Compile Include="GLFWException.cs" />
