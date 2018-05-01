@@ -13,31 +13,30 @@ namespace GLFW.Net
         /// <param name="description">UTF-8 encoded string containing the error message.</param>
         /// <returns>Corresponding exception representing the GLFW error.</returns>
         /// <exception cref="ArgumentOutOfRangeException">An unrecognized GLFW code was given.</exception>
-        private static GLFWException TranslateError(ErrorCode code, IntPtr description)
+        private static GLFWException TranslateError(ErrorCode code, string description)
         {
-            var managedDescription = description.FromNativeUtf8();
             switch (code)
             {
             case ErrorCode.NotInitialized:
-                return new NotInitializedGLFWException(managedDescription);
+                return new NotInitializedGLFWException(description);
             case ErrorCode.NoCurrentContext:
-                return new NoCurrentContextGLFWException(managedDescription);
+                return new NoCurrentContextGLFWException(description);
             case ErrorCode.InvalidEnum:
-                return new InvalidEnumGLFWException(managedDescription);
+                return new InvalidEnumGLFWException(description);
             case ErrorCode.InvalidValue:
-                return new InvalidValueGLFWException(managedDescription);
+                return new InvalidValueGLFWException(description);
             case ErrorCode.OutOfMemory:
-                return new OutOfMemoryGLFWException(managedDescription);
+                return new OutOfMemoryGLFWException(description);
             case ErrorCode.ApiUnavailable:
-                return new ApiUnavailableGLFWException(managedDescription);
+                return new ApiUnavailableGLFWException(description);
             case ErrorCode.VersionUnavailable:
-                return new VersionUnavailableGLFWException(managedDescription);
+                return new VersionUnavailableGLFWException(description);
             case ErrorCode.PlatformError:
-                return new PlatformErrorGLFWException(managedDescription);
+                return new PlatformErrorGLFWException(description);
             case ErrorCode.FormatUnavailable:
-                return new FormatUnavailableGLFWException(managedDescription);
+                return new FormatUnavailableGLFWException(description);
             case ErrorCode.NoWindowContext:
-                return new NoWindowContextGLFWException(managedDescription);
+                return new NoWindowContextGLFWException(description);
             default:
                 throw new ArgumentOutOfRangeException(nameof(code), code, "Unrecognized GLFW error code");
             }
@@ -57,7 +56,7 @@ namespace GLFW.Net
             // ex will be set to an exception if a GLFW error occurred.
             // The previous callback is stored so that it can be reset later.
             GLFWException ex = null;
-            var prevCallback = Internal.SetErrorCallback((code, description) => ex = TranslateError(code, description));
+            var prevCallback = SetErrorCallback((code, description) => ex = TranslateError(code, description));
             T result;
             
             // Wrap the code that might throw an exception.
@@ -73,7 +72,7 @@ namespace GLFW.Net
             {
                 // Ensure that the previous error callback is reset.
                 // This allows nested calls to GLFW functions.
-                Internal.SetErrorCallback(prevCallback);
+                SetErrorCallback(prevCallback);
             }
 
             // Throw the translated exception if an error occurred.
@@ -96,7 +95,7 @@ namespace GLFW.Net
             // ex will be set to an exception if a GLFW error occurred.
             // The previous callback is stored so that it can be reset later.
             GLFWException ex = null;
-            var prevCallback = Internal.SetErrorCallback((code, description) => ex = TranslateError(code, description));
+            var prevCallback = SetErrorCallback((code, description) => ex = TranslateError(code, description));
             
             // Wrap the code that might throw an exception.
             try
@@ -111,24 +110,45 @@ namespace GLFW.Net
             {
                 // Ensure that the previous error callback is reset.
                 // This allows nested calls to GLFW functions.
-                Internal.SetErrorCallback(prevCallback);
+                SetErrorCallback(prevCallback);
             }
 
             // Throw the translated exception if an error occurred.
             if (ex != null)
                 throw ex;
         }
+
+        /// <summary>
+        /// The function signature for error callbacks.
+        /// </summary>
+        /// <param name="errorCode">An error code.</param>
+        /// <param name="description">A UTF-8 encoded string describing the error.</param>
+        /// <seealso cref="SetErrorCallback"/>
+        internal delegate void ErrorCallback(ErrorCode errorCode,
+            [MarshalAs(UnmanagedType.LPUTF8Str)] string description);
+
+        /// <summary>
+        /// Sets the error callback.
+        /// <para>This function sets the error callback,
+        /// which is called with an error code and a human-readable description each time a GLFW error occurs.</para>
+        /// <para>The error callback is called on the thread where the error occurred.
+        /// If you are using GLFW from multiple threads, your error callback needs to be written accordingly.</para>
+        /// <para>Once set, the error callback remains set even after the library has been terminated.</para>
+        /// </summary>
+        /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
+        /// <returns>The previously set callback, or <c>null</c> if no callback was set.</returns>
+        /// <remarks>This function may be called before <see cref="Initialize"/>.</remarks>
+        internal static ErrorCallback SetErrorCallback(ErrorCallback callback)
+        {
+            var pointerForDelegate  = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
+            var prevCallbackPointer = Internal.SetErrorCallback(pointerForDelegate);
+            return prevCallbackPointer == IntPtr.Zero
+                ? null
+                : Marshal.GetDelegateForFunctionPointer<ErrorCallback>(prevCallbackPointer);
+        }
         
         private static partial class Internal
         {
-            /// <summary>
-            /// The function signature for error callbacks.
-            /// </summary>
-            /// <param name="errorCode">An error code.</param>
-            /// <param name="description">A UTF-8 encoded string describing the error.</param>
-            /// <seealso cref="SetErrorCallback"/>
-            public delegate void ErrorCallback(ErrorCode errorCode, IntPtr description);
-
             /// <summary>
             /// Sets the error callback.
             /// <para>This function sets the error callback,
@@ -145,9 +165,7 @@ namespace GLFW.Net
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
-            [return: MarshalAs(UnmanagedType.FunctionPtr)]
-            public static extern ErrorCallback SetErrorCallback(
-                [MarshalAs(UnmanagedType.FunctionPtr)] ErrorCallback callback);
+            public static extern IntPtr SetErrorCallback(IntPtr callback);
         }
     }
 }
