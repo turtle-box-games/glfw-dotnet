@@ -78,6 +78,96 @@ namespace GLFW.Net
             Marshal.Copy(axesPointer, axes, 0, Math.Min(count, axes.Length));
             return true;
         }
+
+        /// <summary>
+        /// Returns the state of all buttons of the specified joystick.
+        /// <para>This function returns the state of all buttons of the specified joystick.
+        /// Each element in the array is either
+        /// <see cref="JoystickButtonState.Press"/> or <see cref="JoystickButtonState.Release"/>.</para>
+        /// <para>Querying a joystick slot with no device present is not an error,
+        /// but will cause this function to return <c>null</c>.
+        /// Call <see cref="JoystickPresent"/> to check device presence.</para>
+        /// </summary>
+        /// <param name="joy">The joystick to query.</param>
+        /// <returns>An array of button states, or <c>null</c> if the joystick is not present.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
+        /// is outside the allowed range.</exception>
+        /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        internal static JoystickButtonState[] GetJoystickButtons(int joy)
+        {
+            var count = 0;
+            var statesPointer = CheckedCall(() => Internal.GetJoystickButtons(joy, out count));
+            if (statesPointer == IntPtr.Zero)
+                return null;
+            var buttonStates = new JoystickButtonState[count];
+            // ReSharper disable once PossibleInvalidCastException
+            Marshal.Copy(statesPointer, (byte[])(object)buttonStates, 0, count);
+            return buttonStates;
+        }
+
+        /// <summary>
+        /// Retrieves the state of all buttons of the specified joystick.
+        /// <para>This function gets the state of all buttons of the specified joystick.
+        /// Each element in the array is either
+        /// <see cref="JoystickButtonState.Press"/> or <see cref="JoystickButtonState.Release"/>.</para>
+        /// <para>Querying a joystick slot with no device present is not an error,
+        /// but will cause this function to return <c>false</c>.
+        /// Call <see cref="JoystickPresent"/> to check device presence.</para>
+        /// </summary>
+        /// <param name="joy">The joystick to query.</param>
+        /// <param name="buttonStates">Array to store joystick button states in.</param>
+        /// <returns><c>true</c> if the joystick is present, or <c>false</c> if it isn't.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
+        /// is outside the allowed range.</exception>
+        /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        internal static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
+        {
+            var count = 0;
+            var statesPointer = CheckedCall(() => Internal.GetJoystickButtons(joy, out count));
+            if (statesPointer == IntPtr.Zero)
+                return false;
+            // ReSharper disable once PossibleInvalidCastException
+            Marshal.Copy(statesPointer, (byte[])(object)buttonStates, 0, Math.Min(count, buttonStates.Length));
+            return true;
+        }
+
+        /// <summary>
+        /// Returns the name of the specified joystick.
+        /// <para>Querying a joystick slot with no device present is not an error,
+        /// but will cause this function to return <c>null</c>.
+        /// Call <see cref="JoystickPresent"/> to check device presence.</para>
+        /// </summary>
+        /// <param name="joy">The joystick to query.</param>
+        /// <returns>The UTF-8 encoded name of the joystick, or <c>null</c> if the joystick is not present.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
+        /// is outside the allowed range.</exception>
+        /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        internal static string GetJoystickName(int joy)
+        {
+            return CheckedCall(() => Internal.GetJoystickName(joy)).FromNativeUtf8();
+        }
+
+        /// <summary>
+        /// Sets the joystick configuration callback.
+        /// <para>This function sets the joystick configuration callback,
+        /// or removes the currently set callback.
+        /// This is called when a joystick is connected to or disconnected from the system.</para>
+        /// </summary>
+        /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
+        /// <returns>The previously set callback,
+        /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static JoystickCallback SetJoystickCallback(JoystickCallback callback)
+        {
+            var pointerForDelegate  = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
+            var prevCallbackPointer = Internal.SetJoystickCallback(pointerForDelegate);
+            return prevCallbackPointer == IntPtr.Zero
+                ? null
+                : Marshal.GetDelegateForFunctionPointer<JoystickCallback>(prevCallbackPointer);
+        }
         
         private static partial class Internal
         {
@@ -162,9 +252,7 @@ namespace GLFW.Net
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetJoystickCallback", CallingConvention = CallingConvention.Cdecl)]
-            [return: MarshalAs(UnmanagedType.FunctionPtr)]
-            public static extern JoystickCallback SetJoystickCallback(
-                [MarshalAs(UnmanagedType.FunctionPtr)] JoystickCallback cbfun);
+            public static extern IntPtr SetJoystickCallback(IntPtr cbfun);
         }
     }
 }
