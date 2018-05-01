@@ -105,6 +105,62 @@ namespace GLFW.Net
             return CheckedCall(() => Internal.GetClipboardString(window)).FromNativeUtf8();
         }
 
+        /// <summary>
+        /// Returns the number of seconds that have elapsed.
+        /// <para>This method returns the number of seconds that have passed since GLFW was initialized.
+        /// However, the value can be changed by calling <see cref="SetTimeInSeconds"/>.</para>
+        /// </summary>
+        /// <returns>Time span in seconds.</returns>
+        /// <remarks><para>The upper limit of the timer is calculated as <c>floor((2^64 - 1) / 10^9)</c>
+        /// and is due to implementations storing nanoseconds in 64 bits.</para></remarks>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <seealso cref="SetTimeInSeconds"/>
+        internal static double GetTimeInSeconds()
+        {
+            return CheckedCall(Internal.GetTime);
+        }
+
+        /// <summary>
+        /// Updates the timer to a known point in time.
+        /// The timer will count up for the set value.
+        /// </summary>
+        /// <param name="value">New value to set the timer to.
+        /// <para>The value must be a positive finite number less than or equal to 18446744073.0,
+        /// which is approximately 584.5 years.</para></param>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="InvalidValueGLFWException">The provided <paramref name="value"/> is invalid.
+        /// It must be a positive finite number less than or equal to 18446744073.0.</exception>
+        /// <seealso cref="GetTimeInSeconds"/>
+        internal static void SetTimeInSeconds(double value = 0d)
+        {
+            CheckedCall(() => Internal.SetTime(value));
+        }
+
+        /// <summary>
+        /// Returns the current value of the raw timer.
+        /// <para>This function returns the current value of the raw timer,
+        /// measured in <c>1 / frequency</c> seconds.
+        /// To get the frequency, call <see cref="GetTimerFrequency"/>.</para>
+        /// </summary>
+        /// <returns>The value of the timer, or zero if an error occurred.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <seealso cref="GetTimerFrequency"/>
+        internal static ulong GetTime()
+        {
+            return CheckedCall(Internal.GetTimerValue);
+        }
+
+        /// <summary>
+        /// Returns the frequency, in Hz, of the raw timer.
+        /// </summary>
+        /// <returns>The frequency of the timer, in Hz.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <seealso cref="GetTime"/>
+        internal static ulong GetTimerFrequency()
+        {
+            return CheckedCall(Internal.GetTimerFrequency);
+        }
+
         private static partial class Internal
         {
             /// <summary>
@@ -220,7 +276,7 @@ namespace GLFW.Net
             /// <summary>
             /// Returns the current value of the raw timer.
             /// <para>This function returns the current value of the raw timer,
-            /// measured in 1 / frequency seconds.
+            /// measured in <c>1 / frequency</c> seconds.
             /// To get the frequency, call <see cref="GetTimerFrequency"/>.</para>
             /// </summary>
             /// <returns>The value of the timer, or zero if an error occurred.</returns>
