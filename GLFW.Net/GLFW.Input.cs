@@ -6,6 +6,76 @@ namespace GLFW.Net
 {
     public static partial class GLFW
     {
+        /// <summary>
+        /// Retrieves the current mode for the cursor.
+        /// </summary>
+        /// <param name="window">Window the cursor mode applies to.</param>
+        /// <returns>Active mode for the cursor in <paramref name="window"/>.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static CursorMode GetCursorMode(IntPtr window)
+        {
+            return (CursorMode)CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.Cursor));
+        }
+
+        /// <summary>
+        /// Updates the current mode for the cursor.
+        /// </summary>
+        /// <param name="window">Window the cursor mode applies to.</param>
+        /// <param name="mode">Cursor mode to make active.</param>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="InvalidEnumGLFWException">The value of <paramref name="mode"/> is not allowed.</exception>
+        internal static void SetCursorMode(IntPtr window, CursorMode mode)
+        {
+            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.Cursor, (int) mode));
+        }
+
+        /// <summary>
+        /// Checks whether sticky keys is enabled.
+        /// </summary>
+        /// <param name="window">Window that sticky keys applies to.</param>
+        /// <returns><c>true</c> if sticky keys is enabled, or <c>false</c> if it isn't.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static bool GetStickyKeysEnabled(IntPtr window)
+        {
+            return CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.StickyKeys)) != Internal.False;
+        }
+
+        /// <summary>
+        /// Updatest whether sticky keys is enabled.
+        /// </summary>
+        /// <param name="window">Window that sticky keys applies to.</param>
+        /// <param name="enabled"><c>true</c> to enable sticky keys, or <c>false</c> to disable it.</param>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static void SetStickyKeysEnabled(IntPtr window, bool enabled = true)
+        {
+            var value = enabled ? Internal.True : Internal.False;
+            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.StickyKeys, value));
+        }
+
+        /// <summary>
+        /// Checks whether sticky mouse buttons is enabled.
+        /// </summary>
+        /// <param name="window">Window that sticky mouse buttons applies to.</param>
+        /// <returns><c>true</c> if sticky mouse buttons is enabled, or <c>false</c> if it isn't.</returns>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static bool GetStickyMouseButtonsEnabled(IntPtr window)
+        {
+            return CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons)) !=
+                   Internal.False;
+        }
+
+        /// <summary>
+        /// Updatest whether sticky mouse buttons is enabled.
+        /// </summary>
+        /// <param name="window">Window that sticky mouse buttons applies to.</param>
+        /// <param name="enabled"><c>true</c> to enable sticky mouse buttons, or <c>false</c> to disable it.</param>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        internal static void SetStickyMouseButtonsEnabled(IntPtr window, bool enabled = true)
+        {
+            var value = enabled ? Internal.True : Internal.False;
+            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.StickyMouseButtons, value));
+        }
+
         private static partial class Internal
         {
             /// <summary>
@@ -21,7 +91,7 @@ namespace GLFW.Net
             /// <seealso cref="SetInputMode"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwGetInputMode", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int GetInputMode(IntPtr window, InputMode mode);
+            public static extern int GetInputMode(IntPtr window, int mode);
 
             /// <summary>
             /// Sets an input option for the specified window.
@@ -56,7 +126,7 @@ namespace GLFW.Net
             /// <seealso cref="GetInputMode"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetInputMode", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void SetInputMode(IntPtr window, InputMode mode, int value);
+            public static extern void SetInputMode(IntPtr window, int mode, int value);
 
             /// <summary>
             /// Sets the clipboard to the specified string.
