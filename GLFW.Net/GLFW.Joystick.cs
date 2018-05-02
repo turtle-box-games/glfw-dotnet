@@ -26,9 +26,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool JoystickPresent(int joy)
         {
-            var result = Internal.JoystickPresent(joy) != Internal.False;
+            var result = Internal.JoystickPresent(joy);
             HandleError();
-            return result;
+            return result != Internal.False;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace GLFW.Net
                 return null;
             var buttonStates = new JoystickButtonState[count];
             // ReSharper disable once PossibleInvalidCastException
-            Marshal.Copy(statesPointer, (byte[])(object)buttonStates, 0, count);
+            Marshal.Copy(statesPointer, (byte[]) (object) buttonStates, 0, count);
             return buttonStates;
         }
 
@@ -131,7 +131,7 @@ namespace GLFW.Net
             if (statesPointer == IntPtr.Zero)
                 return false;
             // ReSharper disable once PossibleInvalidCastException
-            Marshal.Copy(statesPointer, (byte[])(object)buttonStates, 0, Math.Min(count, buttonStates.Length));
+            Marshal.Copy(statesPointer, (byte[]) (object) buttonStates, 0, Math.Min(count, buttonStates.Length));
             return true;
         }
 
@@ -149,9 +149,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static string GetJoystickName(int joy)
         {
-            var result = Internal.GetJoystickName(joy).FromNativeUtf8();
+            var result = Internal.GetJoystickName(joy);
             HandleError();
-            return result;
+            return result.FromNativeUtf8();
         }
 
         /// <summary>

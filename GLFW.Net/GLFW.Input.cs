@@ -40,9 +40,9 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static bool GetStickyKeysEnabled(IntPtr window)
         {
-            var result = Internal.GetInputMode(window, (int) InputMode.StickyKeys) != Internal.False;
+            var result = Internal.GetInputMode(window, (int) InputMode.StickyKeys);
             HandleError();
-            return result;
+            return result != Internal.False;
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static bool GetStickyMouseButtonsEnabled(IntPtr window)
         {
-            var result = Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons) != Internal.False;
+            var result = Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons);
             HandleError();
-            return result;
+            return result != Internal.False;
         }
 
         /// <summary>
@@ -111,9 +111,9 @@ namespace GLFW.Net
         /// <seealso cref="SetClipboardString"/>
         internal static string GetClipboardString(IntPtr window)
         {
-            var result = Internal.GetClipboardString(window).FromNativeUtf8();
+            var result = Internal.GetClipboardString(window);
             HandleError();
-            return result;
+            return result.FromNativeUtf8();
         }
 
         /// <summary>

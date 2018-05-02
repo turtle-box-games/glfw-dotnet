@@ -112,16 +112,10 @@ namespace GLFW.Net
         internal static bool ExtensionSupported(string extension)
         {
             var stringPointer = Marshal.StringToHGlobalAnsi(extension);
-            try
-            {
-                var result = Internal.ExtensionSupported(stringPointer) != Internal.False;
-                HandleError();
-                return result;
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(stringPointer);
-            }
+            var result        = Internal.ExtensionSupported(stringPointer);
+            Marshal.FreeHGlobal(stringPointer);
+            HandleError();
+            return result != Internal.False;
         }
 
         /// <summary>
@@ -147,16 +141,10 @@ namespace GLFW.Net
         internal static Proc GetProc(string procName)
         {
             var stringPointer = Marshal.StringToHGlobalAnsi(procName);
-            try
-            {
-                var procAddress = Internal.GetProcAddress(stringPointer);
-                HandleError();
-                return procAddress == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<Proc>(procAddress);
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(stringPointer);
-            }
+            var procAddress   = Internal.GetProcAddress(stringPointer);
+            Marshal.FreeHGlobal(stringPointer);
+            HandleError();
+            return procAddress == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<Proc>(procAddress);
         }
         
         private static partial class Internal

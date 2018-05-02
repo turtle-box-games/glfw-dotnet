@@ -54,9 +54,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static string GetKeyName(Key key, int scancode)
         {
-            var result = Internal.GetKeyName((int) key, scancode).FromNativeUtf8();
+            var result = Internal.GetKeyName((int) key, scancode);
             HandleError();
-            return result;
+            return result.FromNativeUtf8();
         }
 
         /// <summary>
