@@ -26,7 +26,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool JoystickPresent(int joy)
         {
-            return CheckedCall(() => Internal.JoystickPresent(joy)) != Internal.False;
+            var result = Internal.JoystickPresent(joy) != Internal.False;
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -45,8 +47,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static float[] GetJoystickAxes(int joy)
         {
-            var count = 0;
-            var axesPointer = CheckedCall(() => Internal.GetJoystickAxes(joy, out count));
+            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
+            HandleError();
             if (axesPointer == IntPtr.Zero)
                 return null;
             var axes = new float[count];
@@ -71,8 +73,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool GetJoystickAxes(int joy, ref float[] axes)
         {
-            var count = 0;
-            var axesPointer = CheckedCall(() => Internal.GetJoystickAxes(joy, out count));
+            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
+            HandleError();
             if (axesPointer == IntPtr.Zero)
                 return false;
             Marshal.Copy(axesPointer, axes, 0, Math.Min(count, axes.Length));
@@ -96,8 +98,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static JoystickButtonState[] GetJoystickButtons(int joy)
         {
-            var count = 0;
-            var statesPointer = CheckedCall(() => Internal.GetJoystickButtons(joy, out count));
+            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
+            HandleError();
             if (statesPointer == IntPtr.Zero)
                 return null;
             var buttonStates = new JoystickButtonState[count];
@@ -124,8 +126,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
         {
-            var count = 0;
-            var statesPointer = CheckedCall(() => Internal.GetJoystickButtons(joy, out count));
+            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
+            HandleError();
             if (statesPointer == IntPtr.Zero)
                 return false;
             // ReSharper disable once PossibleInvalidCastException
@@ -147,7 +149,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static string GetJoystickName(int joy)
         {
-            return CheckedCall(() => Internal.GetJoystickName(joy)).FromNativeUtf8();
+            var result = Internal.GetJoystickName(joy).FromNativeUtf8();
+            HandleError();
+            return result;
         }
 
         /// <summary>

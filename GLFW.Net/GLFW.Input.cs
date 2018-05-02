@@ -14,7 +14,9 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static CursorMode GetCursorMode(IntPtr window)
         {
-            return (CursorMode)CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.Cursor));
+            var result = Internal.GetInputMode(window, (int) InputMode.Cursor);
+            HandleError();
+            return (CursorMode) result;
         }
 
         /// <summary>
@@ -26,7 +28,8 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The value of <paramref name="mode"/> is not allowed.</exception>
         internal static void SetCursorMode(IntPtr window, CursorMode mode)
         {
-            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.Cursor, (int) mode));
+            Internal.SetInputMode(window, (int) InputMode.Cursor, (int) mode);
+            HandleError();
         }
 
         /// <summary>
@@ -37,7 +40,9 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static bool GetStickyKeysEnabled(IntPtr window)
         {
-            return CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.StickyKeys)) != Internal.False;
+            var result = Internal.GetInputMode(window, (int) InputMode.StickyKeys) != Internal.False;
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -49,7 +54,8 @@ namespace GLFW.Net
         internal static void SetStickyKeysEnabled(IntPtr window, bool enabled = true)
         {
             var value = enabled ? Internal.True : Internal.False;
-            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.StickyKeys, value));
+            Internal.SetInputMode(window, (int) InputMode.StickyKeys, value);
+            HandleError();
         }
 
         /// <summary>
@@ -60,8 +66,9 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static bool GetStickyMouseButtonsEnabled(IntPtr window)
         {
-            return CheckedCall(() => Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons)) !=
-                   Internal.False;
+            var result = Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons) != Internal.False;
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -73,7 +80,8 @@ namespace GLFW.Net
         internal static void SetStickyMouseButtonsEnabled(IntPtr window, bool enabled = true)
         {
             var value = enabled ? Internal.True : Internal.False;
-            CheckedCall(() => Internal.SetInputMode(window, (int) InputMode.StickyMouseButtons, value));
+            Internal.SetInputMode(window, (int) InputMode.StickyMouseButtons, value);
+            HandleError();
         }
 
         /// <summary>
@@ -87,7 +95,8 @@ namespace GLFW.Net
         internal static void SetClipboardString(IntPtr window, string clip)
         {
             var clipPointer = clip.ToNativeUtf8();
-            CheckedCall(() => Internal.SetClipboardString(window, clipPointer));
+            Internal.SetClipboardString(window, clipPointer);
+            HandleError();
         }
 
         /// <summary>
@@ -102,7 +111,9 @@ namespace GLFW.Net
         /// <seealso cref="SetClipboardString"/>
         internal static string GetClipboardString(IntPtr window)
         {
-            return CheckedCall(() => Internal.GetClipboardString(window)).FromNativeUtf8();
+            var result = Internal.GetClipboardString(window).FromNativeUtf8();
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -117,7 +128,9 @@ namespace GLFW.Net
         /// <seealso cref="SetTimeInSeconds"/>
         internal static double GetTimeInSeconds()
         {
-            return CheckedCall(Internal.GetTime);
+            var result = Internal.GetTime();
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -133,7 +146,8 @@ namespace GLFW.Net
         /// <seealso cref="GetTimeInSeconds"/>
         internal static void SetTimeInSeconds(double value = 0d)
         {
-            CheckedCall(() => Internal.SetTime(value));
+            Internal.SetTime(value);
+            HandleError();
         }
 
         /// <summary>
@@ -147,7 +161,9 @@ namespace GLFW.Net
         /// <seealso cref="GetTimerFrequency"/>
         internal static ulong GetTime()
         {
-            return CheckedCall(Internal.GetTimerValue);
+            var result = Internal.GetTimerValue();
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -158,7 +174,9 @@ namespace GLFW.Net
         /// <seealso cref="GetTime"/>
         internal static ulong GetTimerFrequency()
         {
-            return CheckedCall(Internal.GetTimerFrequency);
+            var result = Internal.GetTimerFrequency();
+            HandleError();
+            return result;
         }
 
         private static partial class Internal

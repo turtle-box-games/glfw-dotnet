@@ -54,7 +54,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static string GetKeyName(Key key, int scancode)
         {
-            return CheckedCall(() => Internal.GetKeyName((int) key, scancode)).FromNativeUtf8();
+            var result = Internal.GetKeyName((int) key, scancode).FromNativeUtf8();
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -80,7 +82,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static KeyAction GetKey(IntPtr window, Key key)
         {
-            return (KeyAction) CheckedCall(() => Internal.GetKey(window, (int) key));
+            var result = Internal.GetKey(window, (int) key);
+            HandleError();
+            return (KeyAction) result;
         }
 
         /// <summary>

@@ -17,14 +17,15 @@ namespace GLFW.Net
         /// <para>Additional calls to this function after successful initialization
         /// but before termination will return <c>true</c> immediately.</para>
         /// </summary>
-        /// <returns><c>true</c> if the initialization finished successfully, <c>false</c> otherwise.</returns>
         /// <exception cref="PlatformErrorGLFWException">GLFW encounted a problem
         /// initializing on this platform.</exception>
         /// <remarks>If initialization fails, there's no need to call <see cref="Terminate"/>.</remarks>
         /// <seealso cref="Terminate"/>
-        public static bool Initialize()
+        public static void Initialize()
         {
-            return CheckedCall(Internal.Init);
+            InitializeErrorHandler();
+            Internal.Init();
+            HandleError();
         }
 
         /// <summary>
@@ -47,7 +48,9 @@ namespace GLFW.Net
         /// <seealso cref="Initialize"/>
         public static void Terminate()
         {
-            CheckedCall(Internal.Terminate);
+            Internal.Terminate();
+            HandleError();
+            RemoveErrorHandler();
         }
 
         /// <summary>
@@ -80,7 +83,8 @@ namespace GLFW.Net
             var pointerForDelegate = callback.EqualsDefault()
                 ? IntPtr.Zero
                 : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = CheckedCall(() => setter(pointerForDelegate));
+            var prevCallbackPointer = setter(pointerForDelegate);
+            HandleError();
             return prevCallbackPointer == IntPtr.Zero
                 ? default(TDelegate)
                 : Marshal.GetDelegateForFunctionPointer<TDelegate>(prevCallbackPointer);
@@ -100,7 +104,8 @@ namespace GLFW.Net
             var pointerForDelegate = callback.EqualsDefault()
                 ? IntPtr.Zero
                 : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = CheckedCall(() => setter(window, pointerForDelegate));
+            var prevCallbackPointer = setter(window, pointerForDelegate);
+            HandleError();
             return prevCallbackPointer == IntPtr.Zero
                 ? default(TDelegate)
                 : Marshal.GetDelegateForFunctionPointer<TDelegate>(prevCallbackPointer);

@@ -32,7 +32,8 @@ namespace GLFW.Net
         /// <seealso cref="GetCurrentContext"/>
         internal static void MakeContextCurrent(IntPtr window)
         {
-            CheckedCall(() => Internal.MakeContextCurrent(window));
+            Internal.MakeContextCurrent(window);
+            HandleError();
         }
 
         /// <summary>
@@ -46,7 +47,9 @@ namespace GLFW.Net
         /// <seealso cref="MakeContextCurrent"/>
         internal static IntPtr GetCurrentContext()
         {
-            return CheckedCall(Internal.GetCurrentContext);
+            var result = Internal.GetCurrentContext();
+            HandleError();
+            return result;
         }
 
         /// <summary>
@@ -80,7 +83,8 @@ namespace GLFW.Net
         /// <seealso cref="SwapBuffers"/>
         internal static void SetSwapInterval(int interval)
         {
-            CheckedCall(() => Internal.SwapInterval(interval));
+            Internal.SwapInterval(interval);
+            HandleError();
         }
 
         /// <summary>
@@ -110,7 +114,9 @@ namespace GLFW.Net
             var stringPointer = Marshal.StringToHGlobalAnsi(extension);
             try
             {
-                return CheckedCall(() => Internal.ExtensionSupported(stringPointer)) != Internal.False;
+                var result = Internal.ExtensionSupported(stringPointer) != Internal.False;
+                HandleError();
+                return result;
             }
             finally
             {
@@ -143,7 +149,8 @@ namespace GLFW.Net
             var stringPointer = Marshal.StringToHGlobalAnsi(procName);
             try
             {
-                var procAddress = CheckedCall(() => Internal.GetProcAddress(stringPointer));
+                var procAddress = Internal.GetProcAddress(stringPointer);
+                HandleError();
                 return procAddress == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<Proc>(procAddress);
             }
             finally
