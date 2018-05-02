@@ -1,6 +1,6 @@
 ﻿namespace GLFW.Net
 {
-    public enum KeyAction
+    public enum KeyState
     {
         Release = 0,
         

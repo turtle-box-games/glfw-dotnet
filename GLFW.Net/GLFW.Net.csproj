@@ -65,7 +65,7 @@
     <Compile Include="InvalidEnumGLFWException.cs" />
     <Compile Include="InvalidValueGLFWException.cs" />
     <Compile Include="Key.cs" />
-    <Compile Include="KeyAction.cs" />
+    <Compile Include="KeyState.cs" />
     <Compile Include="ModifierKey.cs" />
     <Compile Include="Monitor.cs" />
     <Compile Include="MouseButton.cs" />

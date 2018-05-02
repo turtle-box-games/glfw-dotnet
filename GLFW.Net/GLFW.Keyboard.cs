@@ -12,10 +12,10 @@ namespace GLFW.Net
         /// <param name="window">The window that received the event.</param>
         /// <param name="key">The keyboard key that was pressed or released.</param>
         /// <param name="scancode">The system-specific scancode of the key.</param>
-        /// <param name="action">One of <see cref="KeyAction"/>.</param>
+        /// <param name="state">One of <see cref="KeyState"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        internal delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyAction action, ModifierKey mods);
+        internal delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyState state, ModifierKey mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -62,10 +62,10 @@ namespace GLFW.Net
         /// <summary>
         /// Returns the last reported state of a keyboard key for the specified window.
         /// <para>This function returns the last state reported for the specified key to the specified window.
-        /// The returned state is one of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.
-        /// The higher-level action <see cref="KeyAction.Repeat"/> is only reported to the key callback.</para>
+        /// The returned state is one of <see cref="KeyState.Press"/> or <see cref="KeyState.Release"/>.
+        /// The higher-level action <see cref="KeyState.Repeat"/> is only reported to the key callback.</para>
         /// <para>If the <see cref="InputMode.StickyKeys"/> input mode is enabled,
-        /// this function returns <see cref="KeyAction.Press"/> the first time you call it for a key that was pressed,
+        /// this function returns <see cref="KeyState.Press"/> the first time you call it for a key that was pressed,
         /// even if that key has already been released.</para>
         /// <para>The key functions deal with physical keys,
         /// with key tokens named after their use on the standard US keyboard layout.
@@ -76,15 +76,15 @@ namespace GLFW.Net
         /// <param name="window">The desired window.</param>
         /// <param name="key">The desired keyboard key.
         /// <see cref="Key.Unknown"/> is not a valid key for this function.</param>
-        /// <returns>One of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.</returns>
+        /// <returns>One of <see cref="KeyState.Press"/> or <see cref="KeyState.Release"/>.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="key"/> provided is invalid.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static KeyAction GetKey(IntPtr window, Key key)
+        internal static KeyState GetKey(IntPtr window, Key key)
         {
             var result = Internal.GetKey(window, (int) key);
             HandleError();
-            return (KeyAction) result;
+            return (KeyState) result;
         }
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace GLFW.Net
             /// <summary>
             /// Returns the last reported state of a keyboard key for the specified window.
             /// <para>This function returns the last state reported for the specified key to the specified window.
-            /// The returned state is one of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.
-            /// The higher-level action <see cref="KeyAction.Repeat"/> is only reported to the key callback.</para>
+            /// The returned state is one of <see cref="KeyState.Press"/> or <see cref="KeyState.Release"/>.
+            /// The higher-level action <see cref="KeyState.Repeat"/> is only reported to the key callback.</para>
             /// <para>If the <see cref="InputMode.StickyKeys"/> input mode is enabled,
-            /// this function returns <see cref="KeyAction.Press"/> the first time you call it for a key that was pressed,
+            /// this function returns <see cref="KeyState.Press"/> the first time you call it for a key that was pressed,
             /// even if that key has already been released.</para>
             /// <para>The key functions deal with physical keys,
             /// with key tokens named after their use on the standard US keyboard layout.
@@ -201,7 +201,7 @@ namespace GLFW.Net
             /// <param name="window">The desired window.</param>
             /// <param name="key">The desired keyboard key.
             /// <see cref="Key.Unknown"/> is not a valid key for this function.</param>
-            /// <returns>One of <see cref="KeyAction.Press"/> or <see cref="KeyAction.Release"/>.</returns>
+            /// <returns>One of <see cref="KeyState.Press"/> or <see cref="KeyState.Release"/>.</returns>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.InvalidEnum"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]

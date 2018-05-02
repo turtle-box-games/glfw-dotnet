@@ -206,7 +206,7 @@ namespace GLFW.Net
             /// <para>If the mode is <see cref="InputMode.StickyKeys"/>,
             /// the value must be either <see cref="True"/> to enable sticky keys, or <see cref="False"/> to disable it.
             /// If sticky keys are enabled,
-            /// a key press will ensure that <see cref="GetKey"/> returns <see cref="KeyAction.Press"/>
+            /// a key press will ensure that <see cref="GetKey"/> returns <see cref="KeyState.Press"/>
             /// the next time it is called even if the key had been released before the call.
             /// This is useful when you are only interested in whether keys have been pressed
             /// but not when or in which order.</para>
