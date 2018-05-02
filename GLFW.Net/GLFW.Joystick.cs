@@ -152,8 +152,7 @@ namespace GLFW.Net
 
         /// <summary>
         /// Sets the joystick configuration callback.
-        /// <para>This function sets the joystick configuration callback,
-        /// or removes the currently set callback.
+        /// <para>This function sets the joystick configuration callback, or removes the currently set callback.
         /// This is called when a joystick is connected to or disconnected from the system.</para>
         /// </summary>
         /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
@@ -162,11 +161,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static JoystickCallback SetJoystickCallback(JoystickCallback callback)
         {
-            var pointerForDelegate  = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = Internal.SetJoystickCallback(pointerForDelegate);
-            return prevCallbackPointer == IntPtr.Zero
-                ? null
-                : Marshal.GetDelegateForFunctionPointer<JoystickCallback>(prevCallbackPointer);
+            return SetInternalCallback(Internal.SetJoystickCallback, callback);
         }
         
         private static partial class Internal

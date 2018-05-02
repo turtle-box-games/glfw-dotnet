@@ -108,11 +108,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static KeyCallback SetKeyCallback(IntPtr window, KeyCallback callback)
         {
-            var pointerForDelegate  = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = Internal.SetKeyCallback(window, pointerForDelegate);
-            return prevCallbackPointer == IntPtr.Zero
-                ? null
-                : Marshal.GetDelegateForFunctionPointer<KeyCallback>(prevCallbackPointer);
+            return SetInternalCallback(Internal.SetKeyCallback, callback, window);
         }
 
         /// <summary>
@@ -136,11 +132,7 @@ namespace GLFW.Net
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
         internal static CharacterCallback SetCharacterCallback(IntPtr window, CharacterCallback callback)
         {
-            var pointerForDelegate  = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = Internal.SetCharCallback(window, pointerForDelegate);
-            return prevCallbackPointer == IntPtr.Zero
-                ? null
-                : Marshal.GetDelegateForFunctionPointer<CharacterCallback>(prevCallbackPointer);
+            return SetInternalCallback(Internal.SetCharCallback, callback, window);
         }
 
         /// <summary>
@@ -163,11 +155,7 @@ namespace GLFW.Net
         internal static CharacterModifierCallback SetCharacterModifierCallback(IntPtr window,
             CharacterModifierCallback callback)
         {
-            var pointerForDelegate = callback == null ? IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
-            var prevCallbackPointer = Internal.SetCharModsCallback(window, pointerForDelegate);
-            return prevCallbackPointer == IntPtr.Zero
-                ? null
-                : Marshal.GetDelegateForFunctionPointer<CharacterModifierCallback>(prevCallbackPointer);
+            return SetInternalCallback(Internal.SetCharModsCallback, callback, window);
         }
 
         private static partial class Internal
