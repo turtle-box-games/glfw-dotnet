@@ -133,12 +133,12 @@ namespace GLFW.Net
             /// If you wish to use it after the callback returns, you need to make a copy.</para>
             /// <para>Once set, the error callback remains set even after the library has been terminated.</para>
             /// </summary>
-            /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
             /// <returns>The previously set callback, or <c>null</c> if no callback was set.</returns>
             /// <remarks>This function may be called before <see cref="Init"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetErrorCallback", CallingConvention = CallingConvention.Cdecl)]
-            public static extern IntPtr SetErrorCallback(IntPtr callback);
+            public static extern IntPtr SetErrorCallback(IntPtr cbfun);
         }
     }
 }
