@@ -26,7 +26,8 @@ namespace GLFW.Net
         /// <seealso cref="GetPrimaryMonitor"/>
         internal static IntPtr[] GetMonitors()
         {
-            var arrayPointer = Internal.GetMonitors(out var count);
+            int count;
+            var arrayPointer = Internal.GetMonitors(out count);
             HandleError();
             if (arrayPointer == IntPtr.Zero)
                 return new IntPtr[0];
@@ -128,7 +129,8 @@ namespace GLFW.Net
         /// <seealso cref="GetVideoMode"/>
         internal static IntPtr[] GetVideoModes(IntPtr monitor)
         {
-            var modesPointer = Internal.GetVideoModes(monitor, out var count);
+            int count;
+            var modesPointer = Internal.GetVideoModes(monitor, out count);
             HandleError();
             var modes = new IntPtr[count];
             Marshal.Copy(modesPointer, modes, 0, count);

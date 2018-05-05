@@ -47,7 +47,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static float[] GetJoystickAxes(int joy)
         {
-            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
+            int count;
+            var axesPointer = Internal.GetJoystickAxes(joy, out count);
             HandleError();
             if (axesPointer == IntPtr.Zero)
                 return null;
@@ -73,7 +74,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool GetJoystickAxes(int joy, ref float[] axes)
         {
-            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
+            int count;
+            var axesPointer = Internal.GetJoystickAxes(joy, out count);
             HandleError();
             if (axesPointer == IntPtr.Zero)
                 return false;
@@ -98,7 +100,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static JoystickButtonState[] GetJoystickButtons(int joy)
         {
-            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
+            int count;
+            var statesPointer = Internal.GetJoystickButtons(joy, out count);
             HandleError();
             if (statesPointer == IntPtr.Zero)
                 return null;
@@ -126,7 +129,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
         {
-            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
+            int count;
+            var statesPointer = Internal.GetJoystickButtons(joy, out count);
             HandleError();
             if (statesPointer == IntPtr.Zero)
                 return false;
