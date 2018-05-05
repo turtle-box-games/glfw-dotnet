@@ -74,7 +74,8 @@ namespace GLFW.Net
         /// <seealso cref="WindowHint"/>
         internal static void DefaultWindowHints()
         {
-            throw new NotImplementedException();
+            Internal.DefaultWindowHints();
+            HandleError();
         }
 
         /// <summary>
@@ -183,7 +184,10 @@ namespace GLFW.Net
         /// <seealso cref="DestroyWindow"/>
         internal static IntPtr CreateWindow(int width, int height, string title, IntPtr monitor, IntPtr share)
         {
-            throw new NotImplementedException();
+            var titlePointer  = title.ToNativeUtf8();
+            var windowPointer = Internal.CreateWindow(width, height, titlePointer, monitor, share);
+            HandleError();
+            return windowPointer;
         }
 
         /// <summary>
@@ -202,7 +206,8 @@ namespace GLFW.Net
         /// <seealso cref="CreateWindow"/>
         internal static void DestroyWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.DestroyWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -211,9 +216,11 @@ namespace GLFW.Net
         /// <param name="window">The window to query.</param>
         /// <returns>The value of the close flag.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static int WindowShouldClose(IntPtr window)
+        internal static bool WindowShouldClose(IntPtr window)
         {
-            throw new NotImplementedException();
+            var result = Internal.WindowShouldClose(window);
+            HandleError();
+            return result != Internal.False;
         }
 
         /// <summary>
@@ -225,9 +232,11 @@ namespace GLFW.Net
         /// <param name="window">The window whose flag to change.</param>
         /// <param name="value">The new value.</param>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static void SetWindowShouldClose(IntPtr window, int value)
+        internal static void SetWindowShouldClose(IntPtr window, bool value = true)
         {
-            throw new NotImplementedException();
+            var intValue = value ? Internal.True : Internal.False;
+            Internal.SetWindowShouldClose(window, intValue);
+            HandleError();
         }
 
         /// <summary>
@@ -242,7 +251,9 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static void SetWindowTitle(IntPtr window, string title)
         {
-            throw new NotImplementedException();
+            var titlePointer = title.ToNativeUtf8();
+            Internal.SetWindowTitle(window, titlePointer);
+            HandleError();
         }
 
         /// <summary>
@@ -285,7 +296,8 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowPos"/>
         internal static void GetWindowPos(IntPtr window, out int xpos, out int ypos)
         {
-            throw new NotImplementedException();
+            Internal.GetWindowPos(window, out xpos, out ypos);
+            HandleError();
         }
 
         /// <summary>
@@ -306,7 +318,8 @@ namespace GLFW.Net
         /// <seealso cref="GetWindowPos"/>
         internal static void SetWindowPos(IntPtr window, int xpos, int ypos)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowPos(window, xpos, ypos);
+            HandleError();
         }
 
         /// <summary>
@@ -324,7 +337,8 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowSize"/>
         internal static void GetWindowSize(IntPtr window, out int width, out int height)
         {
-            throw new NotImplementedException();
+            Internal.GetWindowSize(window, out width, out height);
+            HandleError();
         }
 
         /// <summary>
@@ -347,7 +361,8 @@ namespace GLFW.Net
         internal static void SetWindowSizeLimits(IntPtr window, int minWidth, int minHeight, int maxWidth,
             int maxHeight)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowSizeLimits(window, minWidth, minHeight, maxWidth, maxHeight);
+            HandleError();
         }
 
         /// <summary>
@@ -374,7 +389,8 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowSizeLimits"/>
         internal static void SetWindowAspectRatio(IntPtr window, int numer, int denom)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowAspectRatio(window, numer, denom);
+            HandleError();
         }
 
         /// <summary>
@@ -396,7 +412,8 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowMonitor"/>
         internal static void SetWindowSize(IntPtr window, int width, int height)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowSize(window, width, height);
+            HandleError();
         }
 
         /// <summary>
@@ -413,7 +430,8 @@ namespace GLFW.Net
         /// <seealso cref="SetFrameBufferSizeCallback"/>
         internal static void GetFramebufferSize(IntPtr window, out int width, out int height)
         {
-            throw new NotImplementedException();
+            Internal.GetFramebufferSize(window, out width, out height);
+            HandleError();
         }
 
         /// <summary>
@@ -440,7 +458,8 @@ namespace GLFW.Net
         internal static void GetWindowFrameSize(IntPtr window, out int left, out int top, out int right,
             out int bottom)
         {
-            throw new NotImplementedException();
+            Internal.GetWindowFrameSize(window, out left, out top, out right, out bottom);
+            HandleError();
         }
 
         /// <summary>
@@ -457,7 +476,8 @@ namespace GLFW.Net
         /// <seealso cref="MaximizeWindow"/>
         internal static void IconifyWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.IconifyWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -474,7 +494,8 @@ namespace GLFW.Net
         /// <seealso cref="MaximizeWindow"/>
         internal static void RestoreWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.RestoreWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -490,7 +511,8 @@ namespace GLFW.Net
         /// <seealso cref="RestoreWindow"/>
         internal static void MaximizeWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.MaximizeWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -504,7 +526,8 @@ namespace GLFW.Net
         /// <seealso cref="HideWindow"/>
         internal static void ShowWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.ShowWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -518,7 +541,8 @@ namespace GLFW.Net
         /// <seealso cref="ShowWindow"/>
         internal static void HideWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.HideWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -536,7 +560,8 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         internal static void FocusWindow(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.FocusWindow(window);
+            HandleError();
         }
 
         /// <summary>
@@ -548,7 +573,9 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowMonitor"/>
         internal static IntPtr GetWindowMonitor(IntPtr window)
         {
-            throw new NotImplementedException();
+            var monitorPointer = Internal.GetWindowMonitor(window);
+            HandleError();
+            return monitorPointer;
         }
 
         /// <summary>
@@ -582,7 +609,8 @@ namespace GLFW.Net
         internal static void SetWindowMonitor(IntPtr window, IntPtr monitor, int xpos, int ypos, int width,
             int height, int refreshRate)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowMonitor(window, monitor, xpos, ypos, width, height, refreshRate);
+            HandleError();
         }
 
         /// <summary>
@@ -619,7 +647,8 @@ namespace GLFW.Net
         /// <seealso cref="GetWindowUserPointer"/>
         internal static void SetWindowUserPointer(IntPtr window, IntPtr pointer)
         {
-            throw new NotImplementedException();
+            Internal.SetWindowUserPointer(window, pointer);
+            HandleError();
         }
 
         /// <summary>
@@ -633,7 +662,9 @@ namespace GLFW.Net
         /// <seealso cref="SetWindowUserPointer"/>
         internal static IntPtr GetWindowUserPointer(IntPtr window)
         {
-            throw new NotImplementedException();
+            var pointer = Internal.GetWindowUserPointer(window);
+            HandleError();
+            return pointer;
         }
 
         /// <summary>
@@ -650,7 +681,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowPosCallback SetWindowPosCallback(IntPtr window, WindowPosCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowPosCallback, callback, window);
         }
 
         /// <summary>
@@ -666,7 +697,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowSizeCallback SetWindowSizeCallback(IntPtr window, WindowSizeCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowSizeCallback, callback, window);
         }
 
         /// <summary>
@@ -687,7 +718,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowCloseCallback SetWindowCloseCallback(IntPtr window, WindowCloseCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowCloseCallback, callback, window);
         }
 
         /// <summary>
@@ -706,7 +737,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowRefreshCallback SetWindowRefreshCallback(IntPtr window, WindowRefreshCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowRefreshCallback, callback, window);
         }
 
         /// <summary>
@@ -724,7 +755,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowFocusCallback SetWindowFocusCallback(IntPtr window, WindowFocusCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowFocusCallback, callback, window);
         }
 
         /// <summary>
@@ -742,7 +773,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         internal static WindowIconifyCallback SetWindowIconifyCallback(IntPtr window, WindowIconifyCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetWindowIconifyCallback, callback, window);
         }
 
         /// <summary>
@@ -758,7 +789,7 @@ namespace GLFW.Net
         internal static FrameBufferSizeCallback SetFrameBufferSizeCallback(IntPtr window,
             FrameBufferSizeCallback callback)
         {
-            throw new NotImplementedException();
+            return SetInternalCallback(Internal.SetFrameBufferSizeCallback, callback, window);
         }
 
         /// <summary>
@@ -783,7 +814,8 @@ namespace GLFW.Net
         /// <seealso cref="WaitEventsTimeout"/>
         internal static void PollEvents()
         {
-            throw new NotImplementedException();
+            Internal.PollEvents();
+            HandleError();
         }
 
         /// <summary>
@@ -815,7 +847,8 @@ namespace GLFW.Net
         /// <seealso cref="WaitEventsTimeout"/>
         internal static void WaitEvents()
         {
-            throw new NotImplementedException();
+            Internal.WaitEvents();
+            HandleError();
         }
 
         /// <summary>
@@ -848,7 +881,8 @@ namespace GLFW.Net
         /// <seealso cref="WaitEvents"/>
         internal static void WaitEventsTimeout(double timeout)
         {
-            throw new NotImplementedException();
+            Internal.WaitEventsTimeout(timeout);
+            HandleError();
         }
 
         /// <summary>
@@ -865,7 +899,8 @@ namespace GLFW.Net
         /// <seealso cref="WaitEventsTimeout"/>
         internal static void PostEmptyEvent()
         {
-            throw new NotImplementedException();
+            Internal.PostEmptyEvent();
+            HandleError();
         }
 
         /// <summary>
@@ -889,7 +924,8 @@ namespace GLFW.Net
         /// <seealso cref="SwapInterval"/>
         internal static void SwapBuffers(IntPtr window)
         {
-            throw new NotImplementedException();
+            Internal.SwapBuffers(window);
+            HandleError();
         }
     
         private static partial class Internal
