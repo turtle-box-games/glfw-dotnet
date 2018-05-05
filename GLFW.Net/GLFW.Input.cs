@@ -162,7 +162,7 @@ namespace GLFW.Net
         internal static ulong GetTime()
         {
             var result = Internal.GetTimerValue();
-            HandleError();
+            HandleError(); // TODO: This call is really expensive for this method (x2 slowdown).
             return result;
         }
 
