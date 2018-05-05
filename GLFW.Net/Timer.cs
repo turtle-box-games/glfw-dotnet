@@ -65,6 +65,7 @@ namespace GLFW.Net
         /// Creates a new timer.
         /// The timer starts immediately after creation.
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         public Timer()
         {
             Reset();
@@ -73,11 +74,13 @@ namespace GLFW.Net
         /// <summary>
         /// Gets the elapsed time that has elapsed in units used by the underlying timer.
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         private long RawTime => (long) (GLFW.GetTime() - _offset);
 
         /// <summary>
         /// Resets the timer to zero and begins counting again.
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         public void Reset()
         {
             _offset = GLFW.GetTime();
@@ -90,6 +93,7 @@ namespace GLFW.Net
         /// 1 millisecond is 10,000 ticks.
         /// 1 second is 10,000,000 ticks.</para>
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         public long Ticks
         {
             get
@@ -103,6 +107,7 @@ namespace GLFW.Net
         /// <summary>
         /// Retrieves the number of nanoseconds that have elapsed since the timer was started.
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         public long Nanoseconds
         {
             get
@@ -116,6 +121,7 @@ namespace GLFW.Net
         /// <summary>
         /// Retrieves the time that has passed as a span.
         /// </summary>
+        /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         public TimeSpan Elapsed => new TimeSpan(Ticks);
 
         /// <summary>
@@ -127,16 +133,31 @@ namespace GLFW.Net
             /// <summary>
             /// Number of seconds that have passed since GLFW was initialized or the global timer was modified.
             /// </summary>
+            /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+            /// <exception cref="ArgumentOutOfRangeException">The new timer value must be greater than or equal to zero
+            /// and less than 18,446,744,073.</exception>
             public static double Seconds
             {
                 get { return GLFW.GetTimeInSeconds(); }
-                set { GLFW.SetTimeInSeconds(value); }
+                set
+                {
+                    try
+                    {
+                        GLFW.SetTimeInSeconds(value);
+                    }
+                    catch (InvalidValueGLFWException e)
+                    {
+                        throw new ArgumentOutOfRangeException(
+                            "The new timer value must be greater than zero and less than 18,446,744,073.", e);
+                    }
+                }
             }
 
             /// <summary>
             /// Sets the global timer back to zero.
             /// The timer will continue counting after this method is called.
             /// </summary>
+            /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
             public static void Reset()
             {
                 Seconds = 0d;
