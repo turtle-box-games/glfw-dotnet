@@ -1,28 +1,60 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Runtime.InteropServices;
 
 namespace GLFW.Net
 {
-    public class VideoMode
+    /// <summary>
+    /// Describes a single video mode.
+    /// </summary>
+    /// <seealso cref="GLFW.GetVideoMode"/>
+    /// <seealso cref="GLFW.GetVideoModes"/>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct VideoMode
     {
-        public VideoMode()
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Size of the structure in bytes.
+        /// Used in marshalling data from unmanaged context.
+        /// </summary>
+        internal const int StructSize = sizeof(int) * 6;
         
-        public Size Size
-        {
-            get { throw new NotImplementedException(); }
-        }
+        /// <summary>
+        /// The width, in screen coordinates.
+        /// </summary>
+        public int Width;
 
-        public ColorDepth Depth
-        {
-            get { throw new NotImplementedException(); }
-        }
+        /// <summary>
+        /// The height, in screen coordinates.
+        /// </summary>
+        public int Height;
 
-        public int RefreshRate
+        /// <summary>
+        /// The bit depth of the red channel.
+        /// </summary>
+        public int RedBits;
+
+        /// <summary>
+        /// The bit depth of the green channel.
+        /// </summary>
+        public int GreenBits;
+
+        /// <summary>
+        /// The bit depth of the blue channel.
+        /// </summary>
+        public int BlueBits;
+
+        /// <summary>
+        /// The refresh rate, in Hz.
+        /// </summary>
+        public int RefreshRate;
+
+        /// <summary>
+        /// Creates a string representation of the video mode.
+        /// </summary>
+        /// <returns>Video mode information in the format:
+        /// <c>W x H @ R Hz (R#G#B#)</c>.</returns>
+        public override string ToString()
         {
-            get { throw new NotImplementedException(); }
+            return string.Format("{0} x {1} @ {5} Hz (R{2}G{3}B{4})", Width, Height, RedBits, GreenBits, BlueBits,
+                RefreshRate);
         }
     }
 }

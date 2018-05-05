@@ -127,13 +127,14 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetVideoMode"/>
-        internal static IntPtr[] GetVideoModes(IntPtr monitor)
+        internal static VideoMode[] GetVideoModes(IntPtr monitor)
         {
             int count;
             var modesPointer = Internal.GetVideoModes(monitor, out count);
             HandleError();
-            var modes = new IntPtr[count];
-            Marshal.Copy(modesPointer, modes, 0, count);
+            var modes = new VideoMode[count];
+            for (var i = 0; i < count; i++)
+                modes[i] = Marshal.PtrToStructure<VideoMode>(modesPointer + i * VideoMode.StructSize);
             return modes;
         }
 
@@ -148,11 +149,11 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetVideoModes"/>
-        internal static IntPtr GetVideoMode(IntPtr monitor)
+        internal static VideoMode GetVideoMode(IntPtr monitor)
         {
             var modePointer = Internal.GetVideoMode(monitor);
             HandleError();
-            return modePointer;
+            return Marshal.PtrToStructure<VideoMode>(modePointer);
         }
 
         /// <summary>
