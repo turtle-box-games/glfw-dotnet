@@ -15,24 +15,44 @@ namespace GLFW.Net
         private const long TicksPerSecond = 10000000;
 
         /// <summary>
+        /// Number of nanoseconds in a second.
+        /// </summary>
+        private const long NanosecondsPerSecond = 1000000000;
+
+        /// <summary>
         /// Hertz of the underlying hardware OS timer operates at.
         /// </summary>
         private static readonly long Frequency = (long) GLFW.GetTimerFrequency();
 
         /// <summary>
-        /// Conversion ratio from .NET ticks to the underlying timer units.
+        /// Conversion ratio from .NET ticks to the underlying timer unit.
         /// <para>Multiply by the ticks to get the underlying timer unit.</para>
         /// </summary>
         private static readonly long TicksToRawRatio = Frequency / TicksPerSecond;
 
         /// <summary>
-        /// Conversion ratio from the underlying timer units to .NET ticks.
+        /// Conversion ratio from the underlying timer unit to .NET ticks.
         /// <para>Multiply by the underlying timer unit to get ticks.</para>
         /// </summary>
         /// <remarks>Because of integer division, this value will be zero
         /// if the underlying timer is more precise than a tick.
         /// If that is the case, divide by <see cref="TicksToRawRatio"/> to convert to ticks.</remarks>
         private static readonly long RawToTicksRatio = TicksPerSecond / Frequency;
+
+        /// <summary>
+        /// Conversion ratio from nanoseconds to the underlying timer unit.
+        /// <para>Multiply by the nanoseconds to get the underlying timer unit.</para>
+        /// </summary>
+        private static readonly long NanoToRawRatio = Frequency / NanosecondsPerSecond;
+
+        /// <summary>
+        /// Conversion ratio from the underlying timer unit to nanoseconds.
+        /// <para>Multiply by the underlying timer unit to get nanoseconds.</para>
+        /// </summary>
+        /// <remarks>Because of integer division, this value will be zero
+        /// if the underlying timer is more precise than a nanosecond.
+        /// If that is the case, divide by <see cref="NanoToRawRatio"/> to convert to nanoseconds.</remarks>
+        private static readonly long RawToNanoRatio = NanosecondsPerSecond / Frequency;
 
         /// <summary>
         /// Stored offset from the underlying timer.
@@ -77,6 +97,19 @@ namespace GLFW.Net
                 if (RawToTicksRatio == 0)
                     return RawTime / TicksToRawRatio;
                 return RawTime * RawToTicksRatio;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the number of nanoseconds that have elapsed since the timer was started.
+        /// </summary>
+        public long Nanoseconds
+        {
+            get
+            {
+                if (RawToNanoRatio == 0)
+                    return RawTime / NanoToRawRatio;
+                return RawTime * RawToNanoRatio;
             }
         }
 
