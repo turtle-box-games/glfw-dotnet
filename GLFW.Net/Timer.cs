@@ -117,5 +117,30 @@ namespace GLFW.Net
         /// Retrieves the time that has passed as a span.
         /// </summary>
         public TimeSpan Elapsed => new TimeSpan(Ticks);
+
+        /// <summary>
+        /// Timer shared throughout the whole application.
+        /// This timer starts as soon as GLFW is initialized.
+        /// </summary>
+        public static class Global
+        {
+            /// <summary>
+            /// Number of seconds that have passed since GLFW was initialized or the global timer was modified.
+            /// </summary>
+            public static double Seconds
+            {
+                get { return GLFW.GetTimeInSeconds(); }
+                set { GLFW.SetTimeInSeconds(value); }
+            }
+
+            /// <summary>
+            /// Sets the global timer back to zero.
+            /// The timer will continue counting after this method is called.
+            /// </summary>
+            public static void Reset()
+            {
+                Seconds = 0d;
+            }
+        }
     }
 }
