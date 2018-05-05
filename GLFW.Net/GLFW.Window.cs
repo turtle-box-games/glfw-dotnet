@@ -141,17 +141,12 @@ namespace GLFW.Net
         /// This must be greater than zero.</param>
         /// <param name="height">The desired height, in screen coordinates, of the window.
         /// This must be greater than zero.</param>
-        /// <param name="title">The initial, UTF-8 encoded window title.</param>
+        /// <param name="title">The initial window title.</param>
         /// <param name="monitor">The monitor to use for full screen mode, or <c>null</c> for windowed mode.</param>
         /// <param name="share">The window whose context to share resources with,
         /// or <c>null</c> to not share resources.</param>
         /// <returns>The handle of the created window, or <c>null</c> if an error occurred.</returns>
-        /// <remarks><para>Possible errors include
-        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
-        /// <see cref="ErrorCode.InvalidValue"/>, <see cref="ErrorCode.ApiUnavailable"/>,
-        /// <see cref="ErrorCode.VersionUnavailable"/>, <see cref="ErrorCode.FormatUnavailable"/>,
-        /// and <see cref="ErrorCode.PlatformError"/>.</para>
-        /// <para>This function must not be called from a callback.</para>
+        /// <remarks><para>This function must not be called from a callback.</para>
         /// <para>Windows: Window creation will fail
         /// if the Microsoft GDI software OpenGL implementation is the only one available.</para>
         /// <para>Windows: If the executable has an icon resource named <c>Icon</c>,
@@ -179,6 +174,12 @@ namespace GLFW.Net
         /// position or other attributes directly after window creation.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <exception cref="InvalidEnumGLFWException">One of the window hints is invalid.</exception>
+        /// <exception cref="InvalidValueGLFWException">The <paramref name="width"/> or <paramref name="height"/>
+        /// must be larger than zero.</exception>
+        /// <exception cref="ApiUnavailableGLFWException">The specified API is unavailable on this system.</exception>
+        /// <exception cref="VersionUnavailableGLFWException">The specified OpenGL version is unavailable.</exception>
+        /// <exception cref="FormatUnavailableGLFWException">The specified video mode is unavailable.</exception>
         /// <seealso cref="DestroyWindow"/>
         internal static IntPtr CreateWindow(int width, int height, string title, IntPtr monitor, IntPtr share)
         {
@@ -231,10 +232,10 @@ namespace GLFW.Net
 
         /// <summary>
         /// Sets the title of the specified window.
-        /// <para>This function sets the window title, encoded as UTF-8, of the specified window.</para>
+        /// <para>This function sets the window title of the specified window.</para>
         /// </summary>
         /// <param name="window">The window whose title to change.</param>
-        /// <param name="title">The UTF-8 encoded window title.</param>
+        /// <param name="title">The window title.</param>
         /// <remarks><para>OS X: The window title will not be updated
         /// until the next time you process events.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
@@ -338,12 +339,10 @@ namespace GLFW.Net
         /// or <see cref="GLFW.DontCare"/>.</param>
         /// <param name="maxHeight">The maximum height, in screen coordinates, of the client area,
         /// or <see cref="GLFW.DontCare"/>.</param>
-        /// <remarks><para>Possible errors include
-        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
-        /// and <see cref="ErrorCode.PlatformError"/>.</para>
-        /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
+        /// <remarks>If you set size limits and an aspect ratio that conflict, the results are undefined.</remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <exception cref="InvalidValueGLFWException">The combination of size parameters is invalid.</exception>
         /// <seealso cref="SetWindowAspectRatio"/>
         internal static void SetWindowSizeLimits(IntPtr window, int minWidth, int minHeight, int maxWidth,
             int maxHeight)
@@ -367,12 +366,11 @@ namespace GLFW.Net
         /// <param name="window">The window to set limits for.</param>
         /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="GLFW.DontCare"/>.</param>
         /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="GLFW.DontCare"/>.</param>
-        /// <remarks><para>Possible errors include
-        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
-        /// and <see cref="ErrorCode.PlatformError"/>.</para>
-        /// <para>If you set size limits and an aspect ratio that conflict, the results are undefined.</para></remarks>
+        /// <remarks>If you set size limits and an aspect ratio that conflict, the results are undefined.</remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <exception cref="InvalidValueGLFWException">The <paramref name="numer"/> and <paramref name="denom"/>
+        /// must be greater than zero.</exception>
         /// <seealso cref="SetWindowSizeLimits"/>
         internal static void SetWindowAspectRatio(IntPtr window, int numer, int denom)
         {
@@ -595,17 +593,15 @@ namespace GLFW.Net
         /// <param name="window">The window to query.</param>
         /// <param name="attrib">The window attribute whose value to return.</param>
         /// <returns>The value of the attribute, or zero if an error occurred.</returns>
-        /// <remarks><para>Possible errors include
-        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
-        /// and <see cref="ErrorCode.PlatformError"/>.</para>
-        /// <para>Framebuffer related hints are not window attributes.
-        /// See Framebuffer related attributes for more information.</para>
+        /// <remarks><para>Framebuffer related hints are not window attributes.
+        /// See framebuffer related attributes for more information.</para>
         /// <para>Zero is a valid value for many window and context related attributes
         /// so you cannot use a return value of zero as an indication of errors.
         /// However, this function should not fail as long as it is passed valid arguments
         /// and the library has been initialized.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
+        /// <exception cref="InvalidEnumGLFWException">The <paramref name="attrib"/> specified is invalid.</exception>
         internal static int GetWindowAttrib(IntPtr window, WindowAttribute attrib)
         {
             throw new NotImplementedException();
@@ -734,7 +730,10 @@ namespace GLFW.Net
         /// <summary>
         /// Sets the iconify callback for the specified window.
         /// <para>This function sets the iconification callback of the specified window,
-        /// which is called when the window is iconified or restored.</para>
+        /// which is called when the window is iconified<para>Possible errors include
+        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoWindowContext"/>,
+        /// and <see cref="ErrorCode.PlatformError"/>.</para>
+        ///  or restored.</para>
         /// </summary>
         /// <param name="window">The window whose callback to set.</param>
         /// <param name="callback">The new callback, or <c>null</c> to remove the currently set callback.</param>
@@ -881,11 +880,11 @@ namespace GLFW.Net
         /// If you are rendering with Vulkan, see <see cref="QueuePresentKHR"/> instead.</para>
         /// </summary>
         /// <param name="window">The window whose buffers to swap.</param>
-        /// <remarks><para>Possible errors include
-        /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.NoWindowContext"/>,
-        /// and <see cref="ErrorCode.PlatformError"/>.</para>
-        /// <para>EGL: The context of the specified window must be current on the calling thread.</para></remarks>
+        /// <remarks><para>EGL: The context of the specified window
+        /// must be current on the calling thread.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
+        /// <exception cref="NoWindowContextGLFWException">The <paramref name="window"/>
+        /// is not the current context.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="SwapInterval"/>
         internal static void SwapBuffers(IntPtr window)
@@ -969,10 +968,11 @@ namespace GLFW.Net
             /// <param name="height">The desired height, in screen coordinates, of the window.
             /// This must be greater than zero.</param>
             /// <param name="title">The initial, UTF-8 encoded window title.</param>
-            /// <param name="monitor">The monitor to use for full screen mode, or <c>null</c> for windowed mode.</param>
+            /// <param name="monitor">The monitor to use for full screen mode,
+            /// or <see cref="IntPtr.Zero"/> for windowed mode.</param>
             /// <param name="share">The window whose context to share resources with,
-            /// or <c>null</c> to not share resources.</param>
-            /// <returns>The handle of the created window, or <c>null</c> if an error occurred.</returns>
+            /// or <see cref="IntPtr.Zero"/> to not share resources.</param>
+            /// <returns>The handle of the created window, or <see cref="IntPtr.Zero"/> if an error occurred.</returns>
             /// <remarks><para>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidEnum"/>,
             /// <see cref="ErrorCode.InvalidValue"/>, <see cref="ErrorCode.ApiUnavailable"/>,
@@ -1348,7 +1348,8 @@ namespace GLFW.Net
             /// Returns the monitor that the window uses for full screen mode.
             /// </summary>
             /// <param name="window">The window to query.</param>
-            /// <returns>The monitor, or <c>null</c> if the window is in windowed mode or an error occurred.</returns>
+            /// <returns>The monitor,
+            /// <see cref="IntPtr.Zero"/> if the window is in windowed mode or an error occurred.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             /// <seealso cref="SetWindowMonitor"/>
             [SuppressUnmanagedCodeSecurity]
@@ -1358,11 +1359,11 @@ namespace GLFW.Net
             /// <summary>
             /// Sets the mode, monitor, video mode, and placement of a window.
             /// <para>This function sets the monitor that the window uses for full screen mode or,
-            /// if the monitor is <c>null</c>, makes it windowed mode.</para>
+            /// if the monitor is <see cref="IntPtr.Zero"/>, makes it windowed mode.</para>
             /// <para>When setting a monitor, this function updates the width,
             /// height and refresh rate of the desired video mode and switches to the video mode closest to it.
             /// The window position is ignored when setting a monitor.</para>
-            /// <para>When the monitor is <c>null</c>, the position, width and height
+            /// <para>When the monitor is <see cref="IntPtr.Zero"/>, the position, width and height
             /// are used to place the window client area.
             /// The refresh rate is ignored when no monitor is specified.</para>
             /// <para>If you only wish to update the resolution of a full screen window
@@ -1372,7 +1373,7 @@ namespace GLFW.Net
             /// such as whether it is decorated, floating, resizable, has size or aspect ratio limits, etc..</para>
             /// </summary>
             /// <param name="window">The window whose monitor, size or video mode to set.</param>
-            /// <param name="monitor">The desired monitor, or <c>null</c> to set windowed mode.</param>
+            /// <param name="monitor">The desired monitor, or <see cref="IntPtr.Zero"/> to set windowed mode.</param>
             /// <param name="xpos">The desired x-coordinate of the upper-left corner of the client area.</param>
             /// <param name="ypos">The desired y-coordinate of the upper-left corner of the client area.</param>
             /// <param name="width">The desired with, in screen coordinates, of the client area or video mode.</param>
@@ -1414,7 +1415,7 @@ namespace GLFW.Net
             /// Sets the user pointer of the specified window.
             /// <para>This function sets the user-defined pointer of the specified window.
             /// The current value is retained until the window is destroyed.
-            /// The initial value is <c>null</c>.</para>
+            /// The initial value is <see cref="IntPtr.Zero"/>.</para>
             /// </summary>
             /// <param name="window">The window whose pointer to set.</param>
             /// <param name="pointer">The new value.</param>
@@ -1427,7 +1428,7 @@ namespace GLFW.Net
             /// <summary>
             /// Returns the user pointer of the specified window.
             /// <para>This function returns the current value of the user-defined pointer of the specified window.
-            /// The initial value is <c>null</c>.</para>
+            /// The initial value is <see cref="IntPtr.Zero"/>.</para>
             /// </summary>
             /// <param name="window">The window whose pointer to return.</param>
             /// <returns>The existing user-defined pointer.</returns>
@@ -1445,9 +1446,10 @@ namespace GLFW.Net
             /// of the upper-left corner of the client area of the window.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetWindowPosCallback", CallingConvention = CallingConvention.Cdecl)]
@@ -1460,9 +1462,10 @@ namespace GLFW.Net
             /// The callback is provided with the size, in screen coordinates, of the client area of the window.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetWindowSizeCallback", CallingConvention = CallingConvention.Cdecl)]
@@ -1478,9 +1481,10 @@ namespace GLFW.Net
             /// <para>The close callback is not triggered by <see cref="DestroyWindow"/>.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks><para>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</para>
             /// <para>OS X: Selecting Quit from the application menu
             /// will trigger the close callback for all windows.</para></remarks>
@@ -1498,9 +1502,10 @@ namespace GLFW.Net
             /// this callback may be called only very infrequently or never at all.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetWindowRefreshCallback",
@@ -1516,9 +1521,10 @@ namespace GLFW.Net
             /// For more information, see <see cref="SetKeyCallback"/> and <see cref="SetMouseButtonCallback"/>.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetWindowFocusCallback", CallingConvention = CallingConvention.Cdecl)]
@@ -1530,9 +1536,10 @@ namespace GLFW.Net
             /// which is called when the window is iconified or restored.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetWindowIconifyCallback",
@@ -1545,9 +1552,10 @@ namespace GLFW.Net
             /// which is called when the framebuffer of the specified window is resized.</para>
             /// </summary>
             /// <param name="window">The window whose callback to set.</param>
-            /// <param name="cbfun">The new callback, or <c>null</c> to remove the currently set callback.</param>
+            /// <param name="cbfun">The new callback,
+            /// or <see cref="IntPtr.Zero"/> to remove the currently set callback.</param>
             /// <returns>The previously set callback,
-            /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
+            /// or <see cref="IntPtr.Zero"/> if no callback was set or the library had not been initialized.</returns>
             /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwSetFrameBufferSizeCallback",
