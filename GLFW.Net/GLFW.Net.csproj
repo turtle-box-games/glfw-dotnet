@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiUnavailableGLFWException.cs" />
+    <Compile Include="GammaRamp.cs" />
+    <Compile Include="UnmanagedGammaRamp.cs" />
     <Compile Include="JoystickButtonState.cs" />
     <Compile Include="ClientApi.cs" />
     <Compile Include="ColorDepth.cs" />
