@@ -5,7 +5,7 @@ namespace GLFW.Net
     /// <summary>
     /// Describes the responsiveness of color channels on a monitor.
     /// </summary>
-    public struct GammaRamp
+    public class GammaRamp
     {
         private readonly ushort[] _red, _green, _blue;
 
