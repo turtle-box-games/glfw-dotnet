@@ -13,7 +13,7 @@ namespace GLFW.Net
         /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
         /// or <see cref="DeviceEvent.Disconnected"/></param>
         /// <seealso cref="SetMonitorCallback"/>
-        internal delegate void MonitorCallback(IntPtr monitor, DeviceEvent @event);
+        public delegate void MonitorCallback(IntPtr monitor, DeviceEvent @event);
 
         /// <summary>
         /// Returns the currently connected monitors.
@@ -24,7 +24,7 @@ namespace GLFW.Net
         /// <returns>An array of monitor handles, or an empty array if no monitors were found.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="GetPrimaryMonitor"/>
-        internal static IntPtr[] GetMonitors()
+        public static IntPtr[] GetMonitors()
         {
             int count;
             var arrayPointer = Internal.GetMonitors(out count);
@@ -44,7 +44,7 @@ namespace GLFW.Net
         /// <returns>The primary monitor, or <c>null</c> if no monitors were found.</returns>
         /// <remarks>The primary monitor is always first in the array returned by <see cref="GetMonitors"/>.</remarks>
         /// <seealso cref="GetMonitors"/>
-        internal static IntPtr GetPrimaryMonitor()
+        public static IntPtr GetPrimaryMonitor()
         {
             var monitorPointer = Internal.GetPrimaryMonitor();
             HandleError();
@@ -60,7 +60,7 @@ namespace GLFW.Net
         /// <param name="xpos">Where to store the monitor x-coordinate.</param>
         /// <param name="ypos">Where to store the monitor y-coordinate.</param>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos)
+        public static void GetMonitorPos(IntPtr monitor, out int xpos, out int ypos)
         {
             Internal.GetMonitorPos(monitor, out xpos, out ypos);
             HandleError();
@@ -79,7 +79,7 @@ namespace GLFW.Net
         /// <remarks><para>Windows: calculates the returned physical size from the current resolution and system DPI
         /// instead of querying the monitor EDID data.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static void GetMonitorPhysicalSize(IntPtr monitor, out int widthMM, out int heightMM)
+        public static void GetMonitorPhysicalSize(IntPtr monitor, out int widthMM, out int heightMM)
         {
             Internal.GetMonitorPhysicalSize(monitor, out widthMM, out heightMM);
             HandleError();
@@ -94,7 +94,7 @@ namespace GLFW.Net
         /// <param name="monitor">The monitor to query.</param>
         /// <returns>The UTF-8 encoded name of the monitor.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static string GetMonitorName(IntPtr monitor)
+        public static string GetMonitorName(IntPtr monitor)
         {
             var namePointer = Internal.GetMonitorName(monitor);
             HandleError();
@@ -110,7 +110,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static MonitorCallback SetMonitorCallback(MonitorCallback callback)
+        public static MonitorCallback SetMonitorCallback(MonitorCallback callback)
         {
             return SetInternalCallback(Internal.SetMonitorCallback, callback);
         }
@@ -127,7 +127,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetVideoMode"/>
-        internal static VideoMode[] GetVideoModes(IntPtr monitor)
+        public static VideoMode[] GetVideoModes(IntPtr monitor)
         {
             int count;
             var modesPointer = Internal.GetVideoModes(monitor, out count);
@@ -146,7 +146,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetVideoModes"/>
-        internal static VideoMode GetVideoMode(IntPtr monitor)
+        public static VideoMode GetVideoMode(IntPtr monitor)
         {
             var modePointer = Internal.GetVideoMode(monitor);
             HandleError();
@@ -164,7 +164,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <exception cref="InvalidValueGLFWException">The <paramref name="gamma"/> value is invalid.</exception>
-        internal static void SetGamma(IntPtr monitor, float gamma)
+        public static void SetGamma(IntPtr monitor, float gamma)
         {
             Internal.SetGamma(monitor, gamma);
             HandleError();
@@ -177,7 +177,7 @@ namespace GLFW.Net
         /// <returns>The current gamma ramp.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static IntPtr GetGammaRamp(IntPtr monitor)
+        public static IntPtr GetGammaRamp(IntPtr monitor)
         {
             var rampPointer = Internal.GetGammaRamp(monitor);
             HandleError();
@@ -197,7 +197,7 @@ namespace GLFW.Net
         /// <para>Windows: The gamma ramp size must be 256.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static void SetGammaRamp(IntPtr monitor, IntPtr ramp)
+        public static void SetGammaRamp(IntPtr monitor, IntPtr ramp)
         {
             Internal.SetGammaRamp(monitor, ramp);
             HandleError();

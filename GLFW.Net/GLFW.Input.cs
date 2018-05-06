@@ -12,7 +12,7 @@ namespace GLFW.Net
         /// <param name="window">Window the cursor mode applies to.</param>
         /// <returns>Active mode for the cursor in <paramref name="window"/>.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static CursorMode GetCursorMode(IntPtr window)
+        public static CursorMode GetCursorMode(IntPtr window)
         {
             var result = Internal.GetInputMode(window, (int) InputMode.Cursor);
             HandleError();
@@ -26,7 +26,7 @@ namespace GLFW.Net
         /// <param name="mode">Cursor mode to make active.</param>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="InvalidEnumGLFWException">The value of <paramref name="mode"/> is not allowed.</exception>
-        internal static void SetCursorMode(IntPtr window, CursorMode mode)
+        public static void SetCursorMode(IntPtr window, CursorMode mode)
         {
             Internal.SetInputMode(window, (int) InputMode.Cursor, (int) mode);
             HandleError();
@@ -38,7 +38,7 @@ namespace GLFW.Net
         /// <param name="window">Window that sticky keys applies to.</param>
         /// <returns><c>true</c> if sticky keys is enabled, or <c>false</c> if it isn't.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static bool GetStickyKeysEnabled(IntPtr window)
+        public static bool GetStickyKeysEnabled(IntPtr window)
         {
             var result = Internal.GetInputMode(window, (int) InputMode.StickyKeys);
             HandleError();
@@ -51,7 +51,7 @@ namespace GLFW.Net
         /// <param name="window">Window that sticky keys applies to.</param>
         /// <param name="enabled"><c>true</c> to enable sticky keys, or <c>false</c> to disable it.</param>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static void SetStickyKeysEnabled(IntPtr window, bool enabled = true)
+        public static void SetStickyKeysEnabled(IntPtr window, bool enabled = true)
         {
             var value = enabled ? Internal.True : Internal.False;
             Internal.SetInputMode(window, (int) InputMode.StickyKeys, value);
@@ -64,7 +64,7 @@ namespace GLFW.Net
         /// <param name="window">Window that sticky mouse buttons applies to.</param>
         /// <returns><c>true</c> if sticky mouse buttons is enabled, or <c>false</c> if it isn't.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static bool GetStickyMouseButtonsEnabled(IntPtr window)
+        public static bool GetStickyMouseButtonsEnabled(IntPtr window)
         {
             var result = Internal.GetInputMode(window, (int) InputMode.StickyMouseButtons);
             HandleError();
@@ -77,7 +77,7 @@ namespace GLFW.Net
         /// <param name="window">Window that sticky mouse buttons applies to.</param>
         /// <param name="enabled"><c>true</c> to enable sticky mouse buttons, or <c>false</c> to disable it.</param>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static void SetStickyMouseButtonsEnabled(IntPtr window, bool enabled = true)
+        public static void SetStickyMouseButtonsEnabled(IntPtr window, bool enabled = true)
         {
             var value = enabled ? Internal.True : Internal.False;
             Internal.SetInputMode(window, (int) InputMode.StickyMouseButtons, value);
@@ -92,7 +92,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetClipboardString"/>
-        internal static void SetClipboardString(IntPtr window, string clip)
+        public static void SetClipboardString(IntPtr window, string clip)
         {
             var clipPointer = clip.ToNativeUtf8();
             Internal.SetClipboardString(window, clipPointer);
@@ -109,7 +109,7 @@ namespace GLFW.Net
         /// <exception cref="FormatUnavailableGLFWException">The clipboard is empty
         /// or the contents are in an unrecognized format.</exception>
         /// <seealso cref="SetClipboardString"/>
-        internal static string GetClipboardString(IntPtr window)
+        public static string GetClipboardString(IntPtr window)
         {
             var result = Internal.GetClipboardString(window);
             HandleError();
@@ -126,7 +126,7 @@ namespace GLFW.Net
         /// and is due to implementations storing nanoseconds in 64 bits.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="SetTimeInSeconds"/>
-        internal static double GetTimeInSeconds()
+        public static double GetTimeInSeconds()
         {
             var result = Internal.GetTime();
             HandleError();
@@ -144,7 +144,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidValueGLFWException">The provided <paramref name="value"/> is invalid.
         /// It must be a positive finite number less than or equal to 18446744073.0.</exception>
         /// <seealso cref="GetTimeInSeconds"/>
-        internal static void SetTimeInSeconds(double value = 0d)
+        public static void SetTimeInSeconds(double value = 0d)
         {
             Internal.SetTime(value);
             HandleError();
@@ -159,7 +159,7 @@ namespace GLFW.Net
         /// <returns>The value of the timer.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="GetTimerFrequency"/>
-        internal static ulong GetTime()
+        public static ulong GetTime()
         {
             var result = Internal.GetTimerValue();
             HandleError(); // TODO: This call is really expensive for this method (x2 slowdown).
@@ -172,7 +172,7 @@ namespace GLFW.Net
         /// <returns>The frequency of the timer, in Hz.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="GetTime"/>
-        internal static ulong GetTimerFrequency()
+        public static ulong GetTimerFrequency()
         {
             var result = Internal.GetTimerFrequency();
             HandleError();

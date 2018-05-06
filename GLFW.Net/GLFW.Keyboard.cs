@@ -15,7 +15,7 @@ namespace GLFW.Net
         /// <param name="state">One of <see cref="KeyState"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
-        internal delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyState state, ModifierKey mods);
+        public delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyState state, ModifierKey mods);
 
         /// <summary>
         /// The function signature for Unicode character callbacks.
@@ -23,7 +23,7 @@ namespace GLFW.Net
         /// <param name="window">The window that received the event.</param>
         /// <param name="codepoint">The Unicode code point of the character.</param>
         /// <seealso cref="SetCharacterCallback"/>
-        internal delegate void CharacterCallback(IntPtr window, uint codepoint);
+        public delegate void CharacterCallback(IntPtr window, uint codepoint);
 
         /// <summary>
         /// The function signature for Unicode character with modifiers callbacks.
@@ -34,7 +34,7 @@ namespace GLFW.Net
         /// <param name="codepoint">The Unicode code point of the character. </param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetCharacterModifierCallback"/>
-        internal delegate void CharacterModifierCallback(IntPtr window, uint codepoint, ModifierKey mods);
+        public delegate void CharacterModifierCallback(IntPtr window, uint codepoint, ModifierKey mods);
 
         /// <summary>
         /// Returns the localized name of the specified printable key.
@@ -52,7 +52,7 @@ namespace GLFW.Net
         /// <returns>The localized name of the key, or <c>null</c>.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static string GetKeyName(Key key, int scancode)
+        public static string GetKeyName(Key key, int scancode)
         {
             var result = Internal.GetKeyName((int) key, scancode);
             HandleError();
@@ -80,7 +80,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="key"/> provided is invalid.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static KeyState GetKey(IntPtr window, Key key)
+        public static KeyState GetKey(IntPtr window, Key key)
         {
             var result = Internal.GetKey(window, (int) key);
             HandleError();
@@ -110,7 +110,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static KeyCallback SetKeyCallback(IntPtr window, KeyCallback callback)
+        public static KeyCallback SetKeyCallback(IntPtr window, KeyCallback callback)
         {
             return SetInternalCallback(Internal.SetKeyCallback, callback, window);
         }
@@ -134,7 +134,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
-        internal static CharacterCallback SetCharacterCallback(IntPtr window, CharacterCallback callback)
+        public static CharacterCallback SetCharacterCallback(IntPtr window, CharacterCallback callback)
         {
             return SetInternalCallback(Internal.SetCharCallback, callback, window);
         }
@@ -156,7 +156,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <remarks>Possible errors include <see cref="ErrorCode.NotInitialized"/>.</remarks>
-        internal static CharacterModifierCallback SetCharacterModifierCallback(IntPtr window,
+        public static CharacterModifierCallback SetCharacterModifierCallback(IntPtr window,
             CharacterModifierCallback callback)
         {
             return SetInternalCallback(Internal.SetCharModsCallback, callback, window);

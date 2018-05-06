@@ -13,7 +13,7 @@ namespace GLFW.Net
         /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
         /// or <see cref="DeviceEvent.Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
-        internal delegate void JoystickCallback(int joy, DeviceEvent @event);
+        public delegate void JoystickCallback(int joy, DeviceEvent @event);
 
         /// <summary>
         /// Returns whether the specified joystick is present.
@@ -24,7 +24,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static bool JoystickPresent(int joy)
+        public static bool JoystickPresent(int joy)
         {
             var result = Internal.JoystickPresent(joy);
             HandleError();
@@ -45,7 +45,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static float[] GetJoystickAxes(int joy)
+        public static float[] GetJoystickAxes(int joy)
         {
             int count;
             var axesPointer = Internal.GetJoystickAxes(joy, out count);
@@ -72,7 +72,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static bool GetJoystickAxes(int joy, ref float[] axes)
+        public static bool GetJoystickAxes(int joy, ref float[] axes)
         {
             int count;
             var axesPointer = Internal.GetJoystickAxes(joy, out count);
@@ -98,7 +98,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static JoystickButtonState[] GetJoystickButtons(int joy)
+        public static JoystickButtonState[] GetJoystickButtons(int joy)
         {
             int count;
             var statesPointer = Internal.GetJoystickButtons(joy, out count);
@@ -127,7 +127,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
+        public static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
         {
             int count;
             var statesPointer = Internal.GetJoystickButtons(joy, out count);
@@ -151,7 +151,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="joy"/> index
         /// is outside the allowed range.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static string GetJoystickName(int joy)
+        public static string GetJoystickName(int joy)
         {
             var result = Internal.GetJoystickName(joy);
             HandleError();
@@ -167,7 +167,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static JoystickCallback SetJoystickCallback(JoystickCallback callback)
+        public static JoystickCallback SetJoystickCallback(JoystickCallback callback)
         {
             return SetInternalCallback(Internal.SetJoystickCallback, callback);
         }

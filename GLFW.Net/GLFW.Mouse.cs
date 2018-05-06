@@ -15,7 +15,7 @@ namespace GLFW.Net
         /// or <see cref="MouseButtonState.Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
-        internal delegate void MouseButtonCallback(IntPtr window, MouseButton button, MouseButtonState state,
+        public delegate void MouseButtonCallback(IntPtr window, MouseButton button, MouseButtonState state,
             ModifierKey mods);
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace GLFW.Net
         /// <param name="xpos">The new cursor x-coordinate, relative to the left edge of the client area.</param>
         /// <param name="ypos">The new cursor y-coordinate, relative to the top edge of the client area.</param>
         /// <seealso cref="SetCursorPosCallback"/>
-        internal delegate void CursorPositionCallback(IntPtr window, double xpos, double ypos);
+        public delegate void CursorPositionCallback(IntPtr window, double xpos, double ypos);
 
         /// <summary>
         /// The function signature for cursor enter/leave callbacks.
@@ -34,7 +34,7 @@ namespace GLFW.Net
         /// <param name="entered"><c>true</c> if the cursor entered the window's client area,
         /// or <c>false</c> if it left it.</param>
         /// <seealso cref="SetCursorEnterCallback"/>
-        internal delegate void CursorEnterCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool entered);
+        public delegate void CursorEnterCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool entered);
 
         /// <summary>
         /// The function signature for scroll callbacks.
@@ -43,7 +43,7 @@ namespace GLFW.Net
         /// <param name="xoffset">The scroll offset along the x-axis.</param>
         /// <param name="yoffset">The scroll offset along the y-axis.</param>
         /// <seealso cref="SetScrollCallback"/>
-        internal delegate void ScrollCallback(IntPtr window, double xoffset, double yoffset);
+        public delegate void ScrollCallback(IntPtr window, double xoffset, double yoffset);
 
         /// <summary>
         /// The function signature for file drop callbacks.
@@ -52,7 +52,7 @@ namespace GLFW.Net
         /// <param name="count">The number of dropped files.</param>
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
-        internal delegate void DropCallback(IntPtr window, int count,
+        public delegate void DropCallback(IntPtr window, int count,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str, SizeParamIndex = 1)]
             string[] paths);
 
@@ -71,7 +71,7 @@ namespace GLFW.Net
         /// <returns>One of <see cref="MouseButtonState.Press"/> or <see cref="MouseButtonState.Release"/>.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="button"/> is invalid.</exception>
-        internal static MouseButtonState GetMouseButton(IntPtr window, MouseButton button)
+        public static MouseButtonState GetMouseButton(IntPtr window, MouseButton button)
         {
             var buttonState = Internal.GetMouseButton(window, (int) button);
             HandleError();
@@ -97,7 +97,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="SetCursorPos"/>
-        internal static void GetCursorPos(IntPtr window, out double xpos, out double ypos)
+        public static void GetCursorPos(IntPtr window, out double xpos, out double ypos)
         {
             Internal.GetCursorPos(window, out xpos, out ypos);
             HandleError();
@@ -122,7 +122,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetCursorPos"/>
-        internal static void SetCursorPos(IntPtr window, double xpos, double ypos)
+        public static void SetCursorPos(IntPtr window, double xpos, double ypos)
         {
             Internal.SetCursorPos(window, xpos, ypos);
             HandleError();
@@ -148,7 +148,7 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="DestroyCursor"/>
         /// <seealso cref="CreateStandardCursor"/>
-        internal static IntPtr CreateCursor(IntPtr image, int xhot, int yhot)
+        public static IntPtr CreateCursor(IntPtr image, int xhot, int yhot)
         {
             var cursorPointer = Internal.CreateCursor(image, xhot, yhot);
             HandleError();
@@ -167,7 +167,7 @@ namespace GLFW.Net
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <exception cref="InvalidEnumGLFWException">The <paramref name="shape"/> is not supported.</exception>
         /// <seealso cref="CreateCursor"/>
-        internal static IntPtr CreateStandardCursor(CursorShape shape)
+        public static IntPtr CreateStandardCursor(CursorShape shape)
         {
             var cursorPointer = Internal.CreateStandardCursor((int) shape);
             HandleError();
@@ -184,7 +184,7 @@ namespace GLFW.Net
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="CreateCursor"/>
-        internal static void DestroyCursor(IntPtr cursor)
+        public static void DestroyCursor(IntPtr cursor)
         {
             Internal.DestroyCursor(cursor);
             HandleError();
@@ -204,7 +204,7 @@ namespace GLFW.Net
         /// or <c>null</c> to switch back to the default arrow cursor.</param>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        internal static void SetCursor(IntPtr window, IntPtr cursor)
+        public static void SetCursor(IntPtr window, IntPtr cursor)
         {
             Internal.SetCursor(window, cursor);
             HandleError();
@@ -225,7 +225,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static MouseButtonCallback SetMouseButtonCallback(IntPtr window, MouseButtonCallback callback)
+        public static MouseButtonCallback SetMouseButtonCallback(IntPtr window, MouseButtonCallback callback)
         {
             return SetInternalCallback(Internal.SetMouseButtonCallback, callback, window);
         }
@@ -242,7 +242,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static CursorPositionCallback SetCursorPosCallback(IntPtr window, CursorPositionCallback callback)
+        public static CursorPositionCallback SetCursorPosCallback(IntPtr window, CursorPositionCallback callback)
         {
             return SetInternalCallback(Internal.SetCursorPosCallback, callback, window);
         }
@@ -257,7 +257,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static CursorEnterCallback SetCursorEnterCallback(IntPtr window, CursorEnterCallback callback)
+        public static CursorEnterCallback SetCursorEnterCallback(IntPtr window, CursorEnterCallback callback)
         {
             return SetInternalCallback(Internal.SetCursorEnterCallback, callback, window);
         }
@@ -276,7 +276,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static ScrollCallback SetScrollCallback(IntPtr window, ScrollCallback callback)
+        public static ScrollCallback SetScrollCallback(IntPtr window, ScrollCallback callback)
         {
             return SetInternalCallback(Internal.SetScrollCallback, callback, window);
         }
@@ -295,7 +295,7 @@ namespace GLFW.Net
         /// <returns>The previously set callback,
         /// or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
-        internal static DropCallback SetDropCallback(IntPtr window, DropCallback callback)
+        public static DropCallback SetDropCallback(IntPtr window, DropCallback callback)
         {
             return SetInternalCallback(Internal.SetDropCallback, callback, window);
         }

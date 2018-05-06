@@ -30,7 +30,7 @@ namespace GLFW.Net
         /// does not have a context.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetCurrentContext"/>
-        internal static void MakeContextCurrent(IntPtr window)
+        public static void MakeContextCurrent(IntPtr window)
         {
             Internal.MakeContextCurrent(window);
             HandleError();
@@ -45,7 +45,7 @@ namespace GLFW.Net
         /// or <see cref="IntPtr.Zero"/> if no window's context is current.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <seealso cref="MakeContextCurrent"/>
-        internal static IntPtr GetCurrentContext()
+        public static IntPtr GetCurrentContext()
         {
             var result = Internal.GetCurrentContext();
             HandleError();
@@ -81,7 +81,7 @@ namespace GLFW.Net
         /// <exception cref="NoCurrentContextGLFWException">The current thread is not assigned a context.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="SwapBuffers"/>
-        internal static void SetSwapInterval(int interval)
+        public static void SetSwapInterval(int interval)
         {
             Internal.SwapInterval(interval);
             HandleError();
@@ -109,7 +109,7 @@ namespace GLFW.Net
         /// <exception cref="InvalidValueGLFWException">The <paramref name="extension"/> name
         /// can't be an empty string.</exception>
         /// <seealso cref="GetProc"/>
-        internal static bool ExtensionSupported(string extension)
+        public static bool ExtensionSupported(string extension)
         {
             var stringPointer = Marshal.StringToHGlobalAnsi(extension);
             var result        = Internal.ExtensionSupported(stringPointer);
@@ -138,7 +138,7 @@ namespace GLFW.Net
         /// <exception cref="NoCurrentContextGLFWException">The current thread is not assigned a context.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
         /// <seealso cref="ExtensionSupported"/>
-        internal static Proc GetProc(string procName)
+        public static Proc GetProc(string procName)
         {
             var stringPointer = Marshal.StringToHGlobalAnsi(procName);
             var procAddress   = Internal.GetProcAddress(stringPointer);
