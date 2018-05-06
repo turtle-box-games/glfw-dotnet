@@ -132,10 +132,7 @@ namespace GLFW.Net
             int count;
             var modesPointer = Internal.GetVideoModes(monitor, out count);
             HandleError();
-            var modes = new VideoMode[count];
-            for (var i = 0; i < count; i++)
-                modes[i] = Marshal.PtrToStructure<VideoMode>(modesPointer + i * VideoMode.StructSize);
-            return modes;
+            return modesPointer.PtrToStructureArray<VideoMode>(count, VideoMode.StructSize);
         }
 
         /// <summary>
