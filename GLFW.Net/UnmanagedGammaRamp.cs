@@ -10,6 +10,11 @@ namespace GLFW.Net
     internal struct UnmanagedGammaRamp
     {
         /// <summary>
+        /// Number of bytes this structure takes up in memory.
+        /// </summary>
+        internal static readonly int MarshalSize = IntPtr.Size * 3 + sizeof(uint);
+        
+        /// <summary>
         /// Pointer to an array describing the response of the red channel.
         /// </summary>
         public IntPtr Red;

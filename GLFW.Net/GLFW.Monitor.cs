@@ -177,11 +177,14 @@ namespace GLFW.Net
         /// <returns>The current gamma ramp.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        public static IntPtr GetGammaRamp(IntPtr monitor)
+        public static GammaRamp GetGammaRamp(IntPtr monitor)
         {
             var rampPointer = Internal.GetGammaRamp(monitor);
             HandleError();
-            return rampPointer;
+            if (rampPointer == IntPtr.Zero)
+                return null;
+            var ramp = Marshal.PtrToStructure<UnmanagedGammaRamp>(rampPointer);
+            return ramp.ToManaged();
         }
 
         /// <summary>
@@ -197,10 +200,32 @@ namespace GLFW.Net
         /// <para>Windows: The gamma ramp size must be 256.</para></remarks>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGLFWException">This operation is not supported on this platform.</exception>
-        public static void SetGammaRamp(IntPtr monitor, IntPtr ramp)
+        public static void SetGammaRamp(IntPtr monitor, GammaRamp ramp)
         {
-            Internal.SetGammaRamp(monitor, ramp);
+            // Check if there was a previous ramp and free it.
+            var prevRampPointer = Internal.GetGammaRamp(monitor);
             HandleError();
+            if (prevRampPointer != IntPtr.Zero)
+            {
+                var prevRamp = Marshal.PtrToStructure<UnmanagedGammaRamp>(prevRampPointer);
+                prevRamp.Free();
+                Marshal.FreeHGlobal(prevRampPointer);
+            }
+
+            var rampPointer = IntPtr.Zero;
+            try
+            {
+                var unmanagedRamp = UnmanagedGammaRamp.FromManaged(ramp);
+                rampPointer       = Marshal.AllocHGlobal(UnmanagedGammaRamp.MarshalSize);
+                Marshal.StructureToPtr(unmanagedRamp, rampPointer, false);
+                Internal.SetGammaRamp(monitor, rampPointer);
+                HandleError();
+            }
+            catch (Exception)
+            {
+                Marshal.FreeHGlobal(rampPointer);
+                throw;
+            }
         }
         
         private static partial class Internal
