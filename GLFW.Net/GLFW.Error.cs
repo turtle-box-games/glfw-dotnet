@@ -10,62 +10,42 @@ namespace GLFW.Net
         /// <summary>
         /// Errors that occurred on each thread while using GLFW methods.
         /// </summary>
-        private static readonly ThreadLocal<Error> PendingError = new ThreadLocal<Error>();
+        private static readonly ThreadLocal<GLFWException> PendingError = new ThreadLocal<GLFWException>();
         
         /// <summary>
-        /// Information about an error that occurred in GLFW.
+        /// Converts the GLFW error into an exception that can be handled by C#.
         /// </summary>
-        private class Error
+        /// <param name="code">Error code from GLFW.</param>
+        /// <param name="descriptionPointer">UTF-8 encoded string containing the error message.</param>
+        /// <returns>Corresponding exception representing the GLFW error.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">An unrecognized GLFW code was given.</exception>
+        private static GLFWException TranslateErrorToException(int code, IntPtr descriptionPointer)
         {
-            private readonly int _code;
-            private readonly IntPtr _description;
-
-            /// <summary>
-            /// Creates a reference to an error that occurred in GLFW.
-            /// </summary>
-            /// <param name="code">Error code from GLFW.</param>
-            /// <param name="description">UTF-8 encoded string containing the error message.</param>
-            public Error(int code, IntPtr description)
+            var description = descriptionPointer.FromNativeUtf8();
+            switch ((ErrorCode) code)
             {
-                _code = code;
-                _description = description;
-            }
-        
-            /// <summary>
-            /// Converts the GLFW error into an exception that can be handled by C#.
-            /// </summary>
-            /// <returns>Corresponding exception representing the GLFW error.</returns>
-            /// <exception cref="ArgumentOutOfRangeException">An unrecognized GLFW code was given.</exception>
-            public GLFWException Translate()
-            {
-                var code = (ErrorCode) _code;
-                var description = _description.FromNativeUtf8();
-                
-                switch (code)
-                {
-                    case ErrorCode.NotInitialized:
-                        return new NotInitializedGLFWException(description);
-                    case ErrorCode.NoCurrentContext:
-                        return new NoCurrentContextGLFWException(description);
-                    case ErrorCode.InvalidEnum:
-                        return new InvalidEnumGLFWException(description);
-                    case ErrorCode.InvalidValue:
-                        return new InvalidValueGLFWException(description);
-                    case ErrorCode.OutOfMemory:
-                        return new OutOfMemoryGLFWException(description);
-                    case ErrorCode.ApiUnavailable:
-                        return new ApiUnavailableGLFWException(description);
-                    case ErrorCode.VersionUnavailable:
-                        return new VersionUnavailableGLFWException(description);
-                    case ErrorCode.PlatformError:
-                        return new PlatformErrorGLFWException(description);
-                    case ErrorCode.FormatUnavailable:
-                        return new FormatUnavailableGLFWException(description);
-                    case ErrorCode.NoWindowContext:
-                        return new NoWindowContextGLFWException(description);
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(code), code, "Unrecognized GLFW error code");
-                }
+                case ErrorCode.NotInitialized:
+                    return new NotInitializedGLFWException(description);
+                case ErrorCode.NoCurrentContext:
+                    return new NoCurrentContextGLFWException(description);
+                case ErrorCode.InvalidEnum:
+                    return new InvalidEnumGLFWException(description);
+                case ErrorCode.InvalidValue:
+                    return new InvalidValueGLFWException(description);
+                case ErrorCode.OutOfMemory:
+                    return new OutOfMemoryGLFWException(description);
+                case ErrorCode.ApiUnavailable:
+                    return new ApiUnavailableGLFWException(description);
+                case ErrorCode.VersionUnavailable:
+                    return new VersionUnavailableGLFWException(description);
+                case ErrorCode.PlatformError:
+                    return new PlatformErrorGLFWException(description);
+                case ErrorCode.FormatUnavailable:
+                    return new FormatUnavailableGLFWException(description);
+                case ErrorCode.NoWindowContext:
+                    return new NoWindowContextGLFWException(description);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(code), code.ToString(), "Unrecognized GLFW error code");
             }
         }
 
@@ -77,7 +57,7 @@ namespace GLFW.Net
         /// <param name="description">UTF-8 encoded string containing the error message.</param>
         private static void StoreError(int code, IntPtr description)
         {
-            PendingError.Value = new Error(code, description);
+            PendingError.Value = TranslateErrorToException(code, description);
         }
 
         /// <summary>
@@ -88,11 +68,11 @@ namespace GLFW.Net
         /// <exception cref="ArgumentOutOfRangeException">An unrecognized GLFW error ocurred.</exception>
         private static void HandleError()
         {
-            var error = PendingError.Value;
-            if (error == null)
+            var ex = PendingError.Value;
+            if (ex == null)
                 return;
             PendingError.Value = null;
-            throw error.Translate();
+            throw ex;
         }
 
         /// <summary>
