@@ -15,6 +15,7 @@ namespace GLFW.Net
         /// <param name="y">The new y-coordinate, in screen coordinates,
         /// of the upper-left corner of the client area of the window.</param>
         /// <seealso cref="SetWindowPosCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowPosCallback(IntPtr window, int x, int y);
 
         /// <summary>
@@ -24,6 +25,7 @@ namespace GLFW.Net
         /// <param name="width">The new width, in screen coordinates, of the window.</param>
         /// <param name="height">The new height, in screen coordinates, of the window.</param>
         /// <seealso cref="SetWindowSizeCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowSizeCallback(IntPtr window, int width, int height);
 
         /// <summary>
@@ -31,6 +33,7 @@ namespace GLFW.Net
         /// </summary>
         /// <param name="window">The window that the user attempted to close.</param>
         /// <seealso cref="SetWindowCloseCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowCloseCallback(IntPtr window);
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace GLFW.Net
         /// </summary>
         /// <param name="window">The window whose content needs to be refreshed.</param>
         /// <seealso cref="SetWindowRefreshCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowRefreshCallback(IntPtr window);
 
         /// <summary>
@@ -47,6 +51,7 @@ namespace GLFW.Net
         /// <param name="focused"><c>true</c> if the window was given input focus,
         /// or <c>false</c> if it lost it.</param>
         /// <seealso cref="SetWindowFocusCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowFocusCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool focused);
 
         /// <summary>
@@ -56,6 +61,7 @@ namespace GLFW.Net
         /// <param name="iconified"><c>true</c> if the window was iconified,
         /// or <c>false</c> if it was restored.</param>
         /// <seealso cref="SetWindowIconifyCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void WindowIconifyCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool iconified);
 
         /// <summary>
@@ -65,6 +71,7 @@ namespace GLFW.Net
         /// <param name="width">The new width, in pixels, of the framebuffer.</param>
         /// <param name="height">The new height, in pixels, of the framebuffer.</param>
         /// <seealso cref="SetFrameBufferSizeCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void FrameBufferSizeCallback(IntPtr window, int width, int height);
 
         /// <summary>

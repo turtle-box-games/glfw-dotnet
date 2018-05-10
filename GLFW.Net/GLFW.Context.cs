@@ -10,6 +10,7 @@ namespace GLFW.Net
         /// Client API function pointer type.
         /// </summary>
         /// <seealso cref="GetProc"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void Proc();
         
         /// <summary>

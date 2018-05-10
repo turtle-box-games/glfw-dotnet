@@ -98,6 +98,7 @@ namespace GLFW.Net
         /// </summary>
         /// <param name="code">An error code.</param>
         /// <param name="description">A UTF-8 encoded string describing the error.</param>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ErrorCallback(int code, IntPtr description);
         
         private static partial class Internal

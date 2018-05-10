@@ -15,6 +15,7 @@ namespace GLFW.Net
         /// or <see cref="MouseButtonState.Release"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetMouseButtonCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void MouseButtonCallback(IntPtr window, MouseButton button, MouseButtonState state,
             ModifierKey mods);
 
@@ -25,6 +26,7 @@ namespace GLFW.Net
         /// <param name="xpos">The new cursor x-coordinate, relative to the left edge of the client area.</param>
         /// <param name="ypos">The new cursor y-coordinate, relative to the top edge of the client area.</param>
         /// <seealso cref="SetCursorPosCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void CursorPositionCallback(IntPtr window, double xpos, double ypos);
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace GLFW.Net
         /// <param name="entered"><c>true</c> if the cursor entered the window's client area,
         /// or <c>false</c> if it left it.</param>
         /// <seealso cref="SetCursorEnterCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void CursorEnterCallback(IntPtr window, [MarshalAs(UnmanagedType.Bool)] bool entered);
 
         /// <summary>
@@ -43,6 +46,7 @@ namespace GLFW.Net
         /// <param name="xoffset">The scroll offset along the x-axis.</param>
         /// <param name="yoffset">The scroll offset along the y-axis.</param>
         /// <seealso cref="SetScrollCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ScrollCallback(IntPtr window, double xoffset, double yoffset);
 
         /// <summary>
@@ -52,6 +56,7 @@ namespace GLFW.Net
         /// <param name="count">The number of dropped files.</param>
         /// <param name="paths">The UTF-8 encoded file and/or directory path names.</param>
         /// <seealso cref="SetDropCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void DropCallback(IntPtr window, int count,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str, SizeParamIndex = 1)]
             string[] paths);

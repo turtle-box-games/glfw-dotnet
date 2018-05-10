@@ -13,6 +13,7 @@ namespace GLFW.Net
         /// <param name="event">One of <see cref="DeviceEvent.Connected"/>
         /// or <see cref="DeviceEvent.Disconnected"/>.</param>
         /// <seealso cref="SetJoystickCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void JoystickCallback(int joy, DeviceEvent @event);
 
         /// <summary>

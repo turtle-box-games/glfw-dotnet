@@ -15,6 +15,7 @@ namespace GLFW.Net
         /// <param name="state">One of <see cref="KeyState"/>.</param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetKeyCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void KeyCallback(IntPtr window, Key key, int scancode, KeyState state, ModifierKey mods);
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace GLFW.Net
         /// <param name="window">The window that received the event.</param>
         /// <param name="codepoint">The Unicode code point of the character.</param>
         /// <seealso cref="SetCharacterCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void CharacterCallback(IntPtr window, uint codepoint);
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace GLFW.Net
         /// <param name="codepoint">The Unicode code point of the character. </param>
         /// <param name="mods">Bit field describing which modifier keys were held down.</param>
         /// <seealso cref="SetCharacterModifierCallback"/>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void CharacterModifierCallback(IntPtr window, uint codepoint, ModifierKey mods);
 
         /// <summary>
