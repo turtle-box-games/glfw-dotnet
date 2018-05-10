@@ -23,5 +23,16 @@ namespace GLFW.Net
                 array[i] = Marshal.PtrToStructure<T>(pointerToArray + i * itemSize);
             return array;
         }
+
+        /// <summary>
+        /// Creates a pointer to a C-style ANSI encoded string.
+        /// The pointer must be freed with <see cref="Marshal.FreeHGlobal"/> after use.
+        /// </summary>
+        /// <param name="value">String to create a pointer for.</param>
+        /// <returns>Pointer to the generated string.</returns>
+        public static IntPtr ToAnsiPtr(this string value)
+        {
+            return value == null ? IntPtr.Zero : Marshal.StringToHGlobalAnsi(value);
+        }
     }
 }

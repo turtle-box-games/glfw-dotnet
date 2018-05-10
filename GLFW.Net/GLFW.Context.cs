@@ -101,7 +101,7 @@ namespace GLFW.Net
         /// <c>vkEnumerateInstanceExtensionProperties</c>
         /// and <c>vkEnumerateDeviceExtensionProperties</c> instead.</para>
         /// </summary>
-        /// <param name="extension">The ASCII encoded name of the extension.</param>
+        /// <param name="extension">The name of the extension.</param>
         /// <returns><c>true</c> if the extension is available, or <c>false</c> otherwise.</returns>
         /// <exception cref="NotInitializedGLFWException">GLFW is not initialized.</exception>
         /// <exception cref="NoCurrentContextGLFWException">The current thread is not assigned a context.</exception>
@@ -111,9 +111,16 @@ namespace GLFW.Net
         /// <seealso cref="GetProc"/>
         public static bool ExtensionSupported(string extension)
         {
-            var stringPointer = Marshal.StringToHGlobalAnsi(extension);
-            var result        = Internal.ExtensionSupported(stringPointer);
-            Marshal.FreeHGlobal(stringPointer);
+            var stringPointer = extension.ToAnsiPtr();
+            int result;
+            try
+            {
+                result = Internal.ExtensionSupported(stringPointer);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(stringPointer);
+            }
             HandleError();
             return result != Internal.False;
         }
@@ -126,7 +133,7 @@ namespace GLFW.Net
         /// If you are rendering with Vulkan, see <see cref="GetInstanceProcAddress"/>,
         /// <c>vkGetInstanceProcAddr</c> and <c>vkGetDeviceProcAddr</c> instead.</para>
         /// </summary>
-        /// <param name="procName">The ASCII encoded name of the function.</param>
+        /// <param name="procName">The name of the function.</param>
         /// <returns>The address of the function, or <c>null</c> if an error occurred.</returns>
         /// <remarks>
         /// <para>The address of a given function is not guaranteed to be the same between contexts.</para>
@@ -140,9 +147,16 @@ namespace GLFW.Net
         /// <seealso cref="ExtensionSupported"/>
         public static Proc GetProc(string procName)
         {
-            var stringPointer = Marshal.StringToHGlobalAnsi(procName);
-            var procAddress   = Internal.GetProcAddress(stringPointer);
-            Marshal.FreeHGlobal(stringPointer);
+            var stringPointer = procName.ToAnsiPtr();
+            IntPtr procAddress;
+            try
+            {
+                procAddress = Internal.GetProcAddress(stringPointer);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(stringPointer);
+            }
             HandleError();
             return procAddress == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<Proc>(procAddress);
         }
