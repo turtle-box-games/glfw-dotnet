@@ -7,6 +7,9 @@ namespace GLFW.Net
 {
     public static partial class GLFW
     {
+        private static SpinLock _errorLock = new SpinLock(false);
+        private static bool _errorPending = false;
+        
         /// <summary>
         /// Errors that occurred on each thread while using GLFW methods.
         /// </summary>
@@ -58,6 +61,17 @@ namespace GLFW.Net
         private static void StoreError(int code, IntPtr description)
         {
             PendingError.Value = TranslateErrorToException(code, description);
+            var gotLock = false;
+            try
+            {
+                _errorLock.Enter(ref gotLock);
+                _errorPending = true;
+            }
+            finally
+            {
+                if(gotLock)
+                    _errorLock.Exit();
+            }
         }
 
         /// <summary>
@@ -68,11 +82,24 @@ namespace GLFW.Net
         /// <exception cref="ArgumentOutOfRangeException">An unrecognized GLFW error ocurred.</exception>
         private static void HandleError()
         {
-            var ex = PendingError.Value;
-            if (ex == null)
-                return;
-            PendingError.Value = null;
-            throw ex;
+            var gotLock = false;
+            try
+            {
+                _errorLock.Enter(ref gotLock);
+                if (!_errorPending)
+                    return;
+                var ex = PendingError.Value;
+                if (ex == null)
+                    return;
+                PendingError.Value = null;
+                _errorPending = PendingError.Values.Count > 0;
+                throw ex;
+            }
+            finally
+            {
+                if (gotLock)
+                    _errorLock.Exit();
+            }
         }
 
         /// <summary>
