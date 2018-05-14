@@ -353,13 +353,13 @@ namespace Glfw3
         /// </summary>
         /// <param name="window">The window to set limits for.</param>
         /// <param name="minWidth">The minimum width, in screen coordinates, of the client area,
-        /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// or <see cref="DontCare"/>.</param>
         /// <param name="minHeight">The minimum height, in screen coordinates, of the client area,
-        /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// or <see cref="DontCare"/>.</param>
         /// <param name="maxWidth">The maximum width, in screen coordinates, of the client area,
-        /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// or <see cref="DontCare"/>.</param>
         /// <param name="maxHeight">The maximum height, in screen coordinates, of the client area,
-        /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// or <see cref="DontCare"/>.</param>
         /// <remarks>If you set size limits and an aspect ratio that conflict, the results are undefined.</remarks>
         /// <exception cref="NotInitializedGlfwException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
@@ -380,14 +380,14 @@ namespace Glfw3
         /// <para>The aspect ratio is specified as a numerator and a denominator
         /// and both values must be greater than zero.
         /// For example, the common 16:9 aspect ratio is specified as 16 and 9, respectively.</para>
-        /// <para>If the numerator and denominator is set to <see cref="Glfw3.Glfw.Internal.DontCare"/>
+        /// <para>If the numerator and denominator is set to <see cref="DontCare"/>
         /// then the aspect ratio limit is disabled.</para>
         /// <para>The aspect ratio is applied immediately to a windowed mode window
         /// and may cause it to be resized.</para>
         /// </summary>
         /// <param name="window">The window to set limits for.</param>
-        /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
-        /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="DontCare"/>.</param>
+        /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="DontCare"/>.</param>
         /// <remarks>If you set size limits and an aspect ratio that conflict, the results are undefined.</remarks>
         /// <exception cref="NotInitializedGlfwException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
@@ -608,7 +608,7 @@ namespace Glfw3
         /// <param name="width">The desired with, in screen coordinates, of the client area or video mode.</param>
         /// <param name="height">The desired height, in screen coordinates, of the client area or video mode.</param>
         /// <param name="refreshRate">The desired refresh rate, in Hz, of the video mode,
-        /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+        /// or <see cref="DontCare"/>.</param>
         /// <exception cref="NotInitializedGlfwException">GLFW is not initialized.</exception>
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
         /// <seealso cref="GetWindowMonitor"/>
@@ -1190,13 +1190,13 @@ namespace Glfw3
             /// </summary>
             /// <param name="window">The window to set limits for.</param>
             /// <param name="minWidth">The minimum width, in screen coordinates, of the client area,
-            /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// or <see cref="Glfw.DontCare"/>.</param>
             /// <param name="minHeight">The minimum height, in screen coordinates, of the client area,
-            /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// or <see cref="Glfw.DontCare"/>.</param>
             /// <param name="maxWidth">The maximum width, in screen coordinates, of the client area,
-            /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// or <see cref="Glfw.DontCare"/>.</param>
             /// <param name="maxHeight">The maximum height, in screen coordinates, of the client area,
-            /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// or <see cref="Glfw.DontCare"/>.</param>
             /// <remarks><para>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</para>
@@ -1216,14 +1216,14 @@ namespace Glfw3
             /// <para>The aspect ratio is specified as a numerator and a denominator
             /// and both values must be greater than zero.
             /// For example, the common 16:9 aspect ratio is specified as 16 and 9, respectively.</para>
-            /// <para>If the numerator and denominator is set to <see cref="Glfw3.Glfw.Internal.DontCare"/>
+            /// <para>If the numerator and denominator is set to <see cref="Glfw.DontCare"/>
             /// then the aspect ratio limit is disabled.</para>
             /// <para>The aspect ratio is applied immediately to a windowed mode window
             /// and may cause it to be resized.</para>
             /// </summary>
             /// <param name="window">The window to set limits for.</param>
-            /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
-            /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// <param name="numer">The numerator of the desired aspect ratio, or <see cref="Glfw.DontCare"/>.</param>
+            /// <param name="denom">The denominator of the desired aspect ratio, or <see cref="Glfw.DontCare"/>.</param>
             /// <remarks><para>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/>, <see cref="ErrorCode.InvalidValue"/>,
             /// and <see cref="ErrorCode.PlatformError"/>.</para>
@@ -1424,7 +1424,7 @@ namespace Glfw3
             /// <param name="height">The desired height, in screen coordinates,
             /// of the client area or video mode.</param>
             /// <param name="refreshRate">The desired refresh rate, in Hz, of the video mode,
-            /// or <see cref="Glfw3.Glfw.Internal.DontCare"/>.</param>
+            /// or <see cref="Glfw.DontCare"/>.</param>
             /// <remarks>Possible errors include
             /// <see cref="ErrorCode.NotInitialized"/> and <see cref="ErrorCode.PlatformError"/>.</remarks>
             /// <seealso cref="GetWindowMonitor"/>
