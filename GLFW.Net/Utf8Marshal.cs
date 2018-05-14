@@ -49,7 +49,7 @@ namespace GLFW.Net
             var buffer = new byte[length + 1]; // +1 to leave space for the null-terminator.
 
             // Encode the string in UTF-8.
-            Encoding.UTF8.GetBytes(managedString, 0, managedString.Length, buffer, length);
+            Encoding.UTF8.GetBytes(managedString, 0, managedString.Length, buffer, 0);
             
             // Allocate unmanaged memory and copy the buffer to it.
             var nativeString = Marshal.AllocHGlobal(buffer.Length);
