@@ -24,8 +24,8 @@ namespace Glfw3
         public static void Initialize()
         {
             InitializeErrorHandler();
-            Internal.Init();
-            HandleError();
+            if (Internal.Init() == Internal.False)
+                HandleError();
         }
 
         /// <summary>
@@ -85,15 +85,14 @@ namespace Glfw3
             /// but before termination will return <see cref="True"/> immediately.</para>
             /// <para>Possible errors include <see cref="ErrorCode.PlatformError"/>.</para>
             /// </summary>
-            /// <returns><c>true</c> if successful, or <c>false</c> if an error occurred.</returns>
+            /// <returns><see cref="True"/> if successful, or <see cref="False"/> if an error occurred.</returns>
             /// <remarks>OS X: This function will change the current directory of the application
             /// to the <c>Contents/Resources</c> subdirectory of the application's bundle, if present.
             /// This can be disabled with a compile-time option.</remarks>
             /// <see cref="Terminate"/>
             [SuppressUnmanagedCodeSecurity]
             [DllImport(DllName, EntryPoint = "glfwInit", CallingConvention = CallingConvention.Cdecl)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool Init();
+            public static extern int Init();
 
             /// <summary>
             /// Terminates the GLFW library.

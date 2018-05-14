@@ -59,7 +59,8 @@ namespace Glfw3
         public static string GetKeyName(Key key, int scancode)
         {
             var result = Internal.GetKeyName((int) key, scancode);
-            HandleError();
+            if (result == IntPtr.Zero)
+                HandleError();
             return result.FromNativeUtf8();
         }
 

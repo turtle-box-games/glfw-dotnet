@@ -193,7 +193,8 @@ namespace Glfw3
         {
             var titlePointer  = title.ToNativeUtf8();
             var windowPointer = Internal.CreateWindow(width, height, titlePointer, monitor, share);
-            HandleError();
+            if (windowPointer == IntPtr.Zero)
+                HandleError();
             return windowPointer;
         }
 
@@ -581,7 +582,8 @@ namespace Glfw3
         public static IntPtr GetWindowMonitor(IntPtr window)
         {
             var monitorPointer = Internal.GetWindowMonitor(window);
-            HandleError();
+            if (monitorPointer == IntPtr.Zero)
+                HandleError();
             return monitorPointer;
         }
 

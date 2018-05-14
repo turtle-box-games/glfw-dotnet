@@ -49,9 +49,11 @@ namespace Glfw3
         public static float[] GetJoystickAxes(int joy)
         {
             var axesPointer = Internal.GetJoystickAxes(joy, out var count);
-            HandleError();
             if (axesPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return null;
+            }
             var axes = new float[count];
             Marshal.Copy(axesPointer, axes, 0, count);
             return axes;
@@ -75,9 +77,11 @@ namespace Glfw3
         public static bool GetJoystickAxes(int joy, ref float[] axes)
         {
             var axesPointer = Internal.GetJoystickAxes(joy, out var count);
-            HandleError();
             if (axesPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return false;
+            }
             Marshal.Copy(axesPointer, axes, 0, Math.Min(count, axes.Length));
             return true;
         }
@@ -100,9 +104,11 @@ namespace Glfw3
         public static JoystickButtonState[] GetJoystickButtons(int joy)
         {
             var statesPointer = Internal.GetJoystickButtons(joy, out var count);
-            HandleError();
             if (statesPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return null;
+            }
             var buttonStates = new JoystickButtonState[count];
             // ReSharper disable once PossibleInvalidCastException
             Marshal.Copy(statesPointer, (byte[]) (object) buttonStates, 0, count);
@@ -128,9 +134,11 @@ namespace Glfw3
         public static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
         {
             var statesPointer = Internal.GetJoystickButtons(joy, out var count);
-            HandleError();
             if (statesPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return false;
+            }
             // ReSharper disable once PossibleInvalidCastException
             Marshal.Copy(statesPointer, (byte[]) (object) buttonStates, 0, Math.Min(count, buttonStates.Length));
             return true;
@@ -151,7 +159,8 @@ namespace Glfw3
         public static string GetJoystickName(int joy)
         {
             var result = Internal.GetJoystickName(joy);
-            HandleError();
+            if (result == IntPtr.Zero)
+                HandleError();
             return result.FromNativeUtf8();
         }
 

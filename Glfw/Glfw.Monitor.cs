@@ -29,9 +29,11 @@ namespace Glfw3
         public static IntPtr[] GetMonitors()
         {
             var arrayPointer = Internal.GetMonitors(out var count);
-            HandleError();
             if (arrayPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return new IntPtr[0];
+            }
             var monitors = new IntPtr[count];
             Marshal.Copy(arrayPointer, monitors, 0, count);
             return monitors;
@@ -48,7 +50,8 @@ namespace Glfw3
         public static IntPtr GetPrimaryMonitor()
         {
             var monitorPointer = Internal.GetPrimaryMonitor();
-            HandleError();
+            if (monitorPointer == IntPtr.Zero)
+                HandleError();
             return monitorPointer;
         }
 
@@ -98,7 +101,8 @@ namespace Glfw3
         public static string GetMonitorName(IntPtr monitor)
         {
             var namePointer = Internal.GetMonitorName(monitor);
-            HandleError();
+            if (namePointer == IntPtr.Zero)
+                HandleError();
             return namePointer.FromNativeUtf8();
         }
 
@@ -131,7 +135,8 @@ namespace Glfw3
         public static VideoMode[] GetVideoModes(IntPtr monitor)
         {
             var modesPointer = Internal.GetVideoModes(monitor, out var count);
-            HandleError();
+            if (modesPointer == IntPtr.Zero)
+                HandleError();
             return modesPointer.PtrToStructureArray<VideoMode>(count, VideoMode.StructSize);
         }
 
@@ -149,7 +154,8 @@ namespace Glfw3
         public static VideoMode GetVideoMode(IntPtr monitor)
         {
             var modePointer = Internal.GetVideoMode(monitor);
-            HandleError();
+            if (modePointer == IntPtr.Zero)
+                HandleError();
             return Marshal.PtrToStructure<VideoMode>(modePointer);
         }
 
@@ -180,9 +186,11 @@ namespace Glfw3
         public static GammaRamp GetGammaRamp(IntPtr monitor)
         {
             var rampPointer = Internal.GetGammaRamp(monitor);
-            HandleError();
             if (rampPointer == IntPtr.Zero)
+            {
+                HandleError();
                 return null;
+            }
             var ramp = Marshal.PtrToStructure<UnmanagedGammaRamp>(rampPointer);
             return ramp.ToManaged();
         }

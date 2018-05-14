@@ -157,7 +157,8 @@ namespace Glfw3
         public static IntPtr CreateCursor(IntPtr image, int xhot, int yhot)
         {
             var cursorPointer = Internal.CreateCursor(image, xhot, yhot);
-            HandleError();
+            if (cursorPointer == IntPtr.Zero)
+                HandleError();
             return cursorPointer;
         }
 
@@ -176,7 +177,8 @@ namespace Glfw3
         public static IntPtr CreateStandardCursor(CursorShape shape)
         {
             var cursorPointer = Internal.CreateStandardCursor((int) shape);
-            HandleError();
+            if (cursorPointer == IntPtr.Zero)
+                HandleError();
             return cursorPointer;
         }
 

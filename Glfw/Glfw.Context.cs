@@ -49,7 +49,8 @@ namespace Glfw3
         public static IntPtr GetCurrentContext()
         {
             var result = Internal.GetCurrentContext();
-            HandleError();
+            if (result == IntPtr.Zero)
+                HandleError();
             return result;
         }
 

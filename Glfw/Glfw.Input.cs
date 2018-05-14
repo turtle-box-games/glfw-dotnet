@@ -112,7 +112,8 @@ namespace Glfw3
         public static string GetClipboardString(IntPtr window)
         {
             var result = Internal.GetClipboardString(window);
-            HandleError();
+            if (result == IntPtr.Zero)
+                HandleError();
             return result.FromNativeUtf8();
         }
 
@@ -162,7 +163,8 @@ namespace Glfw3
         public static ulong GetTime()
         {
             var result = Internal.GetTimerValue();
-            HandleError(); // TODO: This call is really expensive for this method (x2 slowdown).
+            if (result == 0UL)
+                HandleError();
             return result;
         }
 
@@ -175,7 +177,8 @@ namespace Glfw3
         public static ulong GetTimerFrequency()
         {
             var result = Internal.GetTimerFrequency();
-            HandleError();
+            if (result == 0UL)
+                HandleError();
             return result;
         }
 
