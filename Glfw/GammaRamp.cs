@@ -7,8 +7,6 @@ namespace Glfw3
     /// </summary>
     public class GammaRamp
     {
-        private readonly ushort[] _red, _green, _blue;
-
         /// <summary>
         /// Creates a new gamma ramp.
         /// </summary>
@@ -28,29 +26,29 @@ namespace Glfw3
             if(red.Length != green.Length || green.Length != blue.Length)
                 throw new ArgumentException("The channel response arrays must have matching lengths.");
             
-            _red   = red;
-            _green = green;
-            _blue  = blue;
+            Red   = red;
+            Green = green;
+            Blue  = blue;
         }
 
         /// <summary>
         /// Responsiveness of the red channel.
         /// </summary>
-        public ushort[] Red => _red;
+        public ushort[] Red { get; }
 
         /// <summary>
         /// Responsiveness of the green channel.
         /// </summary>
-        public ushort[] Green => _green;
+        public ushort[] Green { get; }
 
         /// <summary>
         /// Responsiveness of the blue channel.
         /// </summary>
-        public ushort[] Blue => _blue;
+        public ushort[] Blue { get; }
 
         /// <summary>
         /// Number of elements in each channel array.
         /// </summary>
-        public int Size => _red.Length;
+        public int Size => Red.Length;
     }
 }

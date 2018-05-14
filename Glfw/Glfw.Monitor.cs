@@ -28,8 +28,7 @@ namespace Glfw3
         /// <seealso cref="GetPrimaryMonitor"/>
         public static IntPtr[] GetMonitors()
         {
-            int count;
-            var arrayPointer = Internal.GetMonitors(out count);
+            var arrayPointer = Internal.GetMonitors(out var count);
             HandleError();
             if (arrayPointer == IntPtr.Zero)
                 return new IntPtr[0];
@@ -131,8 +130,7 @@ namespace Glfw3
         /// <seealso cref="GetVideoMode"/>
         public static VideoMode[] GetVideoModes(IntPtr monitor)
         {
-            int count;
-            var modesPointer = Internal.GetVideoModes(monitor, out count);
+            var modesPointer = Internal.GetVideoModes(monitor, out var count);
             HandleError();
             return modesPointer.PtrToStructureArray<VideoMode>(count, VideoMode.StructSize);
         }

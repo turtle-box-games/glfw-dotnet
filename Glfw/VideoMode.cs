@@ -19,32 +19,32 @@ namespace Glfw3
         /// <summary>
         /// The width, in screen coordinates.
         /// </summary>
-        public int Width;
+        public readonly int Width;
 
         /// <summary>
         /// The height, in screen coordinates.
         /// </summary>
-        public int Height;
+        public readonly int Height;
 
         /// <summary>
         /// The bit depth of the red channel.
         /// </summary>
-        public int RedBits;
+        public readonly int RedBits;
 
         /// <summary>
         /// The bit depth of the green channel.
         /// </summary>
-        public int GreenBits;
+        public readonly int GreenBits;
 
         /// <summary>
         /// The bit depth of the blue channel.
         /// </summary>
-        public int BlueBits;
+        public readonly int BlueBits;
 
         /// <summary>
         /// The refresh rate, in Hz.
         /// </summary>
-        public int RefreshRate;
+        public readonly int RefreshRate;
 
         /// <summary>
         /// Creates a string representation of the video mode.

@@ -60,8 +60,7 @@ namespace Glfw3
         {
             get
             {
-                int major, minor, rev;
-                Internal.GetVersion(out major, out minor, out rev);
+                Internal.GetVersion(out var major, out var minor, out var rev);
                 return new Version(major, minor, rev);
             }
         }

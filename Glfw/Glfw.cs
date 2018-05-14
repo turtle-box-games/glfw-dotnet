@@ -21,7 +21,7 @@ namespace Glfw3
             var prevCallbackPointer = setter(pointerForDelegate);
             HandleError();
             return prevCallbackPointer == IntPtr.Zero
-                ? default(TDelegate)
+                ? default
                 : Marshal.GetDelegateForFunctionPointer<TDelegate>(prevCallbackPointer);
         }
 
@@ -42,7 +42,7 @@ namespace Glfw3
             var prevCallbackPointer = setter(window, pointerForDelegate);
             HandleError();
             return prevCallbackPointer == IntPtr.Zero
-                ? default(TDelegate)
+                ? default
                 : Marshal.GetDelegateForFunctionPointer<TDelegate>(prevCallbackPointer);
         }
 
@@ -56,7 +56,7 @@ namespace Glfw3
         /// This means <c>null</c> for reference types or "zero" or value types.</returns>
         private static bool EqualsDefault<T>(this T self)
         {
-            return EqualityComparer<T>.Default.Equals(self, default(T));
+            return EqualityComparer<T>.Default.Equals(self, default);
         }
     }
 }

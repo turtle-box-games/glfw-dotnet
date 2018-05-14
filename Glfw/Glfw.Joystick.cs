@@ -48,8 +48,7 @@ namespace Glfw3
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
         public static float[] GetJoystickAxes(int joy)
         {
-            int count;
-            var axesPointer = Internal.GetJoystickAxes(joy, out count);
+            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
             HandleError();
             if (axesPointer == IntPtr.Zero)
                 return null;
@@ -75,8 +74,7 @@ namespace Glfw3
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
         public static bool GetJoystickAxes(int joy, ref float[] axes)
         {
-            int count;
-            var axesPointer = Internal.GetJoystickAxes(joy, out count);
+            var axesPointer = Internal.GetJoystickAxes(joy, out var count);
             HandleError();
             if (axesPointer == IntPtr.Zero)
                 return false;
@@ -101,8 +99,7 @@ namespace Glfw3
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
         public static JoystickButtonState[] GetJoystickButtons(int joy)
         {
-            int count;
-            var statesPointer = Internal.GetJoystickButtons(joy, out count);
+            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
             HandleError();
             if (statesPointer == IntPtr.Zero)
                 return null;
@@ -130,8 +127,7 @@ namespace Glfw3
         /// <exception cref="PlatformErrorGlfwException">This operation is not supported on this platform.</exception>
         public static bool GetJoystickButtons(int joy, ref JoystickButtonState[] buttonStates)
         {
-            int count;
-            var statesPointer = Internal.GetJoystickButtons(joy, out count);
+            var statesPointer = Internal.GetJoystickButtons(joy, out var count);
             HandleError();
             if (statesPointer == IntPtr.Zero)
                 return false;

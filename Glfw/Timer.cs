@@ -138,7 +138,7 @@ namespace Glfw3
             /// and less than 18,446,744,073.</exception>
             public static double Seconds
             {
-                get { return Glfw.GetTimeInSeconds(); }
+                get => Glfw.GetTimeInSeconds();
                 set
                 {
                     try
