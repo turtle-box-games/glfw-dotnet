@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43AE37A7-CCC9-4D8B-8ECD-5A4C440C0216}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Glfw3</RootNamespace>
+    <AssemblyName>Glfw3Wrapper</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiUnavailableGlfwException.cs" />
+    <Compile Include="GammaRamp.cs" />
+    <Compile Include="UnmanagedGammaRamp.cs" />
+    <Compile Include="JoystickButtonState.cs" />
+    <Compile Include="ClientApi.cs" />
+    <Compile Include="ColorDepth.cs" />
+    <Compile Include="ContextApi.cs" />
+    <Compile Include="CursorMode.cs" />
+    <Compile Include="CursorShape.cs" />
+    <Compile Include="ErrorCode.cs" />
+    <Compile Include="FormatUnavailableGlfwException.cs" />
+    <Compile Include="Glfw.Constants.cs" />
+    <Compile Include="Glfw.Context.cs" />
+    <Compile Include="Glfw.cs" />
+    <Compile Include="Glfw.Error.cs" />
+    <Compile Include="Glfw.Init.cs" />
+    <Compile Include="Glfw.Input.cs" />
+    <Compile Include="Glfw.Joystick.cs" />
+    <Compile Include="Glfw.Keyboard.cs" />
+    <Compile Include="Glfw.Monitor.cs" />
+    <Compile Include="Glfw.Mouse.cs" />
+    <Compile Include="Glfw.Window.cs" />
+    <Compile Include="DeviceEvent.cs" />
+    <Compile Include="GlfwException.cs" />
+    <Compile Include="InputMode.cs" />
+    <Compile Include="InvalidEnumGlfwException.cs" />
+    <Compile Include="InvalidValueGlfwException.cs" />
+    <Compile Include="Key.cs" />
+    <Compile Include="KeyState.cs" />
+    <Compile Include="MarshalUtil.cs" />
+    <Compile Include="ModifierKey.cs" />
+    <Compile Include="Monitor.cs" />
+    <Compile Include="MouseButton.cs" />
+    <Compile Include="MouseButtonState.cs" />
+    <Compile Include="NoCurrentContextGlfwException.cs" />
+    <Compile Include="NotInitializedGlfwException.cs" />
+    <Compile Include="NoWindowContextGlfwException.cs" />
+    <Compile Include="OpenGlProfile.cs" />
+    <Compile Include="OutOfMemoryGlfwException.cs" />
+    <Compile Include="PlatformErrorGlfwException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseBehavior.cs" />
+    <Compile Include="Robustness.cs" />
+    <Compile Include="Timer.cs" />
+    <Compile Include="Utf8Marshal.cs" />
+    <Compile Include="VersionUnavailableGlfwException.cs" />
+    <Compile Include="VideoMode.cs" />
+    <Compile Include="WindowAttribute.cs" />
+    <Compile Include="WindowHint.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>
